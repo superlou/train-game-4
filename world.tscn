@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=8 format=3 uid="uid://danay4nhul4s3"]
 
+[ext_resource type="PackedScene" uid="uid://d0ss7nky432g3" path="res://ground_tile.tscn" id="1_7vjo7"]
+[ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://test_car.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://player.tscn" id="3_073to"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w4cib"]
-albedo_color = Color(0.501961, 0.721569, 0.0901961, 1)
 
 [sub_resource type="Environment" id="Environment_j3mav"]
 
@@ -17,10 +16,10 @@ albedo_color = Color(0.501961, 0.721569, 0.0901961, 1)
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
-material_override = SubResource("StandardMaterial3D_w4cib")
-size = Vector3(30, 0.1, 30)
+[node name="Ground" type="Node3D" parent="."]
+script = ExtResource("1_ewr1a")
+
+[node name="GroundTile" parent="Ground" instance=ExtResource("1_7vjo7")]
 
 [node name="Trainset" parent="." instance=ExtResource("1_l72nw")]
 
@@ -44,3 +43,9 @@ mass = 0.11
 shape = SubResource("SphereShape3D_o3dtj")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Cube"]
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.943385, 0.3317, 0, -0.3317, 0.943385, 5.61754, 5.41754, 9.91914)
+current = true
+
+[connection signal="changed_velocity" from="Trainset" to="Ground" method="_on_trainset_changed_velocity"]
