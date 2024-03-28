@@ -1,16 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=4 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_dwx2k"]
+[ext_resource type="Texture2D" uid="uid://driuoq2jvqvop" path="res://assets/robot.png" id="2_a4u6m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u67lg"]
-radius = 0.3
-height = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ximy0"]
-albedo_color = Color(0.329412, 0.541176, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_6hyur"]
-material = SubResource("StandardMaterial3D_ximy0")
 radius = 0.3
 height = 1.5
 
@@ -22,15 +15,19 @@ script = ExtResource("1_dwx2k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75143, 0)
 shape = SubResource("CapsuleShape3D_u67lg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752145, 0)
-mesh = SubResource("CapsuleMesh_6hyur")
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.582634, 0.812735, 0, -0.812735, 0.582634, -0.00491548, 3.69771, 2.58583)
+transform = Transform3D(1, 0, 0, 0, 0.779732, 0.626114, 0, -0.626114, 0.779732, -0.00491548, 2.50301, 2.58583)
 projection = 1
-size = 3.0
+size = 4.0
 
 [node name="FloorCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0476875, 0)
 target_position = Vector3(0, -0.1, 0)
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866488, 0.499199, 0, -0.499199, 0.866488, -0.0315374, 0.751586, -0.000822902)
+pixel_size = 0.04
+texture = ExtResource("2_a4u6m")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 40)
