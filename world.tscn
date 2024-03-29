@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=7 format=3 uid="uid://danay4nhul4s3"]
 
-[ext_resource type="PackedScene" uid="uid://d0ss7nky432g3" path="res://ground_tile.tscn" id="1_7vjo7"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://test_car.tscn" id="2_34f60"]
@@ -16,10 +15,9 @@
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Ground" type="Node3D" parent="."]
+[node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("trainset")]
 script = ExtResource("1_ewr1a")
-
-[node name="GroundTile" parent="Ground" instance=ExtResource("1_7vjo7")]
+trainset = NodePath("../Trainset")
 
 [node name="Trainset" parent="." instance=ExtResource("1_l72nw")]
 
@@ -47,5 +45,3 @@ shape = SubResource("SphereShape3D_o3dtj")
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.943385, 0.3317, 0, -0.3317, 0.943385, 5.61754, 5.41754, 9.91914)
 current = true
-
-[connection signal="changed_velocity" from="Trainset" to="Ground" method="_on_trainset_changed_velocity"]
