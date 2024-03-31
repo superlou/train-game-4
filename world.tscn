@@ -43,5 +43,5 @@ shape = SubResource("SphereShape3D_o3dtj")
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Cube"]
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.943385, 0.3317, 0, -0.3317, 0.943385, 5.61754, 5.41754, 9.91914)
+transform = Transform3D(1, 0, 0, 0, 0.859389, 0.511323, 0, -0.511323, 0.859389, 5.61754, 8.91575, 15.4463)
 current = true
