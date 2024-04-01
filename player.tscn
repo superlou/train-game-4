@@ -10,9 +10,7 @@ height = 1.5
 radius = 0.3
 height = 1.5
 
-[node name="Player" type="RigidBody3D"]
-can_sleep = false
-lock_rotation = true
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_dwx2k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -23,8 +21,9 @@ shape = SubResource("CapsuleShape3D_u67lg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CapsuleMesh_58sj6")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.779732, 0.626114, 0, -0.626114, 0.779732, -0.00491548, 3.69771, 4.26675)
+[node name="Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31224, 0)
 size = 4.0
 
 [node name="FloorCast" type="RayCast3D" parent="."]
