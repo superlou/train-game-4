@@ -85,7 +85,6 @@ func _jump(delta: float) -> Vector3:
 
 
 func _rotate_camera(event: InputEventMouseMotion) -> void:
-	print(look_sensitivity)
 	rotate_y(event.relative.x * -look_sensitivity)
 	%Camera.rotate_x(event.relative.y * -look_sensitivity)
 	%Camera.rotation.x = clamp(%Camera.rotation.x, -PI/2, PI/2)

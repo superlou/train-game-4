@@ -9,12 +9,11 @@ const TILE_WIDTH := 50.0
 const LOOK_AHEAD := 500.0
 const LOOK_BEHIND := 500.0
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	plant_tiles()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	plant_tiles() # must happen before moving otherwise gaps form
 

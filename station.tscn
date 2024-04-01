@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4eyxjfs62i4f"]
+
+[ext_resource type="Script" path="res://station.gd" id="1_lyk1j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ey4gq"]
+size = Vector3(16, 1, 10)
+
+[node name="Station" type="AnimatableBody3D"]
+script = ExtResource("1_lyk1j")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7.21858)
+size = Vector3(16, 1, 10)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7322, -9.4076)
+size = Vector3(13.4551, 3.45459, 5.62195)
+
+[node name="CSGBox3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7.21858)
+shape = SubResource("BoxShape3D_ey4gq")
