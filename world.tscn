@@ -1,11 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=9 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://test_car.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://player.tscn" id="3_073to"]
+[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
+
+[sub_resource type="Sky" id="Sky_6sy21"]
+sky_material = ExtResource("5_s2rs5")
 
 [sub_resource type="Environment" id="Environment_j3mav"]
+background_mode = 2
+sky = SubResource("Sky_6sy21")
+ambient_light_source = 3
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_o3dtj"]
 
