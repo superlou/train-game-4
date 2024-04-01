@@ -5,9 +5,9 @@ var ground_velocity = 0
 @export var trainset: Trainset
 
 var tile_scene = preload("res://ground_tile.tscn")
-const TILE_WIDTH := 20.0
-const LOOK_AHEAD := 100.0
-const LOOK_BEHIND := 100.0
+const TILE_WIDTH := 50.0
+const LOOK_AHEAD := 500.0
+const LOOK_BEHIND := 500.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -41,7 +41,6 @@ func plant_tiles():
 	while leftmost_tile.position.x > (train_min_x - LOOK_BEHIND):
 		var tile = tile_scene.instantiate()
 		tile.position.x = leftmost_tile.position.x - TILE_WIDTH
-		print(tile.position.x)
 		add_child(tile)
 		move_child(tile, 0)
 		leftmost_tile = tile

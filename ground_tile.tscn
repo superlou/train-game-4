@@ -5,17 +5,17 @@ albedo_color = Color(0.223529, 0.329412, 0.0941176, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wqb4a"]
 material = SubResource("StandardMaterial3D_4tnhv")
-size = Vector2(20, 20)
+size = Vector2(50, 1000)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_421cr"]
 albedo_color = Color(0.345098, 0.521569, 0.129412, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ykogi"]
 material = SubResource("StandardMaterial3D_421cr")
-size = Vector2(19.5, 19.5)
+size = Vector2(49.5, 1000)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42i3g"]
-size = Vector3(20, 1, 20)
+size = Vector3(50, 1, 1000)
 
 [node name="GroundTile" type="AnimatableBody3D"]
 
