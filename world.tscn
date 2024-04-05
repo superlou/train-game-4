@@ -27,6 +27,7 @@ script = ExtResource("1_ewr1a")
 trainset = NodePath("../Trainset")
 
 [node name="Trainset" parent="." instance=ExtResource("1_l72nw")]
+process_physics_priority = -1
 
 [node name="TestCar1" parent="Trainset" instance=ExtResource("2_34f60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)

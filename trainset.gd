@@ -10,6 +10,9 @@ func _ready():
 	pass # Replace with function body.
 
 
+# Physics priority needs to be set lower than other nodes otherwise
+# velocity between the train and other objects won't be quite right
+# when accelerating.
 func _physics_process(delta):
 	if Input.is_action_pressed("accelerate_right"):
 		head_velocity += acceleration * delta
