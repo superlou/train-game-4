@@ -33,7 +33,7 @@ process_physics_priority = -1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)
 
 [node name="TestCar2" parent="Trainset" instance=ExtResource("2_34f60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.69525, 0.299534, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.61754, 1.40862, 0)
