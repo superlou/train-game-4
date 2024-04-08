@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_8p5yr"]
 size = Vector3(21.4971, 1.24609, 2.75)
 
-[node name="TestCar" type="AnimatableBody3D"]
+[node name="Flatcar" type="AnimatableBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00302124, 0.630778, 0.000732422)

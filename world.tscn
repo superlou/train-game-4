@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
-[ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://test_car.tscn" id="2_34f60"]
+[ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://flatcar.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://player.tscn" id="3_073to"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
 
@@ -29,10 +29,10 @@ trainset = NodePath("../Trainset")
 [node name="Trainset" parent="." instance=ExtResource("1_l72nw")]
 process_physics_priority = -1
 
-[node name="TestCar1" parent="Trainset" instance=ExtResource("2_34f60")]
+[node name="Flatcar1" parent="Trainset" instance=ExtResource("2_34f60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)
 
-[node name="TestCar2" parent="Trainset" instance=ExtResource("2_34f60")]
+[node name="Flatcar2" parent="Trainset" instance=ExtResource("2_34f60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
