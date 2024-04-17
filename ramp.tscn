@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://5n0x0e5lv51x"]
+
+[ext_resource type="Script" path="res://ramp.gd" id="1_y1fhy"]
+[ext_resource type="PackedScene" uid="uid://ptsn64jjttgy" path="res://ramp_plate.tscn" id="2_8ydw7"]
+[ext_resource type="PackedScene" uid="uid://c34cd6xo5golo" path="res://blender/ramp_base.glb" id="3_idb7r"]
+
+[node name="Ramp" type="Node3D"]
+script = ExtResource("1_y1fhy")
+
+[node name="ramp_base" parent="." instance=ExtResource("3_idb7r")]
+
+[node name="Plate" parent="." instance=ExtResource("2_8ydw7")]
+
+[node name="RampBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.000168324)
+
+[node name="SlideJoint" type="JoltGeneric6DOFJoint3D" parent="."]
+linear_motor_z/max_force = 1000.0
+node_a = NodePath("../Plate")
+node_b = NodePath("../RampBody")
+enabled = false
+
+[node name="LeftHingeJoint" type="JoltHingeJoint3D" parent="."]
+motor_max_torque = 1000.0
+enabled = false
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.176, -1.63)
+
+[node name="RightHingeJoint" type="JoltHingeJoint3D" parent="."]
+motor_max_torque = 1000.0
+enabled = false
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.176, 1.63)
