@@ -37,7 +37,6 @@ func _process(_delta):
 
 
 func _physics_process(_delta: float):
-	print(state)
 	if state == RampState.EXTENDING:
 		plate.sleeping = false
 
@@ -62,10 +61,20 @@ func _physics_process(_delta: float):
 			joint.enabled = false
 			state = RampState.OUT
 	elif state == RampState.OUT:
+		if deploy_dir == DeployDir.LEFT:
+			$GateLeft.raise()
+		elif deploy_dir == DeployDir.RIGHT:
+			$GateRight.raise()
+
 		var joint := $LeftHingeJoint if deploy_dir == DeployDir.LEFT else $RightHingeJoint
 		joint.node_a = ^"../Plate"
 		joint.enabled = true
 	elif state == RampState.LIFTING:
+		if deploy_dir == DeployDir.LEFT:
+			$GateLeft.lower()
+		elif deploy_dir == DeployDir.RIGHT:
+			$GateRight.lower()
+		
 		var joint := $LeftHingeJoint if deploy_dir == DeployDir.LEFT else $RightHingeJoint
 		joint.motor_enabled = true
 		joint.motor_target_velocity = -0.1 if deploy_dir == DeployDir.LEFT else 0.1

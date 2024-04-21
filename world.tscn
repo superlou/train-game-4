@@ -35,19 +35,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)
 
 [node name="Ramp" parent="Trainset/Flatcar1" instance=ExtResource("4_4424q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81792, 1.25032, 0)
-deploy_speed = 1.0
 
 [node name="Flatcar2" parent="Trainset" instance=ExtResource("2_34f60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
-transform = Transform3D(0.660631, 0, -0.750711, 0, 1, 0, 0.750711, 0, 0.660631, 5.61754, 1.40862, 0)
+transform = Transform3D(0.660631, 0, -0.750711, 0, 1, 0, 0.750711, 0, 0.660631, 5.61754, 1.64249, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j3mav")
 
 [node name="Cube" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52872, 1.73951, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52872, 2.12205, 0)
 mass = 0.11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]

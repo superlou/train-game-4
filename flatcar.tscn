@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://rgv4era602k3"]
 
-[ext_resource type="PackedScene" uid="uid://m3e68eoqq62g" path="res://blender/train_truck.blend" id="1_y3h61"]
+[ext_resource type="PackedScene" uid="uid://cckjeq34nikwk" path="res://blender/train_truck.glb" id="1_y3h61"]
 [ext_resource type="PackedScene" uid="uid://bpm64cyskof0e" path="res://blender/flatbed_body.glb" id="2_draw0"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8p5yr"]

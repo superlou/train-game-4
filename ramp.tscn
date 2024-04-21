@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://5n0x0e5lv51x"]
+[gd_scene load_steps=6 format=3 uid="uid://5n0x0e5lv51x"]
 
 [ext_resource type="Script" path="res://ramp.gd" id="1_y1fhy"]
 [ext_resource type="PackedScene" uid="uid://ptsn64jjttgy" path="res://ramp_plate.tscn" id="2_8ydw7"]
 [ext_resource type="PackedScene" uid="uid://c34cd6xo5golo" path="res://blender/ramp_base.glb" id="3_idb7r"]
+[ext_resource type="PackedScene" uid="uid://bgtwgucj06nfu" path="res://ramp_gate.tscn" id="4_mcbyp"]
+[ext_resource type="PackedScene" uid="uid://ctg2r4pidcbm" path="res://ramp_light.tscn" id="5_qbq50"]
 
 [node name="Ramp" type="Node3D"]
 script = ExtResource("1_y1fhy")
@@ -29,3 +31,27 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.1
 motor_max_torque = 1000.0
 enabled = false
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0.176, 1.63)
+
+[node name="GateRight" parent="." instance=ExtResource("4_mcbyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.37632)
+
+[node name="GateLeft" parent="." instance=ExtResource("4_mcbyp")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.376)
+
+[node name="RightRedLight" parent="." instance=ExtResource("5_qbq50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59353, 1.55843, 1.53424)
+on_color = Color(0.983846, 0.0600611, 5.77569e-07, 1)
+is_on = true
+
+[node name="RightGreenLight" parent="." instance=ExtResource("5_qbq50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81981, 1.55843, 1.53424)
+on_color = Color(0.266667, 1, 0, 1)
+is_on = true
+
+[node name="LeftGreenLight" parent="." instance=ExtResource("5_qbq50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81899, 1.55843, -1.53537)
+on_color = Color(0.266667, 1, 0, 1)
+
+[node name="LeftRedLight" parent="." instance=ExtResource("5_qbq50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59272, 1.55843, -1.53537)
+on_color = Color(0.983846, 0.0600611, 5.77569e-07, 1)
