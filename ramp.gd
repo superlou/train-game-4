@@ -26,7 +26,6 @@ func _ready():
 
 func _process(_delta):
 	if Input.is_action_just_pressed("extend_ramp_left"):
-		print("here")
 		deploy_dir = DeployDir.LEFT
 		state = RampState.EXTENDING
 	elif Input.is_action_just_pressed("extend_ramp_right"):
@@ -36,8 +35,42 @@ func _process(_delta):
 		state = RampState.LIFTING
 
 
+func _set_lights_warn():
+	if deploy_dir == DeployDir.LEFT:
+		$LeftWarnLight.set_state(true, true)
+		$RightWarnLight.set_state(false)
+		$LeftSafeLight.set_state(false)
+		$RightSafeLight.set_state(false)
+	elif deploy_dir == DeployDir.RIGHT:
+		$LeftWarnLight.set_state(false, true)
+		$RightWarnLight.set_state(true)
+		$LeftSafeLight.set_state(false)
+		$RightSafeLight.set_state(false)			
+
+
+func _set_lights_safe():
+	if deploy_dir == DeployDir.LEFT:
+		$LeftWarnLight.set_state(false)
+		$RightWarnLight.set_state(false)
+		$LeftSafeLight.set_state(true)
+		$RightSafeLight.set_state(false)
+	elif deploy_dir == DeployDir.RIGHT:
+		$LeftWarnLight.set_state(false)
+		$RightWarnLight.set_state(false)
+		$LeftSafeLight.set_state(false)
+		$RightSafeLight.set_state(true)	
+
+
+func _set_lights_off():
+	$LeftWarnLight.set_state(false)
+	$RightWarnLight.set_state(false)
+	$LeftSafeLight.set_state(false)
+	$RightSafeLight.set_state(false)
+
+
 func _physics_process(_delta: float):
 	if state == RampState.EXTENDING:
+		_set_lights_warn()
 		plate.sleeping = false
 
 		var joint := $SlideJoint
@@ -61,15 +94,21 @@ func _physics_process(_delta: float):
 			joint.enabled = false
 			state = RampState.OUT
 	elif state == RampState.OUT:
-		if deploy_dir == DeployDir.LEFT:
-			$GateLeft.raise()
-		elif deploy_dir == DeployDir.RIGHT:
-			$GateRight.raise()
+		var gate = $GateLeft if deploy_dir == DeployDir.LEFT else $GateRight
+		gate.raise()
+
+		if gate.state == "raised":
+			_set_lights_safe()
+		else:
+			_set_lights_warn()
+	
 
 		var joint := $LeftHingeJoint if deploy_dir == DeployDir.LEFT else $RightHingeJoint
 		joint.node_a = ^"../Plate"
 		joint.enabled = true
 	elif state == RampState.LIFTING:
+		_set_lights_warn()
+
 		if deploy_dir == DeployDir.LEFT:
 			$GateLeft.lower()
 		elif deploy_dir == DeployDir.RIGHT:
@@ -91,6 +130,8 @@ func _physics_process(_delta: float):
 			joint.enabled = false
 			state = RampState.RETRACTING
 	elif state == RampState.RETRACTING:
+		_set_lights_warn()
+
 		var joint := $SlideJoint
 		var target_velocity := -deploy_speed if deploy_dir == DeployDir.LEFT else deploy_speed
 		joint["linear_motor_z/target_velocity"] = target_velocity
@@ -104,6 +145,7 @@ func _physics_process(_delta: float):
 			at_stow_point = true
 
 		if at_stow_point:
-			print("at_stow_point")
 			joint.enabled = false
 			state = RampState.STOWED
+	elif state == RampState.STOWED:
+		_set_lights_off()

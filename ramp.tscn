@@ -38,20 +38,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.37632)
 [node name="GateLeft" parent="." instance=ExtResource("4_mcbyp")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -1.376)
 
-[node name="RightRedLight" parent="." instance=ExtResource("5_qbq50")]
+[node name="RightWarnLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59353, 1.55843, 1.53424)
 on_color = Color(0.983846, 0.0600611, 5.77569e-07, 1)
 is_on = true
 
-[node name="RightGreenLight" parent="." instance=ExtResource("5_qbq50")]
+[node name="RightSafeLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81981, 1.55843, 1.53424)
 on_color = Color(0.266667, 1, 0, 1)
 is_on = true
 
-[node name="LeftGreenLight" parent="." instance=ExtResource("5_qbq50")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81899, 1.55843, -1.53537)
-on_color = Color(0.266667, 1, 0, 1)
-
-[node name="LeftRedLight" parent="." instance=ExtResource("5_qbq50")]
+[node name="LeftWarnLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59272, 1.55843, -1.53537)
 on_color = Color(0.983846, 0.0600611, 5.77569e-07, 1)
+
+[node name="LeftSafeLight" parent="." instance=ExtResource("5_qbq50")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81899, 1.55843, -1.53537)
+on_color = Color(0.266667, 1, 0, 1)
