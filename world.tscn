@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=11 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_073to"]
 [ext_resource type="PackedScene" uid="uid://5n0x0e5lv51x" path="res://models/ramp/ramp.tscn" id="4_4424q"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
+[ext_resource type="PackedScene" uid="uid://ddr53gr8phl15" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
 sky_material = ExtResource("5_s2rs5")
@@ -18,6 +19,9 @@ ambient_light_source = 3
 [sub_resource type="SphereShape3D" id="SphereShape3D_o3dtj"]
 
 [node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j3mav")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -34,7 +38,10 @@ process_physics_priority = -1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)
 
 [node name="Ramp" parent="Trainset/Flatcar1" instance=ExtResource("4_4424q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81792, 1.25032, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.77186, 1.25032, 0)
+
+[node name="ControlCrate" parent="Trainset/Flatcar1" instance=ExtResource("5_u6pxx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.88254, 1.25138, 0)
 
 [node name="Flatcar2" parent="Trainset" instance=ExtResource("2_34f60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
@@ -42,11 +49,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(0.660631, 0, -0.750711, 0, 1, 0, 0.750711, 0, 0.660631, 5.61754, 1.64249, 0)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_j3mav")
-
 [node name="Cube" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52872, 2.12205, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.12068, 2.12205, 0)
 mass = 0.11
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]

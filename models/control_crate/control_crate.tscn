@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddr53gr8phl15"]
+
+[ext_resource type="PackedScene" uid="uid://dv3bsa7wxvk58" path="res://models/control_crate/control_crate.glb" id="1_2cosg"]
+
+[node name="ControlCrate" type="Node3D"]
+
+[node name="control_crate" parent="." instance=ExtResource("1_2cosg")]
