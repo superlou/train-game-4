@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://5n0x0e5lv51x"]
 
-[ext_resource type="Script" path="res://ramp.gd" id="1_y1fhy"]
-[ext_resource type="PackedScene" uid="uid://ptsn64jjttgy" path="res://ramp_plate.tscn" id="2_8ydw7"]
+[ext_resource type="Script" path="res://models/ramp/ramp.gd" id="1_y1fhy"]
+[ext_resource type="PackedScene" uid="uid://ptsn64jjttgy" path="res://models/ramp/ramp_plate.tscn" id="2_8ydw7"]
 [ext_resource type="PackedScene" uid="uid://c34cd6xo5golo" path="res://blender/ramp_base.glb" id="3_idb7r"]
-[ext_resource type="PackedScene" uid="uid://bgtwgucj06nfu" path="res://ramp_gate.tscn" id="4_mcbyp"]
-[ext_resource type="PackedScene" uid="uid://ctg2r4pidcbm" path="res://ramp_light.tscn" id="5_qbq50"]
-[ext_resource type="PackedScene" uid="uid://b61iabpqt7mow" path="res://gate_buttons.tscn" id="6_aaggw"]
+[ext_resource type="PackedScene" uid="uid://bgtwgucj06nfu" path="res://models/ramp/ramp_gate.tscn" id="4_mcbyp"]
+[ext_resource type="PackedScene" uid="uid://ctg2r4pidcbm" path="res://models/ramp/ramp_light.tscn" id="5_qbq50"]
+[ext_resource type="PackedScene" uid="uid://b61iabpqt7mow" path="res://models/ramp/gate_buttons.tscn" id="6_aaggw"]
 
 [node name="Ramp" type="Node3D"]
 script = ExtResource("1_y1fhy")

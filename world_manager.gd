@@ -1,7 +1,7 @@
 extends Node
 
 
-var Station = preload("res://station.tscn")
+var Station = preload("res://models/station/station.tscn")
 @onready var world = get_tree().get_root().get_node("World")
 
 func _ready():

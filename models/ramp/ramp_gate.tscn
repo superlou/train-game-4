@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bgtwgucj06nfu"]
 
-[ext_resource type="Script" path="res://ramp_gate.gd" id="1_cdr4i"]
+[ext_resource type="Script" path="res://models/ramp/ramp_gate.gd" id="1_cdr4i"]
 [ext_resource type="PackedScene" uid="uid://cvvpuwbjhlwaa" path="res://blender/ramp_gate.glb" id="1_hgr4i"]
-[ext_resource type="PackedScene" uid="uid://dwhwc4ee5six3" path="res://ramp_gate_arm.tscn" id="2_ctjhe"]
+[ext_resource type="PackedScene" uid="uid://dwhwc4ee5six3" path="res://models/ramp/ramp_gate_arm.tscn" id="2_ctjhe"]
 
 [sub_resource type="Animation" id="Animation_7e2en"]
 length = 0.001
