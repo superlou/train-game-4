@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=5 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_dwx2k"]
+[ext_resource type="PackedScene" uid="uid://bkeytv8birxvh" path="res://systems/interaction/player_interactor.tscn" id="2_k7kkf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u67lg"]
 radius = 0.3
@@ -25,6 +26,9 @@ mesh = SubResource("CapsuleMesh_58sj6")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31224, 0)
 size = 4.0
+
+[node name="PlayerInteractor" parent="Camera" instance=ExtResource("2_k7kkf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="FloorCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0476875, 0)

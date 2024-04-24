@@ -24,15 +24,18 @@ func _ready():
 	pass
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("extend_ramp_left"):
-		deploy_dir = DeployDir.LEFT
-		state = RampState.EXTENDING
-	elif Input.is_action_just_pressed("extend_ramp_right"):
-		deploy_dir = DeployDir.RIGHT
-		state = RampState.EXTENDING
-	elif Input.is_action_just_pressed("stow_ramp") and state == RampState.OUT:
+func start_deploy(deploy_dir_: DeployDir) -> void:
+	deploy_dir = deploy_dir_
+	state = RampState.EXTENDING
+
+
+func start_stow() -> void:
+	if state == RampState.OUT:
 		state = RampState.LIFTING
+
+
+func _process(_delta):
+	pass
 
 
 func _set_lights_warn():
@@ -42,8 +45,8 @@ func _set_lights_warn():
 		$LeftSafeLight.set_state(false)
 		$RightSafeLight.set_state(false)
 	elif deploy_dir == DeployDir.RIGHT:
-		$LeftWarnLight.set_state(false, true)
-		$RightWarnLight.set_state(true)
+		$LeftWarnLight.set_state(false)
+		$RightWarnLight.set_state(true, true)
 		$LeftSafeLight.set_state(false)
 		$RightSafeLight.set_state(false)			
 
@@ -149,3 +152,17 @@ func _physics_process(_delta: float):
 			state = RampState.STOWED
 	elif state == RampState.STOWED:
 		_set_lights_off()
+
+
+func _on_right_gate_buttons_pressed(button:int):
+	if button == 1:
+		start_deploy(DeployDir.RIGHT)
+	elif button == 2:
+		start_stow()
+
+
+func _on_left_gate_buttons_pressed(button:int):
+	if button == 1:
+		start_deploy(DeployDir.LEFT)
+	elif button == 2:
+		start_stow()
