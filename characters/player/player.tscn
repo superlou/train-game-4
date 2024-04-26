@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=6 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_dwx2k"]
 [ext_resource type="PackedScene" uid="uid://bkeytv8birxvh" path="res://systems/interaction/player_interactor.tscn" id="2_k7kkf"]
+[ext_resource type="Texture2D" uid="uid://cjx4mxedpn42p" path="res://assets/reticule.png" id="3_44bir"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u67lg"]
 radius = 0.3
@@ -33,3 +34,19 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="FloorCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0476875, 0)
 target_position = Vector3(0, -0.1, 0)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+modulate = Color(1, 1, 1, 0.501961)
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_44bir")
+expand_mode = 1

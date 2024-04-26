@@ -1,7 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddr53gr8phl15"]
+[gd_scene load_steps=2 format=3 uid="uid://wium4tqd1ar6"]
 
 [ext_resource type="PackedScene" uid="uid://dv3bsa7wxvk58" path="res://models/control_crate/control_crate.glb" id="1_2cosg"]
 
-[node name="ControlCrate" type="Node3D"]
+[node name="control_crate" instance=ExtResource("1_2cosg")]
 
-[node name="control_crate" parent="." instance=ExtResource("1_2cosg")]
+[node name="DoorArmature" parent="." index="7"]
+transform = Transform3D(-0.680657, -0.732602, 0, 0, 0, -1, 0.732602, -0.680657, 0, -5.92194, 1.2596, -0.635084)
