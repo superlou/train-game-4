@@ -1,8 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://wium4tqd1ar6"]
+[gd_scene load_steps=9 format=3 uid="uid://dddm6e5p7ry4k"]
 
-[ext_resource type="PackedScene" uid="uid://dv3bsa7wxvk58" path="res://models/control_crate/control_crate.glb" id="1_2cosg"]
+[ext_resource type="Script" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
+[ext_resource type="PackedScene" uid="uid://bjyrstk4d3xch" path="res://models/control_crate/control_crate_door.tscn" id="3_46ab0"]
+[ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="3_jnlb0"]
+[ext_resource type="PackedScene" uid="uid://bs5di6hh8n60f" path="res://models/control_crate/control_crate_import.tscn" id="4_geu5s"]
 
-[node name="control_crate" instance=ExtResource("1_2cosg")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_cc428"]
+size = Vector3(0.714966, 1.57703, 1)
 
-[node name="DoorArmature" parent="." index="7"]
-transform = Transform3D(-0.680657, -0.732602, 0, 0, 0, -1, 0.732602, -0.680657, 0, -5.92194, 1.2596, -0.635084)
+[sub_resource type="Animation" id="Animation_4w5dt"]
+resource_name = "DoorSwing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("control_crate_door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -2.1293, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"door_at_closed"
+}, {
+"args": [],
+"method": &"door_at_open"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8nd3i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("control_crate_door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xrvwa"]
+_data = {
+"DoorSwing": SubResource("Animation_4w5dt"),
+"RESET": SubResource("Animation_8nd3i")
+}
+
+[node name="ControlCrate" type="Node3D"]
+script = ExtResource("1_ln1km")
+
+[node name="control_crate_door" parent="." instance=ExtResource("3_46ab0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92446, 0.347969, -0.60895)
+
+[node name="DoorInteractable" parent="control_crate_door" instance=ExtResource("3_jnlb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00760698, 0.85255, 0.596633)
+
+[node name="CollisionShape3D" parent="control_crate_door/DoorInteractable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263977, 0.0834351, 0)
+shape = SubResource("BoxShape3D_cc428")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xrvwa")
+}
+
+[node name="control_crate" parent="." instance=ExtResource("4_geu5s")]
+
+[connection signal="interacted" from="control_crate_door/DoorInteractable" to="." method="_on_door_interactable_interacted"]
+
+[editable path="control_crate_door/DoorInteractable"]

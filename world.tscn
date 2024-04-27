@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_073to"]
 [ext_resource type="PackedScene" uid="uid://5n0x0e5lv51x" path="res://models/ramp/ramp.tscn" id="4_4424q"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
-[ext_resource type="PackedScene" uid="uid://wium4tqd1ar6" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
+[ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
 sky_material = ExtResource("5_s2rs5")
@@ -24,7 +24,7 @@ ambient_light_source = 3
 environment = SubResource("Environment_j3mav")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("trainset")]
