@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=7 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_dwx2k"]
 [ext_resource type="PackedScene" uid="uid://bkeytv8birxvh" path="res://systems/interaction/player_interactor.tscn" id="2_k7kkf"]
 [ext_resource type="Texture2D" uid="uid://cjx4mxedpn42p" path="res://assets/reticule.png" id="3_44bir"]
+[ext_resource type="PackedScene" uid="uid://cue4ks41osm1" path="res://systems/control_link/control_receiver.tscn" id="4_2hjog"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u67lg"]
 radius = 0.3
@@ -50,3 +51,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("3_44bir")
 expand_mode = 1
+
+[node name="ControlReceiver" parent="." instance=ExtResource("4_2hjog")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.800185, 0)
