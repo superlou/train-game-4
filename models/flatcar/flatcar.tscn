@@ -8,12 +8,12 @@
 size = Vector3(21.4971, 1.24609, 2.75)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m08et"]
-radius = 1.79037
-height = 5.79455
+radius = 3.75439
+height = 25.2365
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5iio"]
-radius = 2.21085
-height = 12.0009
+radius = 8.35253
+height = 27.6885
 
 [node name="Flatcar" type="AnimatableBody3D"]
 

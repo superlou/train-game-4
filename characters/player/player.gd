@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal died(player)
+
 @export var walk_speed := 1.0 		# m/s
 @export var sprint_speed := 2.0 	# m/s
 @export var acceleration := 10.0 	# m/s^2
@@ -88,3 +90,13 @@ func _rotate_camera(event: InputEventMouseMotion) -> void:
 	rotate_y(event.relative.x * -look_sensitivity)
 	%Camera.rotate_x(event.relative.y * -look_sensitivity)
 	%Camera.rotation.x = clamp(%Camera.rotation.x, -PI/2, PI/2)
+
+
+func _on_control_receiver_control_link_changed(strength:float):
+	if strength < 1.0:
+		$CanvasLayer/NoiseRect.visible = true
+	else:
+		$CanvasLayer/NoiseRect.visible = false
+
+	if strength == 0.0:
+		died.emit(self)
