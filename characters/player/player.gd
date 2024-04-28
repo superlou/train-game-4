@@ -95,7 +95,29 @@ func _rotate_camera(event: InputEventMouseMotion) -> void:
 
 
 func _on_chargable_charge_changed(charge:float):
-	$RichTextLabel.text = "%d" % charge
+	# todo Make some graphics
+	var label: RichTextLabel = $RichTextLabel
+	if charge > 99:
+		label.text = "||||"
+	elif charge > 80:
+		label.text = "|||."
+	elif charge > 70:
+		label.text = "|||"
+	elif charge > 60:
+		label.text = "||."
+	elif charge > 50:
+		label.text = "||"
+	elif charge > 40:
+		label.text = "||"
+	elif charge > 30:
+		label.text = "|."
+	elif charge > 20:
+		label.text = "|"
+	elif charge > 10:
+		label.text = "."
+	else:
+		label.text = ""
+
 
 
 func _on_chargable_charge_emptied():

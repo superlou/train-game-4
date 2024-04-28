@@ -93,8 +93,10 @@ script = ExtResource("7_ldd8j")
 target = NodePath("..")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1001.0
+offset_top = 2.0
+offset_right = 1153.0
+offset_bottom = 48.0
 
 [connection signal="charge_changed" from="Chargable" to="." method="_on_chargable_charge_changed"]
 [connection signal="charge_emptied" from="Chargable" to="." method="_on_chargable_charge_emptied"]
