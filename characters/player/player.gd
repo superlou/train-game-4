@@ -56,6 +56,8 @@ func _physics_process(delta):
 	velocity = _walk(delta, speed) +_gravity(delta) + _jump(delta)
 	move_and_slide()
 
+	$Chargable.modify_charge(-10.0 * delta)
+
 
 func _walk(delta: float, speed: float) -> Vector3:
 	move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -92,11 +94,9 @@ func _rotate_camera(event: InputEventMouseMotion) -> void:
 	%Camera.rotation.x = clamp(%Camera.rotation.x, -PI/2, PI/2)
 
 
-func _on_control_receiver_control_link_changed(strength:float):
-	if strength < 1.0:
-		$CanvasLayer/NoiseRect.visible = true
-	else:
-		$CanvasLayer/NoiseRect.visible = false
+func _on_chargable_charge_changed(charge:float):
+	$RichTextLabel.text = "%d" % charge
 
-	if strength == 0.0:
-		died.emit(self)
+
+func _on_chargable_charge_emptied():
+	died.emit(self)

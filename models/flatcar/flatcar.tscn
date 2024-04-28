@@ -1,19 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://rgv4era602k3"]
+[gd_scene load_steps=6 format=3 uid="uid://rgv4era602k3"]
 
 [ext_resource type="PackedScene" uid="uid://cckjeq34nikwk" path="res://blender/train_truck.glb" id="1_y3h61"]
 [ext_resource type="PackedScene" uid="uid://bpm64cyskof0e" path="res://blender/flatbed_body.glb" id="2_draw0"]
-[ext_resource type="PackedScene" uid="uid://bdygbfk5easnt" path="res://systems/control_link/control_area.tscn" id="3_y3ff3"]
+[ext_resource type="PackedScene" uid="uid://cds6eahlg2two" path="res://systems/charge/charge_area.tscn" id="3_bd2fr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8p5yr"]
 size = Vector3(21.4971, 1.24609, 2.75)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_m08et"]
-radius = 3.75439
-height = 25.2365
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_p5iio"]
-radius = 8.35253
-height = 27.6885
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jwq6q"]
+radius = 3.45812
+height = 21.8997
 
 [node name="Flatcar" type="AnimatableBody3D"]
 
@@ -29,13 +25,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
 
 [node name="flatbed_body" parent="." instance=ExtResource("2_draw0")]
 
-[node name="ControlArea" parent="." instance=ExtResource("3_y3ff3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59274, 0)
+[node name="ChargeArea" parent="." instance=ExtResource("3_bd2fr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.628538, 2.14872, 0)
 
-[node name="CollisionShape3D" parent="ControlArea/SafeArea" index="0"]
-shape = SubResource("CapsuleShape3D_m08et")
+[node name="CollisionShape3D" parent="ChargeArea" index="0"]
+shape = SubResource("CapsuleShape3D_jwq6q")
 
-[node name="CollisionShape3D" parent="ControlArea/WarnArea" index="0"]
-shape = SubResource("CapsuleShape3D_p5iio")
-
-[editable path="ControlArea"]
+[editable path="ChargeArea"]

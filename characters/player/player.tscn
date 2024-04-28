@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=11 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_dwx2k"]
 [ext_resource type="PackedScene" uid="uid://bkeytv8birxvh" path="res://systems/interaction/player_interactor.tscn" id="2_k7kkf"]
 [ext_resource type="Texture2D" uid="uid://cjx4mxedpn42p" path="res://assets/reticule.png" id="3_44bir"]
 [ext_resource type="Texture2D" uid="uid://cwvfx7gt4cnmu" path="res://assets/rgba-noise-medium.png" id="3_jtwfc"]
-[ext_resource type="PackedScene" uid="uid://cue4ks41osm1" path="res://systems/control_link/control_receiver.tscn" id="4_2hjog"]
 [ext_resource type="Shader" path="res://characters/player/vhs_noise.gdshader" id="5_vcaj1"]
+[ext_resource type="Script" path="res://systems/charge/chargable.gd" id="7_ldd8j"]
+[ext_resource type="PackedScene" uid="uid://deu1iqwugholm" path="res://systems/charge/charge_receiver.tscn" id="8_30nmd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u67lg"]
 radius = 0.3
@@ -43,8 +44,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CapsuleMesh_58sj6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="NoiseRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_8tnhw")
 anchors_preset = 15
 anchor_right = 1.0
@@ -81,7 +84,17 @@ size_flags_vertical = 4
 texture = ExtResource("3_44bir")
 expand_mode = 1
 
-[node name="ControlReceiver" parent="." instance=ExtResource("4_2hjog")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.800185, 0)
+[node name="ChargeReceiver" parent="." node_paths=PackedStringArray("chargable") instance=ExtResource("8_30nmd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.838042, 0)
+chargable = NodePath("../Chargable")
 
-[connection signal="control_link_changed" from="ControlReceiver" to="." method="_on_control_receiver_control_link_changed"]
+[node name="Chargable" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("7_ldd8j")
+target = NodePath("..")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="charge_changed" from="Chargable" to="." method="_on_chargable_charge_changed"]
+[connection signal="charge_emptied" from="Chargable" to="." method="_on_chargable_charge_emptied"]
