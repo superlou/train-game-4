@@ -17,19 +17,18 @@ height = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8tnhw"]
 shader = ExtResource("5_vcaj1")
-shader_parameter/vhs_resolution = Vector2(320, 240)
-shader_parameter/samples = 2
-shader_parameter/crease_noise = 1.0
-shader_parameter/crease_opacity = 0.5
-shader_parameter/filter_intensity = 0.5
-shader_parameter/tape_crease_smear = 0.2
-shader_parameter/tape_crease_intensity = 0.2
-shader_parameter/tape_crease_jitter = 0.1
-shader_parameter/tape_crease_speed = 0.5
-shader_parameter/tape_crease_discoloration = 1.0
-shader_parameter/bottom_border_thickness = 6.0
-shader_parameter/bottom_border_jitter = 6.0
-shader_parameter/noise_intensity = 0.1
+shader_parameter/curvature = 2.0
+shader_parameter/skip = 1.0
+shader_parameter/image_flicker = 1.0
+shader_parameter/vignette_flicker_speed = 1.0
+shader_parameter/vignette_strength = 1.0
+shader_parameter/small_scanlines_speed = 1.0
+shader_parameter/small_scanlines_proximity = 1.0
+shader_parameter/small_scanlines_opacity = 1.0
+shader_parameter/scanlines_opacity = 1.0
+shader_parameter/scanlines_speed = 1.0
+shader_parameter/scanline_thickness = 0.5
+shader_parameter/scanlines_spacing = 1.0
 shader_parameter/noise_texture = ExtResource("3_jtwfc")
 
 [node name="Player" type="CharacterBody3D"]
