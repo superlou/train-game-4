@@ -27,6 +27,7 @@ uniform float scanlines_spacing: hint_range(0.3, 3., .01) = 1.;
 
 group_uniforms Noise;
 uniform sampler2D noise_texture: filter_linear_mipmap, repeat_enable;
+uniform float noise_strength: hint_range(0.0, 2., 0.01) = 0.5;
 
 float noise(vec2 p, vec2 uv)
 {
@@ -82,7 +83,7 @@ void fragment()
 	float vignette = (1.-vigAmt*(uv.y-.5)*(uv.y-.5))*(1.-vigAmt*(uv.x-.5)*(uv.x-.5));
 
 	video += stripes(uv);
-	video += noise(uv*2., uv)/2.;
+	video += noise(uv*2., uv) * noise_strength;
 	video *= vignette;
 	video *= (12./small_scanlines_opacity+mod(uv.y*30.*small_scanlines_proximity+TIME*small_scanlines_speed,1.))/13.*small_scanlines_opacity;
 

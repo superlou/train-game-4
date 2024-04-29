@@ -30,6 +30,7 @@ shader_parameter/scanlines_opacity = 1.0
 shader_parameter/scanlines_speed = 1.0
 shader_parameter/scanline_thickness = 0.5
 shader_parameter/scanlines_spacing = 1.0
+shader_parameter/noise_strength = 0.5
 shader_parameter/noise_texture = ExtResource("3_jtwfc")
 
 [node name="Player" type="CharacterBody3D"]
@@ -44,10 +45,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CapsuleMesh_58sj6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="NoiseRect" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_8tnhw")
 anchors_preset = 15
 anchor_right = 1.0
