@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbpp4b4pbsd2u"]
+
+[ext_resource type="Script" path="res://systems/glitch_canvas/glitch_canvas.gd" id="1_48x78"]
+[ext_resource type="Shader" path="res://characters/player/vhs_noise.gdshader" id="1_j7enk"]
+[ext_resource type="Texture2D" uid="uid://cwvfx7gt4cnmu" path="res://assets/rgba-noise-medium.png" id="2_3jhy4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6g8j"]
+shader = ExtResource("1_j7enk")
+shader_parameter/curvature = 0.0
+shader_parameter/skip = 0.0
+shader_parameter/image_flicker = 0.0
+shader_parameter/vignette_flicker_speed = 1.0
+shader_parameter/vignette_strength = 0.0
+shader_parameter/small_scanlines_speed = 1.0
+shader_parameter/small_scanlines_proximity = 1.0
+shader_parameter/small_scanlines_opacity = 0.01
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_speed = 1.0
+shader_parameter/scanline_thickness = 0.5
+shader_parameter/scanlines_spacing = 1.0
+shader_parameter/noise_strength = 0.0
+shader_parameter/noise_texture = ExtResource("2_3jhy4")
+
+[node name="GlitchCanvas" type="CanvasLayer"]
+script = ExtResource("1_48x78")
+
+[node name="NoiseRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_o6g8j")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true

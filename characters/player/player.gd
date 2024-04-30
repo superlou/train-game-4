@@ -118,13 +118,7 @@ func _on_chargable_charge_changed(charge:float):
 	else:
 		label.text = ""
 	
-	_set_camera_glitchyness((100. - charge) / 100.)
-
-
-func _set_camera_glitchyness(strength:float):
-	var material:ShaderMaterial = $CanvasLayer/NoiseRect.material
-	material.set_shader_parameter("curvature", 2 * strength)
-
+	$GlitchCanvas.strength = clampf((95. - charge) / 100., 0., 1.)
 
 
 func _on_chargable_charge_emptied():
