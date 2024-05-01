@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=13 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_073to"]
 [ext_resource type="PackedScene" uid="uid://5n0x0e5lv51x" path="res://models/ramp/ramp.tscn" id="4_4424q"]
+[ext_resource type="PackedScene" uid="uid://t1vl3wm84h30" path="res://models/locomotive/locomotive.tscn" id="4_rif6w"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
 [ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
 [ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="7_jaivv"]
@@ -34,6 +35,9 @@ trainset = NodePath("../Trainset")
 
 [node name="Trainset" parent="." instance=ExtResource("1_l72nw")]
 process_physics_priority = -1
+
+[node name="Locomotive" parent="Trainset" instance=ExtResource("4_rif6w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2529, 0, 0)
 
 [node name="Flatcar1" parent="Trainset" instance=ExtResource("2_34f60")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)

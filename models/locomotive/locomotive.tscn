@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://t1vl3wm84h30"]
+
+[ext_resource type="PackedScene" uid="uid://ceip55x6kd6tt" path="res://models/locomotive/locomotive.glb" id="1_1cbpd"]
+[ext_resource type="PackedScene" uid="uid://cckjeq34nikwk" path="res://blender/train_truck.glb" id="2_dlpxl"]
+
+[node name="Node3D" type="AnimatableBody3D"]
+
+[node name="locomotive" parent="." instance=ExtResource("1_1cbpd")]
+
+[node name="train_truck" parent="." instance=ExtResource("2_dlpxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.09493, 0, 0)
+
+[node name="train_truck2" parent="." instance=ExtResource("2_dlpxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.28339, 0, 0)
+
+[node name="train_truck3" parent="." instance=ExtResource("2_dlpxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65534, 0, 0)
+
+[node name="train_truck4" parent="." instance=ExtResource("2_dlpxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46687, 0, 0)
