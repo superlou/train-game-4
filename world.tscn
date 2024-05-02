@@ -9,6 +9,7 @@
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
 [ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
 [ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="7_jaivv"]
+[ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
 sky_material = ExtResource("5_s2rs5")
@@ -17,8 +18,6 @@ sky_material = ExtResource("5_s2rs5")
 background_mode = 2
 sky = SubResource("Sky_6sy21")
 ambient_light_source = 3
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_o3dtj"]
 
 [node name="World" type="Node3D"]
 
@@ -57,13 +56,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(0.660631, 0, -0.750711, 0, 1, 0, 0.750711, 0, 0.660631, 5.61754, 1.64249, 0)
 
-[node name="Cube" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.12068, 2.12205, 0)
-mass = 0.11
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
-shape = SubResource("SphereShape3D_o3dtj")
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Cube"]
+[node name="drum" parent="." instance=ExtResource("10_w3jha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37908, 2.14239, 0)
 
 [connection signal="died" from="Player" to="Trainset/Flatcar1/Respawner" method="respawn"]
