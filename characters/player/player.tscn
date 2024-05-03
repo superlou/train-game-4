@@ -36,6 +36,9 @@ size = 4.0
 [node name="PlayerInteractor" parent="Camera" instance=ExtResource("2_k7kkf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
+[node name="CarryPoint" type="Marker3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0135545, -1.12547)
+
 [node name="FloorCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0476875, 0)
 target_position = Vector3(0, -0.1, 0)

@@ -57,6 +57,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 transform = Transform3D(0.660631, 0, -0.750711, 0, 1, 0, 0.750711, 0, 0.660631, 5.61754, 1.64249, 0)
 
 [node name="drum" parent="." instance=ExtResource("10_w3jha")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37908, 2.14239, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.37908, 1.71614, 0)
+
+[node name="drum2" parent="." instance=ExtResource("10_w3jha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.81788, 1.62131, 0)
 
 [connection signal="died" from="Player" to="Trainset/Flatcar1/Respawner" method="respawn"]

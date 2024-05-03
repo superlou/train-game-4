@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6tpgo63v8yb8"]
 
 [ext_resource type="Texture2D" uid="uid://neok1ekqpv00" path="res://models/drum/drum_palette.png" id="1_8riyw"]
-[ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="2_mty5h"]
+[ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="2_c5fab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ycif"]
 resource_name = "Material.001"
@@ -47,8 +47,8 @@ shadow_mesh = SubResource("ArrayMesh_vtf5f")
 height = 0.864559
 radius = 0.299174
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lq287"]
-size = Vector3(0.451416, 0.838501, 0.55249)
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mefa"]
+size = Vector3(0.62207, 0.875519, 0.61145)
 
 [node name="drum" type="RigidBody3D"]
 
@@ -61,10 +61,10 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430852, 0)
 shape = SubResource("CylinderShape3D_qa2v2")
 
-[node name="Interactable" parent="." instance=ExtResource("2_mty5h")]
+[node name="Carryable" parent="." instance=ExtResource("2_c5fab")]
 
-[node name="CollisionShape3D" parent="Interactable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.043335, 0.438878, -0.0045166)
-shape = SubResource("BoxShape3D_lq287")
+[node name="CollisionShape3D" parent="Carryable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, 0.438339, -0.00286865)
+shape = SubResource("BoxShape3D_7mefa")
 
-[editable path="Interactable"]
+[editable path="Carryable"]
