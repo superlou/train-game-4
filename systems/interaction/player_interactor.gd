@@ -9,7 +9,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var interactable = get_closest_interactable()
+	if Input.is_action_just_pressed("interact"):
+		try_interact()
 
-	if Input.is_action_just_pressed("interact") and interactable:
-		interact(interactable)
+
+func try_interact():
+	if carried_obj:
+		interact(carried_obj.get_node("Carryable"))
+	else:
+		var interactable = get_closest_interactable()
+		if interactable:
+			interact(interactable)
