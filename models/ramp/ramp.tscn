@@ -41,20 +41,24 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 
 [node name="RightWarnLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.59353, 1.55843, 1.53424)
+off_color = Color(0.192157, 0, 0, 1)
 on_color = Color(0.983846, 0.0600611, 5.77569e-07, 1)
 is_on = true
 
 [node name="RightSafeLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.81981, 1.55843, 1.53424)
+off_color = Color(0, 0.2, 0, 1)
 on_color = Color(0.266667, 1, 0, 1)
 is_on = true
 
 [node name="LeftWarnLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.59272, 1.55843, -1.53537)
+off_color = Color(0.192157, 0, 0, 1)
 on_color = Color(0.983846, 0.0600611, 5.77569e-07, 1)
 
 [node name="LeftSafeLight" parent="." instance=ExtResource("5_qbq50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.81899, 1.55843, -1.53537)
+off_color = Color(0, 0.2, 0, 1)
 on_color = Color(0.266667, 1, 0, 1)
 
 [node name="LeftGateButtons" parent="." instance=ExtResource("6_aaggw")]
