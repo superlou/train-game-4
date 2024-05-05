@@ -5,11 +5,16 @@ extends AnimatableBody3D
 @export var plank_separation := 1.0
 
 var is_dirty := false
+var has_station := false
 
+var Station = preload("res://models/station/station.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_dirty = true
+
+	if has_station:
+		add_child(Station.instantiate())
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

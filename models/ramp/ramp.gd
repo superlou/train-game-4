@@ -26,11 +26,13 @@ func _ready():
 
 func start_deploy(deploy_dir_: DeployDir) -> void:
 	deploy_dir = deploy_dir_
+	plate.sleeping = false
 	state = RampState.EXTENDING
 
 
 func start_stow() -> void:
 	if state == RampState.OUT:
+		plate.sleeping = false
 		state = RampState.LIFTING
 
 

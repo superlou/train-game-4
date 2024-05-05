@@ -1,12 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4eyxjfs62i4f"]
-
-[ext_resource type="Script" path="res://models/station/station.gd" id="1_lyk1j"]
+[gd_scene load_steps=2 format=3 uid="uid://d4eyxjfs62i4f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ey4gq"]
 size = Vector3(16, 1, 10)
 
-[node name="Station" type="AnimatableBody3D"]
-script = ExtResource("1_lyk1j")
+[node name="Station" type="StaticBody3D"]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -7.21858)
