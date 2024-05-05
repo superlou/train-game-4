@@ -2,8 +2,8 @@ extends Interactable
 class_name Carryable
 
 
+@onready var body:RigidBody3D = get_parent()
 var is_carried := false
-var original_parent = null
 
 
 func _ready():
@@ -18,19 +18,16 @@ func on_interacted(interactor: Interactor):
 
 
 func pick_up(interactor: Interactor):
-	# todo FIX SUPER HACK.
-	# todo Store original parent so that objects can be dropped
-	var carry_point: Marker3D = interactor.get_parent().get_node("CarryPoint")
-	original_parent = get_parent().get_parent()
-	get_parent().reparent(carry_point)
-	get_parent().gravity_scale = 0
-	interactor.set_carried(get_parent())
+	var carry_joint:Generic6DOFJoint3D = interactor.carry_joint
+	body.global_position = carry_joint.global_position
+	carry_joint.node_b = body.get_path()
+	interactor.set_carried(body)
 	is_carried = true
 
 
+
 func drop(interactor: Interactor):
-	get_parent().reparent(original_parent)
-	original_parent = null
-	get_parent().gravity_scale = 1
+	var carry_joint = interactor.carry_joint
+	carry_joint.node_b = ^""
 	interactor.set_carried(null)
 	is_carried = false
