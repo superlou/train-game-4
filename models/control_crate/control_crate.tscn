@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dddm6e5p7ry4k"]
+[gd_scene load_steps=13 format=3 uid="uid://dddm6e5p7ry4k"]
 
 [ext_resource type="Script" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
 [ext_resource type="PackedScene" uid="uid://bjyrstk4d3xch" path="res://models/control_crate/control_crate_door.tscn" id="3_46ab0"]
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="3_jnlb0"]
 [ext_resource type="PackedScene" uid="uid://bs5di6hh8n60f" path="res://models/control_crate/control_crate_import.tscn" id="4_geu5s"]
+[ext_resource type="Script" path="res://systems/subviewport_camera/CCCameraSubViewport.gd" id="5_8fbfd"]
 [ext_resource type="PackedScene" uid="uid://olofps5wp01n" path="res://models/cc_camera/cc_camera.tscn" id="5_l4doa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cc428"]
@@ -63,10 +64,10 @@ _data = {
 }
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_p0sl8"]
-viewport_path = NodePath("Subviewport1")
+viewport_path = NodePath("CCCameraSubViewport1")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_js308"]
-viewport_path = NodePath("Subviewport2")
+viewport_path = NodePath("CCCameraSubViewport2")
 
 [node name="ControlCrate" type="Node3D"]
 script = ExtResource("1_ln1km")
@@ -88,25 +89,31 @@ libraries = {
 
 [node name="control_crate" parent="." instance=ExtResource("4_geu5s")]
 
-[node name="Subviewport1" type="SubViewport" parent="."]
-size = Vector2i(160, 120)
-
-[node name="CCCamera" parent="Subviewport1" instance=ExtResource("5_l4doa")]
-transform = Transform3D(0.398414, -0.327688, 0.856672, -0.00623599, 0.933013, 0.359789, -0.917184, -0.148687, 0.369682, -6.22782, 2.40529, 1.14795)
-
 [node name="Camera1Screen" type="Sprite3D" parent="."]
-transform = Transform3D(-0.5, 0, -1.58933e-08, 0, 0.5, 0, 1.58933e-08, 0, -0.5, -5.04615, 1.54753, -0.880482)
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -5.04615, 1.19402, -1.09877)
+flip_h = true
 texture = SubResource("ViewportTexture_p0sl8")
 
-[node name="Subviewport2" type="SubViewport" parent="."]
-size = Vector2i(160, 120)
-
-[node name="CCCamera" parent="Subviewport2" instance=ExtResource("5_l4doa")]
-transform = Transform3D(-0.481493, 0.31254, -0.81883, -0.00623597, 0.933013, 0.359789, 0.876428, 0.178342, -0.44729, -6.22782, 3.09272, -1.16167)
-
-[node name="Camera1Screen2" type="Sprite3D" parent="."]
-transform = Transform3D(-0.5, 0, -1.58933e-08, 0, 0.5, 0, 1.58933e-08, 0, -0.5, -4.04615, 1.54753, -0.880482)
+[node name="Camera2Screen" type="Sprite3D" parent="."]
+transform = Transform3D(-0.5, 0, -1.58933e-08, 0, 0.5, 0, 1.58933e-08, 0, -0.5, -5.05054, 1.84992, -1.09877)
+flip_h = true
 texture = SubResource("ViewportTexture_js308")
+
+[node name="CCCameraSubViewport1" type="SubViewport" parent="."]
+size = Vector2i(160, 120)
+size_2d_override = Vector2i(200, 200)
+size_2d_override_stretch = true
+script = ExtResource("5_8fbfd")
+
+[node name="CCCamera" parent="CCCameraSubViewport1" instance=ExtResource("5_l4doa")]
+transform = Transform3D(0.714676, -0.172752, 0.677786, -0.0397189, 0.957434, 0.285908, -0.698326, -0.231253, 0.677394, -6.22782, 2.40529, 1.14795)
+
+[node name="CCCameraSubViewport2" type="SubViewport" parent="."]
+size = Vector2i(160, 120)
+script = ExtResource("5_8fbfd")
+
+[node name="CCCamera" parent="CCCameraSubViewport2" instance=ExtResource("5_l4doa")]
+transform = Transform3D(0.519157, 0.311801, -0.795774, 0.0136944, 0.927926, 0.372514, 0.854569, -0.204291, 0.477468, -6.26487, 3.05933, -1.16167)
 
 [connection signal="interacted" from="control_crate_door/DoorInteractable" to="." method="_on_door_interactable_interacted"]
 

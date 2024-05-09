@@ -8,4 +8,4 @@ size = Vector3(0.158203, 0.153809, 0.264404)
 
 [node name="Camera3D" type="Camera3D" parent="CSGBox3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.151262)
-fov = 37.8493
+fov = 100.0
