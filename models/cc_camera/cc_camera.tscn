@@ -1,16 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://olofps5wp01n"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_n5ta2"]
-viewport_path = NodePath("SubViewport")
+[gd_scene format=3 uid="uid://olofps5wp01n"]
 
 [node name="CCCamera" type="Node3D"]
 
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(160, 120)
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0606689)
+size = Vector3(0.158203, 0.153809, 0.264404)
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.151262)
 fov = 37.8493
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.24774, 0.722104, 0.344978)
-texture = SubResource("ViewportTexture_n5ta2")
