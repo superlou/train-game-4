@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cvvpuwbjhlwaa"
-path="res://.godot/imported/ramp_gate.glb-5cd7271a72cc67ba6c0481759196266f.scn"
+path="res://.godot/imported/ramp_gate.glb-60185ce618a7ba982b3d2bb6a5c778bb.scn"
 
 [deps]
 
-source_file="res://blender/ramp_gate.glb"
-dest_files=["res://.godot/imported/ramp_gate.glb-5cd7271a72cc67ba6c0481759196266f.scn"]
+source_file="res://models/ramp/ramp_gate.glb"
+dest_files=["res://.godot/imported/ramp_gate.glb-60185ce618a7ba982b3d2bb6a5c778bb.scn"]
 
 [params]
 

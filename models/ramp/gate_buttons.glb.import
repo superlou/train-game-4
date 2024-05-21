@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://e70gdaetatsk"
-path="res://.godot/imported/gate_buttons.glb-db00b9fb008c6eab50dc08d220db5b4b.scn"
+path="res://.godot/imported/gate_buttons.glb-8a3cac962eb1abe04b5617ac2d3d29cf.scn"
 
 [deps]
 
-source_file="res://blender/gate_buttons.glb"
-dest_files=["res://.godot/imported/gate_buttons.glb-db00b9fb008c6eab50dc08d220db5b4b.scn"]
+source_file="res://models/ramp/gate_buttons.glb"
+dest_files=["res://.godot/imported/gate_buttons.glb-8a3cac962eb1abe04b5617ac2d3d29cf.scn"]
 
 [params]
 

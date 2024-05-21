@@ -16,8 +16,8 @@ func _ready():
 func _physics_process(delta):
 	plant_tiles() # must happen before moving otherwise gaps form
 
-	for child in get_children():
-		child.position.x -= trainset.head_velocity * delta
+	# for child in get_children():
+	# 	child.position.x -= trainset.head_velocity * delta
 
 
 func plant_tiles():

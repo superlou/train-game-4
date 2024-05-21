@@ -32,8 +32,12 @@ func _physics_process(delta):
 			else:
 				head_velocity += breaking * delta
 
+	for child in get_children():
+		child.position.x += head_velocity * delta
+
+
 func x_bounds() -> Array[float]:
-	var x: Array[float] = [0.0]
+	var x: Array[float] = []
 
 	for child in get_children():
 		var center = child.global_position

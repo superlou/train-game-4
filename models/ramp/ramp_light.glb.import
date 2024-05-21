@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://tiud4120b0gt"
-path="res://.godot/imported/ramp_light.glb-93a1ced91cacd15e07e20d36f7541ceb.scn"
+path="res://.godot/imported/ramp_light.glb-250fae3537d3600268a62bb8da8b9fcd.scn"
 
 [deps]
 
-source_file="res://blender/ramp_light.glb"
-dest_files=["res://.godot/imported/ramp_light.glb-93a1ced91cacd15e07e20d36f7541ceb.scn"]
+source_file="res://models/ramp/ramp_light.glb"
+dest_files=["res://.godot/imported/ramp_light.glb-250fae3537d3600268a62bb8da8b9fcd.scn"]
 
 [params]
 

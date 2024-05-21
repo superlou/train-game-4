@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://b61iabpqt7mow"]
 
-[ext_resource type="ArrayMesh" uid="uid://cldvjd3krgbhl" path="res://blender/gate_button.res" id="1_2a3at"]
+[ext_resource type="ArrayMesh" uid="uid://cldvjd3krgbhl" path="res://models/ramp/gate_button.res" id="1_2a3at"]
 [ext_resource type="Script" path="res://models/ramp/gate_buttons.gd" id="1_l4opr"]
-[ext_resource type="ArrayMesh" uid="uid://c6dxlq5qr06an" path="res://blender/gate_button_frame.res" id="2_b84ah"]
+[ext_resource type="ArrayMesh" uid="uid://c6dxlq5qr06an" path="res://models/ramp/gate_button_frame.res" id="2_b84ah"]
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="2_cif3o"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptk7t"]

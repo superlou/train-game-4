@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://t1vl3wm84h30"]
+[gd_scene load_steps=4 format=3 uid="uid://t1vl3wm84h30"]
 
 [ext_resource type="PackedScene" uid="uid://ceip55x6kd6tt" path="res://models/locomotive/locomotive.glb" id="1_1cbpd"]
 [ext_resource type="PackedScene" uid="uid://cckjeq34nikwk" path="res://blender/train_truck.glb" id="2_dlpxl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d1uol"]
+size = Vector3(20.1169, 4.30707, 2.91873)
 
 [node name="Node3D" type="AnimatableBody3D"]
 
@@ -18,3 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65534, 0, 0)
 
 [node name="train_truck4" parent="." instance=ExtResource("2_dlpxl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.46687, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.710327, 2.15505, -0.0180206)
+shape = SubResource("BoxShape3D_d1uol")

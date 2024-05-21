@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dwhwc4ee5six3"]
 
-[ext_resource type="Texture2D" uid="uid://c1smnojmgg7xx" path="res://blender/ramp_gate_arm_palette.png" id="1_allin"]
+[ext_resource type="Texture2D" uid="uid://c1smnojmgg7xx" path="res://models/ramp/ramp_gate_arm_palette.png" id="1_allin"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_urdnb"]
 resource_name = "Palette"

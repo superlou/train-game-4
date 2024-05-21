@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i4l58kxg3tt8"
-path.s3tc="res://.godot/imported/ramp_gate_palette.png-e2a62b4399ebd6e4ef52e51f4087926b.s3tc.ctex"
+uid="uid://c1smnojmgg7xx"
+path.s3tc="res://.godot/imported/ramp_gate_arm_palette.png-6f64d45a2efdf639feb744612dc9c858.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://blender/ramp_gate_palette.png"
-dest_files=["res://.godot/imported/ramp_gate_palette.png-e2a62b4399ebd6e4ef52e51f4087926b.s3tc.ctex"]
+source_file="res://models/ramp/ramp_gate_arm_palette.png"
+dest_files=["res://.godot/imported/ramp_gate_arm_palette.png-6f64d45a2efdf639feb744612dc9c858.s3tc.ctex"]
 
 [params]
 

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://e578n3nensd8"]
+
+[ext_resource type="PackedScene" uid="uid://c34cd6xo5golo" path="res://models/ramp/ramp_base.glb" id="1_qj3ml"]
+
+[node name="ramp_base" instance=ExtResource("1_qj3ml")]
+sync_to_physics = false

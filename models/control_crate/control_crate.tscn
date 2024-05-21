@@ -74,6 +74,7 @@ script = ExtResource("1_ln1km")
 
 [node name="control_crate_door" parent="." instance=ExtResource("3_46ab0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92446, 0.347969, -0.60895)
+sync_to_physics = false
 
 [node name="DoorInteractable" parent="control_crate_door" instance=ExtResource("3_jnlb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00760698, 0.85255, 0.596633)

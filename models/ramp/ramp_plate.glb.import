@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c34cd6xo5golo"
-path="res://.godot/imported/ramp_base.glb-5a733860e6a045532f971aa77037c3d8.scn"
+uid="uid://bppsynm4g1okr"
+path="res://.godot/imported/ramp_plate.glb-4fe00a35fde1c2b9a7dde6fc7abbbe18.scn"
 
 [deps]
 
-source_file="res://blender/ramp_base.glb"
-dest_files=["res://.godot/imported/ramp_base.glb-5a733860e6a045532f971aa77037c3d8.scn"]
+source_file="res://models/ramp/ramp_plate.glb"
+dest_files=["res://.godot/imported/ramp_plate.glb-4fe00a35fde1c2b9a7dde6fc7abbbe18.scn"]
 
 [params]
 
-nodes/root_type=""
-nodes/root_name=""
+nodes/root_type="AnimatableBody3D"
+nodes/root_name="RampPlate"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
@@ -31,16 +31,7 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Cube_001": {
-"generate/physics": true,
-"physics/shape_type": 1
-},
-"PATH:Cube_002": {
-"generate/physics": true,
-"physics/shape_type": 1
-},
-"PATH:Cube_004": {
-"generate/physics": true,
+"PATH:RampPlate": {
 "physics/shape_type": 1
 }
 }

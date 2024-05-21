@@ -27,6 +27,7 @@ func _ready():
 func start_deploy(deploy_dir_: DeployDir) -> void:
 	deploy_dir = deploy_dir_
 	plate.sleeping = false
+	plate.freeze = false
 	state = RampState.EXTENDING
 
 
@@ -75,7 +76,6 @@ func _physics_process(_delta: float):
 
 	if state == RampState.EXTENDING:
 		_set_lights(LightsMode.WARN, deploy_dir)
-		plate.sleeping = false
 
 		var joint := $SlideJoint
 		joint["linear_limit_x/enabled"] = true
@@ -134,6 +134,7 @@ func _physics_process(_delta: float):
 			state = RampState.STOWED
 	elif state == RampState.STOWED:
 		_set_lights(LightsMode.OFF, deploy_dir)
+		plate.freeze = true
 
 
 func _on_right_gate_buttons_pressed(button:int):
