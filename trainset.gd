@@ -1,7 +1,8 @@
 class_name Trainset
 extends Node3D
 
-@export var head_velocity := 0.0
+@export var head_accel := Vector3.ZERO
+@export var head_velocity := Vector3.ZERO
 @export var acceleration := 5.0
 @export var breaking := 15.0
 
@@ -14,27 +15,23 @@ func _ready():
 # velocity between the train and other objects won't be quite right
 # when accelerating.
 func _physics_process(delta):
+	head_accel = Vector3.ZERO
+
 	if Input.is_action_pressed("accelerate_right"):
-		head_velocity += acceleration * delta
+		head_accel += Vector3.RIGHT * acceleration
 	
 	if Input.is_action_pressed("accelerate_left"):
-		head_velocity -= acceleration * delta
+		head_accel += -Vector3.RIGHT * acceleration
 
 	if Input.is_action_pressed("apply_break"):
-		if head_velocity > 0:
-			if head_velocity - breaking * delta <= 0:
-				head_velocity = 0
-			else:
-				head_velocity -= breaking * delta
-		if head_velocity < 0:
-			if head_velocity + breaking * delta >= 0:
-				head_velocity = 0
-			else:
-				head_velocity += breaking * delta
+		if head_velocity.length() <= breaking * delta:
+				head_accel = -head_velocity / delta
+		elif head_velocity.x > 0:
+			head_accel += -Vector3.RIGHT * breaking
+		elif head_velocity.x < 0:
+			head_accel += Vector3.RIGHT * breaking
 
-	for child in get_children():
-		child.position.x += head_velocity * delta
-
+	head_velocity += head_accel * delta
 
 func x_bounds() -> Array[float]:
 	var x: Array[float] = []

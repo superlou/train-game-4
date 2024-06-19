@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6tpgo63v8yb8"]
+[gd_scene load_steps=9 format=3 uid="uid://c6tpgo63v8yb8"]
 
 [ext_resource type="Texture2D" uid="uid://neok1ekqpv00" path="res://models/drum/drum_palette.png" id="1_8riyw"]
+[ext_resource type="Script" path="res://systems/relative_body/relative_body.gd" id="1_25w2a"]
 [ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="2_c5fab"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ycif"]
@@ -51,6 +52,7 @@ radius = 0.299174
 size = Vector3(0.62207, 0.875519, 0.61145)
 
 [node name="drum" type="RigidBody3D"]
+script = ExtResource("1_25w2a")
 
 [node name="Drum" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.28575, 0, 0, 0, 0.42545, 0, 0, 0, 0.28575, 0, 0.426846, 0)

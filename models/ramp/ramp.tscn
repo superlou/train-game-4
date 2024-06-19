@@ -11,6 +11,7 @@
 script = ExtResource("1_y1fhy")
 
 [node name="ramp_base" parent="." instance=ExtResource("2_isxxn")]
+sync_to_physics = false
 
 [node name="Plate" parent="." instance=ExtResource("2_8ydw7")]
 

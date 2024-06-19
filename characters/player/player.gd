@@ -3,7 +3,7 @@ extends CharacterBody3D
 signal died(player)
 
 @export var walk_speed := 1.0 		# m/s
-@export var sprint_speed := 2.0 	# m/s
+@export var sprint_speed := 4.0 	# m/s
 @export var acceleration := 10.0 	# m/s^2
 @export var jump_height := 1.0 		# m
 
@@ -59,14 +59,7 @@ func _physics_process(delta):
 	velocity = _walk(delta, speed) +_gravity(delta) + _jump(delta)
 	move_and_slide()
 
-	if not is_on_floor():
-		print("here")
-		velocity += last_platform_vel
-
 	$Chargable.modify_charge(-10.0 * delta)
-
-	if is_on_floor():
-		last_platform_vel = get_platform_velocity()
 
 
 func _walk(delta: float, speed: float) -> Vector3:
