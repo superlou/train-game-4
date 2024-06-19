@@ -1,10 +1,10 @@
 class_name Trainset
 extends Node3D
 
-@export var head_accel := Vector3.ZERO
 @export var head_velocity := Vector3.ZERO
 @export var acceleration := 5.0
 @export var breaking := 15.0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +15,7 @@ func _ready():
 # velocity between the train and other objects won't be quite right
 # when accelerating.
 func _physics_process(delta):
-	head_accel = Vector3.ZERO
+	var head_accel := Vector3.ZERO
 
 	if Input.is_action_pressed("accelerate_right"):
 		head_accel += Vector3.RIGHT * acceleration
@@ -31,7 +31,9 @@ func _physics_process(delta):
 		elif head_velocity.x < 0:
 			head_accel += Vector3.RIGHT * breaking
 
+	RelativeWorld.accel = -head_accel
 	head_velocity += head_accel * delta
+
 
 func x_bounds() -> Array[float]:
 	var x: Array[float] = []

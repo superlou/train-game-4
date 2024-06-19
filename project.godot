@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 WorldManager="*res://world_manager.gd"
+RelativeWorld="*res://systems/relative_world/relative_world.gd"
 
 [filesystem]
 
