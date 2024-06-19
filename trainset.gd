@@ -31,8 +31,8 @@ func _physics_process(delta):
 		elif head_velocity.x < 0:
 			head_accel += Vector3.RIGHT * breaking
 
-	RelativeWorld.accel = -head_accel
 	head_velocity += head_accel * delta
+	RelativeWorld.accel = -head_accel
 
 
 func x_bounds() -> Array[float]:
