@@ -5,10 +5,18 @@ extends Node3D
 @export var acceleration := 5.0
 @export var breaking := 15.0
 
+@export var mass := 30_000.0 # todo Replace with calculation from pulled cars
+@export var rolling_mu := 0.05
+@export var static_mu := 0.15
+@export var max_thrust := 30_000.0
+@export_range(-1.0, 1.0) var throttle := 0.0
+
+var velocity_pid := PIDController.new()
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	velocity_pid.ki = 0.001
 
 
 # Physics priority needs to be set lower than other nodes otherwise
@@ -18,21 +26,53 @@ func _physics_process(delta):
 	var head_accel := Vector3.ZERO
 
 	if Input.is_action_pressed("accelerate_right"):
-		head_accel += Vector3.RIGHT * acceleration
+		throttle += 0.1 * delta
 	
 	if Input.is_action_pressed("accelerate_left"):
-		head_accel += -Vector3.RIGHT * acceleration
+		throttle -= 0.1 * delta
 
 	if Input.is_action_pressed("apply_break"):
-		if head_velocity.length() <= breaking * delta:
-				head_accel = -head_velocity / delta
-		elif head_velocity.x > 0:
-			head_accel += -Vector3.RIGHT * breaking
-		elif head_velocity.x < 0:
-			head_accel += Vector3.RIGHT * breaking
+		throttle = 0
+	
+	throttle = velocity_pid.run(head_velocity.x, 30.0, delta)
+
+	throttle = clampf(throttle, -1.0, 1.0)
+
+	# todo This should all be vector math
+	var thrust := throttle * max_thrust
+
+	if head_velocity.x > 0.01:
+		head_accel.x = (thrust - rolling_mu * mass) / mass
+	elif head_velocity.x < -0.01:
+		head_accel.x = (thrust + rolling_mu * mass) / mass
+	else:
+		if thrust > 0 and thrust - static_mu * mass > 0:
+			head_accel.x = (thrust - static_mu * mass) / mass
+		elif thrust < 0 and thrust + static_mu * mass < 0:
+			head_accel.x = (thrust + static_mu * mass) / mass
+
+	# if Input.is_action_pressed("accelerate_right"):
+	# 	head_accel += Vector3.RIGHT * acceleration
+	
+	# if Input.is_action_pressed("accelerate_left"):
+	# 	head_accel += -Vector3.RIGHT * acceleration
+
+	# if Input.is_action_pressed("apply_break"):
+	# 	if head_velocity.length() <= breaking * delta:
+	# 			head_accel = -head_velocity / delta
+	# 	elif head_velocity.x > 0:
+	# 		head_accel += -Vector3.RIGHT * breaking
+	# 	elif head_velocity.x < 0:
+	# 		head_accel += Vector3.RIGHT * breaking
 
 	head_velocity += head_accel * delta
 	RelativeWorld.accel = -head_accel
+
+	print(head_accel)
+	print("throttle: ", throttle)
+	print("thrust: ", thrust)
+	print(thrust - static_mu * mass)
+	print(head_velocity)
 
 
 func x_bounds() -> Array[float]:
