@@ -12,11 +12,19 @@ extends Node3D
 @export_range(-1.0, 1.0) var throttle := 0.0
 
 var velocity_pid := PIDController.new()
+var velocity_target := 0.0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity_pid.ki = 0.001
+
+
+func _calc_drag(flow_vel: float) -> float:
+	const c_d := 0.82
+	const reference_area := 3.65 * 2.74 # m2
+	const rho := 1.2 # kg/m3
+	return 0.5 * rho * (flow_vel ** 2) * c_d * reference_area
 
 
 # Physics priority needs to be set lower than other nodes otherwise
@@ -26,25 +34,27 @@ func _physics_process(delta):
 	var head_accel := Vector3.ZERO
 
 	if Input.is_action_pressed("accelerate_right"):
-		throttle += 0.1 * delta
+		velocity_target += 5.0 * delta
 	
 	if Input.is_action_pressed("accelerate_left"):
-		throttle -= 0.1 * delta
+		velocity_target -= 5.0 * delta
 
 	if Input.is_action_pressed("apply_break"):
-		throttle = 0
+		velocity_target = 0.0
 	
-	throttle = velocity_pid.run(head_velocity.x, 30.0, delta)
+	throttle = velocity_pid.run(head_velocity.x, velocity_target, delta)
 
 	throttle = clampf(throttle, -1.0, 1.0)
 
 	# todo This should all be vector math
 	var thrust := throttle * max_thrust
 
-	if head_velocity.x > 0.01:
-		head_accel.x = (thrust - rolling_mu * mass) / mass
-	elif head_velocity.x < -0.01:
-		head_accel.x = (thrust + rolling_mu * mass) / mass
+	var drag := _calc_drag(head_velocity.x)
+
+	if head_velocity.x > 0.0:
+		head_accel.x = (thrust - drag - rolling_mu * mass) / mass
+	elif head_velocity.x < -0.0:
+		head_accel.x = (thrust + drag + rolling_mu * mass) / mass
 	else:
 		if thrust > 0 and thrust - static_mu * mass > 0:
 			head_accel.x = (thrust - static_mu * mass) / mass
@@ -68,11 +78,12 @@ func _physics_process(delta):
 	head_velocity += head_accel * delta
 	RelativeWorld.accel = -head_accel
 
-	print(head_accel)
-	print("throttle: ", throttle)
-	print("thrust: ", thrust)
-	print(thrust - static_mu * mass)
+	# print(head_accel)
+	# print("throttle: ", throttle)
+	# print("thrust: ", thrust)
+	# print(thrust - static_mu * mass)
 	print(head_velocity)
+	print(velocity_target)
 
 
 func x_bounds() -> Array[float]:
