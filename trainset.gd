@@ -82,8 +82,8 @@ func _physics_process(delta):
 	# print("throttle: ", throttle)
 	# print("thrust: ", thrust)
 	# print(thrust - static_mu * mass)
-	print(head_velocity)
-	print(velocity_target)
+	# print(head_velocity)
+	# print(velocity_target)
 
 
 func x_bounds() -> Array[float]:

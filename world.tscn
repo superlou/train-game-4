@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=14 format=3 uid="uid://danay4nhul4s3"]
 
+[ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="2_34f60"]
@@ -57,6 +58,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(0.660631, 0, -0.750711, 0, 1, 0, 0.750711, 0, 0.660631, 5.61754, 1.64249, 0)
+
+[node name="FpsDisplay" parent="." instance=ExtResource("1_2ar2q")]
 
 [node name="drum" parent="." instance=ExtResource("10_w3jha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4314, 1.71614, 0)
