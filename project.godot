@@ -88,6 +88,7 @@ interact={
 3d_physics/layer_3="ControlSafeArea"
 3d_physics/layer_4="ControlWarnArea"
 3d_physics/layer_5="ChargeArea"
+3d_physics/layer_6="RssiArea"
 
 [physics]
 

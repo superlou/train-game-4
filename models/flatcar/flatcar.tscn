@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://cckjeq34nikwk" path="res://blender/train_truck.glb" id="1_y3h61"]
 [ext_resource type="PackedScene" uid="uid://bpm64cyskof0e" path="res://blender/flatbed_body.glb" id="2_draw0"]
-[ext_resource type="PackedScene" uid="uid://cds6eahlg2two" path="res://systems/charge/charge_area.tscn" id="3_bd2fr"]
+[ext_resource type="PackedScene" uid="uid://ddsoyevg1xdm3" path="res://systems/rssi/rssi_area.tscn" id="4_msghj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8p5yr"]
 size = Vector3(21.4971, 1.24609, 2.75)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jwq6q"]
-radius = 3.45812
-height = 21.8997
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_psiox"]
+radius = 8.0
+height = 28.0
 
 [node name="Flatcar" type="AnimatableBody3D"]
 
@@ -25,10 +25,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 0, 0)
 
 [node name="flatbed_body" parent="." instance=ExtResource("2_draw0")]
 
-[node name="ChargeArea" parent="." instance=ExtResource("3_bd2fr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.628538, 2.14872, 0)
+[node name="RssiArea" parent="." instance=ExtResource("4_msghj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.96555, 0)
+zero_radius = 4.0
 
-[node name="CollisionShape3D" parent="ChargeArea" index="0"]
-shape = SubResource("CapsuleShape3D_jwq6q")
+[node name="CollisionShape3D" parent="RssiArea" index="0"]
+shape = SubResource("CapsuleShape3D_psiox")
 
-[editable path="ChargeArea"]
+[editable path="RssiArea"]

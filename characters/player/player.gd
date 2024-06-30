@@ -59,8 +59,6 @@ func _physics_process(delta):
 	velocity = _walk(delta, speed) +_gravity(delta) + _jump(delta)
 	move_and_slide()
 
-	$Chargable.modify_charge(-10.0 * delta)
-
 
 func _walk(delta: float, speed: float) -> Vector3:
 	move_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
@@ -103,32 +101,8 @@ func _rotate_camera(event: InputEventMouseMotion) -> void:
 	%Camera.rotation.x = clamp(%Camera.rotation.x, -PI/2, PI/2)
 
 
-func _on_chargable_charge_changed(charge:float):
-	# todo Make some graphics
-	var label: RichTextLabel = $RichTextLabel
-	if charge > 99:
-		label.text = "||||"
-	elif charge > 80:
-		label.text = "|||."
-	elif charge > 70:
-		label.text = "|||"
-	elif charge > 60:
-		label.text = "||."
-	elif charge > 50:
-		label.text = "||"
-	elif charge > 40:
-		label.text = "||"
-	elif charge > 30:
-		label.text = "|."
-	elif charge > 20:
-		label.text = "|"
-	elif charge > 10:
-		label.text = "."
-	else:
-		label.text = ""
-	
-	$GlitchCanvas.strength = clampf((95. - charge) / 100., 0., 1.)
+func _on_rssi_receiver_strength_changed(val:float):
+	$GlitchCanvas.strength = clampf(1.0 - val, 0.0, 1.0)
 
-
-func _on_chargable_charge_emptied():
-	died.emit(self)
+	if val <= 0.0:
+		died.emit(self)
