@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqm1o33qq6xpr"]
+
+[ext_resource type="PackedScene" uid="uid://dor3j8yd4lww0" path="res://models/repeater/repeater.glb" id="1_tyyra"]
+[ext_resource type="Script" path="res://models/repeater/repeater.gd" id="2_tibvj"]
+[ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="3_cwtkl"]
+[ext_resource type="PackedScene" uid="uid://lyc32s6jlol4" path="res://systems/rssi/rssi_receiver.tscn" id="4_rkehl"]
+[ext_resource type="PackedScene" uid="uid://ddsoyevg1xdm3" path="res://systems/rssi/rssi_area.tscn" id="5_23b3v"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ivg5g"]
+points = PackedVector3Array(1.4469, -11.7952, 2.36845, 1.3076, -11.7952, 2.3449, 1.53039, -11.7952, 2.25506, 0.762388, 2.73378, 0.744458, 0.43074, 3.1372, 1.00824, -0.127848, 3.1372, 1.00824, -3.08961, -11.7952, 0.128015, -0.530068, 3.1372, 0.900611, 1.57467, -11.7952, -2.36659, 0.762388, 2.73378, -0.727703, 0.581112, 3.1372, 0.857849, -3.13758, -11.7952, -0.0262163, -0.824353, 3.1372, 0.606082, 1.54699, -11.7952, -2.51121, 0.581112, 3.1372, -0.841574, -3.04856, -11.7952, -0.150658, -0.931827, 3.1372, 0.203929, -0.931827, 3.1372, -0.187654, -0.824353, 3.1372, -0.589808, 1.40354, -11.7952, -2.54004, 0.43074, 3.1372, -0.991962, -0.530068, 3.1372, -0.883856, -0.127848, 3.1372, -0.991962)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_whrad"]
+size = Vector3(0.198975, 1, 0.193573)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_loqll"]
+radius = 3.38568
+height = 6.77136
+
+[node name="repeater" instance=ExtResource("1_tyyra")]
+script = ExtResource("2_tibvj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(0.0931492, 0, 0, 0, 0.0931492, 0, 0, 0, 0.0931492, 0.103464, 1.099, -0.00334618)
+shape = SubResource("ConvexPolygonShape3D_ivg5g")
+
+[node name="Carryable" parent="." index="4" instance=ExtResource("3_cwtkl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829352, 0)
+
+[node name="CollisionShape3D" parent="Carryable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09021, 0.0870361, -0.000900269)
+shape = SubResource("BoxShape3D_whrad")
+
+[node name="RssiReceiver" parent="." index="5" node_paths=PackedStringArray("ignore_area") instance=ExtResource("4_rkehl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 0)
+ignore_area = NodePath("../RssiArea")
+
+[node name="RssiArea" parent="." index="6" instance=ExtResource("5_23b3v")]
+zero_radius = 1.5
+
+[node name="CollisionShape3D" parent="RssiArea" index="0"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.43523, 0)
+shape = SubResource("CapsuleShape3D_loqll")
+
+[editable path="Carryable"]
+[editable path="RssiArea"]

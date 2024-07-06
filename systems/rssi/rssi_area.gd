@@ -2,6 +2,7 @@ extends Area3D
 class_name RssiArea
 
 @export var zero_radius := 0.0
+@export var disabled := false
 @onready var collision_shape : CollisionShape3D = get_child(0)
 
 
