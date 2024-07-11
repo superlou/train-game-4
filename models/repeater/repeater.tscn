@@ -10,13 +10,14 @@
 points = PackedVector3Array(1.4469, -11.7952, 2.36845, 1.3076, -11.7952, 2.3449, 1.53039, -11.7952, 2.25506, 0.762388, 2.73378, 0.744458, 0.43074, 3.1372, 1.00824, -0.127848, 3.1372, 1.00824, -3.08961, -11.7952, 0.128015, -0.530068, 3.1372, 0.900611, 1.57467, -11.7952, -2.36659, 0.762388, 2.73378, -0.727703, 0.581112, 3.1372, 0.857849, -3.13758, -11.7952, -0.0262163, -0.824353, 3.1372, 0.606082, 1.54699, -11.7952, -2.51121, 0.581112, 3.1372, -0.841574, -3.04856, -11.7952, -0.150658, -0.931827, 3.1372, 0.203929, -0.931827, 3.1372, -0.187654, -0.824353, 3.1372, -0.589808, 1.40354, -11.7952, -2.54004, 0.43074, 3.1372, -0.991962, -0.530068, 3.1372, -0.883856, -0.127848, 3.1372, -0.991962)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_whrad"]
-size = Vector3(0.198975, 1, 0.193573)
+size = Vector3(0.198975, 0.945953, 0.193573)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_loqll"]
 radius = 3.38568
 height = 6.77136
 
 [node name="repeater" instance=ExtResource("1_tyyra")]
+mass = 10.0
 script = ExtResource("2_tibvj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0"]
@@ -24,10 +25,10 @@ transform = Transform3D(0.0931492, 0, 0, 0, 0.0931492, 0, 0, 0, 0.0931492, 0.103
 shape = SubResource("ConvexPolygonShape3D_ivg5g")
 
 [node name="Carryable" parent="." index="4" instance=ExtResource("3_cwtkl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.829352, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09209, 0.534726, 0)
 
 [node name="CollisionShape3D" parent="Carryable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09021, 0.0870361, -0.000900269)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.465609, 0)
 shape = SubResource("BoxShape3D_whrad")
 
 [node name="RssiReceiver" parent="." index="5" node_paths=PackedStringArray("ignore_area") instance=ExtResource("4_rkehl")]
