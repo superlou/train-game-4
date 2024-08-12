@@ -38,7 +38,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 carry_joint = NodePath("../CarryJoint")
 
 [node name="CarryJoint" type="Generic6DOFJoint3D" parent="Camera"]
-transform = Transform3D(0.988909, 0, 0, 0, 0.988909, 0, 0, 0, 0.988909, 0, -0.379308, -1.19966)
+transform = Transform3D(-4.32266e-08, 0, -0.988909, 0, 0.988909, 0, 0.988909, 0, -4.32266e-08, 0, -0.197182, -1.28221)
 node_a = NodePath("../..")
 
 [node name="FloorCast" type="RayCast3D" parent="."]

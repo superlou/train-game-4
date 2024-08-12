@@ -65,9 +65,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430852, 0)
 shape = SubResource("CylinderShape3D_qa2v2")
 
 [node name="Carryable" parent="." instance=ExtResource("2_c5fab")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.478854, 0)
 
 [node name="CollisionShape3D" parent="Carryable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, 0.438339, -0.00286865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, -0.0474109, -0.00286865)
 shape = SubResource("BoxShape3D_7mefa")
 
 [editable path="Carryable"]
