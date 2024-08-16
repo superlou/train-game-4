@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://f44h7ujundy5"]
+
+[ext_resource type="PackedScene" uid="uid://ccnuhy18xk4ty" path="res://models/driver_panel/driver_panel.glb" id="1_a8oh2"]
+[ext_resource type="Script" path="res://models/driver_panel/driver_panel.gd" id="2_dmmft"]
+
+[node name="driver_panel" instance=ExtResource("1_a8oh2")]
+script = ExtResource("2_dmmft")
+velocity = null
+torque = null
+
+[node name="VelocityBone" parent="Circle" index="2"]
+unique_name_in_owner = true
+
+[node name="TorqueBone" parent="Circle_003" index="2"]
+unique_name_in_owner = true

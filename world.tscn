@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=16 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="7_jaivv"]
 [ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
+[ext_resource type="PackedScene" uid="uid://f44h7ujundy5" path="res://models/driver_panel/driver_panel.tscn" id="13_ydrwk"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
 sky_material = ExtResource("5_s2rs5")
@@ -51,6 +52,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.77186, 1.25032, 0)
 [node name="ControlCrate" parent="Trainset/Flatcar1" instance=ExtResource("5_u6pxx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07547, 1.25138, 0)
 
+[node name="DriverPanel" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("13_ydrwk")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.12957, 0.207306, -0.624079)
+
 [node name="Respawner" parent="Trainset/Flatcar1" instance=ExtResource("7_jaivv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.503452, 1.77135, 0)
 
@@ -58,7 +63,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5034
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.61754, 1.64249, 0)
+transform = Transform3D(0.997783, 0, -0.0665525, 0, 1, 0, 0.0665525, 0, 0.997783, 11.1379, 1.64249, 0.660603)
 
 [node name="FpsDisplay" parent="." instance=ExtResource("1_2ar2q")]
 

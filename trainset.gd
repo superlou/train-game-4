@@ -8,12 +8,12 @@ extends Node3D
 @export var mass := 30_000.0 # todo Replace with calculation from pulled cars
 @export var rolling_mu := 0.05
 @export var static_mu := 0.15
-@export var max_thrust := 30_000.0
+@export var max_thrust := 50_000.0
 @export_range(-1.0, 1.0) var throttle := 0.0
 
 var velocity_pid := PIDController.new()
 var velocity_target := 0.0
-
+var thrust_prev := 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,27 +27,28 @@ func _calc_drag(flow_vel: float) -> float:
 	return 0.5 * rho * (flow_vel ** 2) * c_d * reference_area
 
 
+func _process(_delta):
+	if Input.is_action_just_pressed("accelerate_right"):
+		velocity_target += 5.0
+	
+	if Input.is_action_just_pressed("accelerate_left"):
+		velocity_target -= 5.0
+
+	if Input.is_action_just_pressed("apply_break"):
+		velocity_target = 0.0
+
+
 # Physics priority needs to be set lower than other nodes otherwise
 # velocity between the train and other objects won't be quite right
 # when accelerating.
 func _physics_process(delta):
 	var head_accel := Vector3.ZERO
-
-	if Input.is_action_pressed("accelerate_right"):
-		velocity_target += 5.0 * delta
-	
-	if Input.is_action_pressed("accelerate_left"):
-		velocity_target -= 5.0 * delta
-
-	if Input.is_action_pressed("apply_break"):
-		velocity_target = 0.0
-	
 	throttle = velocity_pid.run(head_velocity.x, velocity_target, delta)
-
 	throttle = clampf(throttle, -1.0, 1.0)
 
 	# todo This should all be vector math
-	var thrust := throttle * max_thrust
+	var thrust := 0.05 * throttle * max_thrust + 0.95 * thrust_prev
+	thrust_prev = thrust
 
 	var drag := _calc_drag(head_velocity.x)
 
@@ -61,29 +62,11 @@ func _physics_process(delta):
 		elif thrust < 0 and thrust + static_mu * mass < 0:
 			head_accel.x = (thrust + static_mu * mass) / mass
 
-	# if Input.is_action_pressed("accelerate_right"):
-	# 	head_accel += Vector3.RIGHT * acceleration
-	
-	# if Input.is_action_pressed("accelerate_left"):
-	# 	head_accel += -Vector3.RIGHT * acceleration
-
-	# if Input.is_action_pressed("apply_break"):
-	# 	if head_velocity.length() <= breaking * delta:
-	# 			head_accel = -head_velocity / delta
-	# 	elif head_velocity.x > 0:
-	# 		head_accel += -Vector3.RIGHT * breaking
-	# 	elif head_velocity.x < 0:
-	# 		head_accel += Vector3.RIGHT * breaking
-
 	head_velocity += head_accel * delta
 	RelativeWorld.accel = -head_accel
 
-	# print(head_accel)
-	# print("throttle: ", throttle)
-	# print("thrust: ", thrust)
-	# print(thrust - static_mu * mass)
-	# print(head_velocity)
-	# print(velocity_target)
+	%DriverPanel.velocity = head_velocity.x
+	%DriverPanel.torque = thrust
 
 
 func x_bounds() -> Array[float]:
