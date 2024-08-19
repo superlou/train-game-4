@@ -79,3 +79,11 @@ func x_bounds() -> Array[float]:
 		x.append(center.x + car_length / 2.0)
 
 	return [x.min(), x.max()]
+
+
+func _on_driver_panel_requested_stop():
+	velocity_target = 0
+
+
+func _on_driver_panel_requested_speed_change(amount:float):
+	velocity_target += amount

@@ -1,15 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://f44h7ujundy5"]
+[gd_scene load_steps=4 format=3 uid="uid://f44h7ujundy5"]
 
 [ext_resource type="PackedScene" uid="uid://ccnuhy18xk4ty" path="res://models/driver_panel/driver_panel.glb" id="1_a8oh2"]
 [ext_resource type="Script" path="res://models/driver_panel/driver_panel.gd" id="2_dmmft"]
+[ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="3_1er8r"]
 
 [node name="driver_panel" instance=ExtResource("1_a8oh2")]
 script = ExtResource("2_dmmft")
-velocity = null
-torque = null
 
 [node name="VelocityBone" parent="Circle" index="2"]
 unique_name_in_owner = true
 
 [node name="TorqueBone" parent="Circle_003" index="2"]
 unique_name_in_owner = true
+
+[node name="SpeedIncButton" parent="." index="3" instance=ExtResource("3_1er8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.131241, 0.71718, 0.125515)
+
+[node name="SpeedStopButton" parent="." index="4" instance=ExtResource("3_1er8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00169002, 0.71718, 0.125515)
+
+[node name="SpeedDecButton" parent="." index="5" instance=ExtResource("3_1er8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.130266, 0.71718, 0.125515)
+
+[connection signal="pressed" from="SpeedIncButton" to="." method="_on_speed_inc_button_pressed"]
+[connection signal="pressed" from="SpeedStopButton" to="." method="_on_speed_stop_button_pressed"]
+[connection signal="pressed" from="SpeedDecButton" to="." method="_on_speed_dec_button_pressed"]

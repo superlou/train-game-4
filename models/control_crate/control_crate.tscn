@@ -91,12 +91,12 @@ libraries = {
 [node name="control_crate" parent="." instance=ExtResource("4_geu5s")]
 
 [node name="Camera1Screen" type="Sprite3D" parent="."]
-transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -5.04615, 1.19402, -1.09877)
+transform = Transform3D(-0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, -5.04615, 1.85114, -1.09877)
 flip_h = true
 texture = SubResource("ViewportTexture_p0sl8")
 
 [node name="Camera2Screen" type="Sprite3D" parent="."]
-transform = Transform3D(-0.5, 0, -1.58933e-08, 0, 0.5, 0, 1.58933e-08, 0, -0.5, -5.05054, 1.84992, -1.09877)
+transform = Transform3D(-0.5, 0, -1.58933e-08, 0, 0.5, 0, 1.58933e-08, 0, -0.5, -4.1782, 1.84992, -1.09877)
 flip_h = true
 texture = SubResource("ViewportTexture_js308")
 
