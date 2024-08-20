@@ -15,6 +15,13 @@ var velocity_pid := PIDController.new()
 var velocity_target := 0.0
 var thrust_prev := 0.0
 
+enum ControlMode {
+	THROTTLE,
+	VELOCITY,
+}
+
+var control_mode := ControlMode.THROTTLE
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity_pid.ki = 0.001
@@ -43,7 +50,12 @@ func _process(_delta):
 # when accelerating.
 func _physics_process(delta):
 	var head_accel := Vector3.ZERO
-	throttle = velocity_pid.run(head_velocity.x, velocity_target, delta)
+
+	if control_mode == ControlMode.VELOCITY:
+		throttle = velocity_pid.run(head_velocity.x, velocity_target, delta)
+	elif control_mode == ControlMode.THROTTLE:
+		velocity_target = head_velocity.x
+
 	throttle = clampf(throttle, -1.0, 1.0)
 
 	# todo This should all be vector math
@@ -81,9 +93,22 @@ func x_bounds() -> Array[float]:
 	return [x.min(), x.max()]
 
 
-func _on_driver_panel_requested_stop():
-	velocity_target = 0
+func _on_driver_panel_requested_velocity_stop():
+	velocity_target = 0.0
+	control_mode = ControlMode.VELOCITY
 
 
-func _on_driver_panel_requested_speed_change(amount:float):
+func _on_driver_panel_requested_velocity_change(amount:float):
 	velocity_target += amount
+	control_mode = ControlMode.VELOCITY
+
+
+func _on_driver_panel_requested_throttle_stop():
+	throttle = 0.0
+	control_mode = ControlMode.THROTTLE
+
+
+func _on_driver_panel_requested_throttle_change(amount:float):
+	throttle += amount
+	control_mode = ControlMode.THROTTLE
+

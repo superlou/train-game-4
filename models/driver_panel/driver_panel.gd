@@ -10,9 +10,11 @@ const VELOCITY_GAUGE_VALUE := [0.0, 100.0]
 const TORQUE_GAUGE_ANGLE := [deg_to_rad(128.0), deg_to_rad(-131.0)]
 const TORQUE_GAUGE_VALUE := [0.0, 50_000.0]
 
-signal requested_speed_change(amount:float)
-signal requested_stop
+signal requested_velocity_change(amount:float)
+signal requested_velocity_stop
 
+signal requested_throttle_change(amount:float)
+signal requested_throttle_stop
 
 func _ready():
 	pass # Replace with function body.
@@ -34,13 +36,27 @@ func _process(_delta):
 		TORQUE_GAUGE_ANGLE[0], TORQUE_GAUGE_ANGLE[1]
 	)
 
+
 func _on_speed_inc_button_pressed():
-	requested_speed_change.emit(5)
+	requested_velocity_change.emit(5)
 
 
 func _on_speed_stop_button_pressed():
-	requested_stop.emit()
+	requested_velocity_stop.emit()
 
 
 func _on_speed_dec_button_pressed():
-	requested_speed_change.emit(-5)
+	requested_velocity_change.emit(-5)
+
+
+func _on_throttle_inc_button_pressed():
+	requested_throttle_change.emit(0.1)
+
+
+func _on_throttle_stop_button_pressed():
+	requested_throttle_stop.emit()
+
+
+func _on_throttle_dec_button_pressed():
+	requested_throttle_change.emit(-0.1)
+

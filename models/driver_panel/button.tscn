@@ -47,6 +47,9 @@ _data = {
 [node name="Button" instance=ExtResource("1_awqyw")]
 script = ExtResource("2_q81o1")
 
+[node name="Cap" parent="." index="0"]
+transform = Transform3D(0.400938, 0, 0, 0, 0.400938, 0, 0, 0, 0.400938, 0, 0.0195712, 0)
+
 [node name="Interactable" parent="." index="2" instance=ExtResource("3_60bvh")]
 
 [node name="CollisionShape3D" parent="Interactable" index="0"]
