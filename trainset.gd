@@ -96,19 +96,23 @@ func x_bounds() -> Array[float]:
 func _on_driver_panel_requested_velocity_stop():
 	velocity_target = 0.0
 	control_mode = ControlMode.VELOCITY
+	%DriverPanel.control_mode = control_mode
 
 
 func _on_driver_panel_requested_velocity_change(amount:float):
 	velocity_target += amount
 	control_mode = ControlMode.VELOCITY
+	%DriverPanel.control_mode = control_mode
 
 
 func _on_driver_panel_requested_throttle_stop():
 	throttle = 0.0
 	control_mode = ControlMode.THROTTLE
+	%DriverPanel.control_mode = control_mode
 
 
 func _on_driver_panel_requested_throttle_change(amount:float):
 	throttle += amount
 	control_mode = ControlMode.THROTTLE
+	%DriverPanel.control_mode = control_mode
 

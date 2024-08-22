@@ -16,6 +16,10 @@ signal requested_velocity_stop
 signal requested_throttle_change(amount:float)
 signal requested_throttle_stop
 
+
+@export var control_mode := Trainset.ControlMode.THROTTLE
+
+
 func _ready():
 	pass # Replace with function body.
 
@@ -35,6 +39,18 @@ func _process(_delta):
 	    TORQUE_GAUGE_VALUE[0], TORQUE_GAUGE_VALUE[1],
 		TORQUE_GAUGE_ANGLE[0], TORQUE_GAUGE_ANGLE[1]
 	)
+
+	match control_mode:
+		Trainset.ControlMode.THROTTLE:
+			$ThrottleControlLamp.active = true
+			$SpeedControlLamp.active = false
+		Trainset.ControlMode.VELOCITY:
+			$ThrottleControlLamp.active = false
+			$SpeedControlLamp.active = true
+	
+	$ThrottleReverseLamp.active = torque < 0
+	$SpeedReverseLamp.active = velocity < 0
+
 
 
 func _on_speed_inc_button_pressed():
@@ -59,4 +75,3 @@ func _on_throttle_stop_button_pressed():
 
 func _on_throttle_dec_button_pressed():
 	requested_throttle_change.emit(-0.1)
-
