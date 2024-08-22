@@ -5,6 +5,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wy1u"]
 resource_local_to_scene = true
+albedo_color = Color(0.3, 0.3, 0.3, 1)
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
 
 [node name="PanelLamp" instance=ExtResource("1_nd5ii")]
 script = ExtResource("2_ioj5m")
