@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=17 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
 [ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
 [ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="7_jaivv"]
+[ext_resource type="PackedScene" uid="uid://cfh3vbo8qpl1v" path="res://models/replicator/replicator.tscn" id="9_8dldn"]
 [ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
 [ext_resource type="PackedScene" uid="uid://f44h7ujundy5" path="res://models/driver_panel/driver_panel.tscn" id="13_ydrwk"]
@@ -20,7 +21,6 @@ sky_material = ExtResource("5_s2rs5")
 [sub_resource type="Environment" id="Environment_j3mav"]
 background_mode = 2
 sky = SubResource("Sky_6sy21")
-ambient_light_source = 3
 ssao_enabled = true
 
 [node name="World" type="Node3D"]
@@ -55,6 +55,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07547, 1.25138, 0)
 [node name="DriverPanel" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("13_ydrwk")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59624, 0.207306, -0.624079)
+
+[node name="Replicator" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("9_8dldn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184273, 0)
 
 [node name="Respawner" parent="Trainset/Flatcar1" instance=ExtResource("7_jaivv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.503452, 1.77135, 0)
