@@ -6,6 +6,7 @@ extends Node3D
 @export var color := Color.WHITE
 
 @onready var lamp_material:StandardMaterial3D = $Lamp.get_surface_override_material(0)
+@onready var light:Light3D = $Light
 
 var brightness = 0.0
 
@@ -27,5 +28,8 @@ func _process(delta):
 	lamp_material.albedo_color = color.darkened(
 		remap(brightness, 0., 1., 0.7, 0.0)
 	)
+
+	light.light_color = color
+	light.light_energy = brightness / 10.0
 
 	lamp_material.emission_energy_multiplier = brightness

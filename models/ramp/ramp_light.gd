@@ -1,4 +1,5 @@
 extends Node3D
+class_name RampLight
 
 @export var off_color := Color.BLACK
 @export var on_color := Color.WHITE

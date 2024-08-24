@@ -25,3 +25,12 @@ func _on_door_interactable_interacted(_interactor:Interactor):
 		$AnimationPlayer.play_backwards("DoorSwing")
 	else:
 		$AnimationPlayer.play("DoorSwing")
+
+
+func _on_lights_button_pressed():
+	_toggle_lights()
+
+
+func _toggle_lights():
+	for child:RampLight in $Lights.get_children():
+		child.set_state(not child.is_on)

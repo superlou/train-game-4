@@ -14,3 +14,7 @@ script = ExtResource("2_ioj5m")
 
 [node name="Lamp" parent="." index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_5wy1u")
+
+[node name="Light" type="OmniLight3D" parent="." index="2"]
+light_energy = 0.0
+omni_range = 0.1

@@ -7,4 +7,5 @@
 script = ExtResource("2_7w81h")
 
 [node name="Light" type="OmniLight3D" parent="." index="1"]
-omni_range = 1.10757
+shadow_enabled = true
+omni_range = 3.1626
