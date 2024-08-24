@@ -57,7 +57,7 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59624, 0.207306, -0.624079)
 
 [node name="Replicator" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("9_8dldn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.184273, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.246101, 0)
 
 [node name="Respawner" parent="Trainset/Flatcar1" instance=ExtResource("7_jaivv")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.503452, 1.77135, 0)
