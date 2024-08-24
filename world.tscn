@@ -10,7 +10,7 @@
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
 [ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
 [ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="7_jaivv"]
-[ext_resource type="PackedScene" uid="uid://cfh3vbo8qpl1v" path="res://models/replicator/replicator.tscn" id="9_8dldn"]
+[ext_resource type="PackedScene" uid="uid://cvi4s0ltoahc" path="res://models/replicator/replicator.tscn" id="9_8dldn"]
 [ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
 [ext_resource type="PackedScene" uid="uid://f44h7ujundy5" path="res://models/driver_panel/driver_panel.tscn" id="13_ydrwk"]
