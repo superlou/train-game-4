@@ -147,10 +147,11 @@ transform = Transform3D(1, 4.37114e-08, -4.37114e-08, 4.37114e-08, -4.37114e-08,
 is_on = true
 
 [node name="LightsButton" parent="." instance=ExtResource("8_y3tbf")]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, -5.80399, 1.3908, 0.711871)
+transform = Transform3D(0, 1, 0, 4.37114e-08, 0, -1, -1, 0, -4.37114e-08, -5.80399, 1.3908, 0.711871)
+label = "💡"
 
 [node name="PanelLamp" parent="LightsButton" instance=ExtResource("9_imiil")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100925, 0.00977659, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000945926, 0.00977659, -0.0897112)
 active = true
 
 [connection signal="interacted" from="control_crate_door/DoorInteractable" to="." method="_on_door_interactable_interacted"]

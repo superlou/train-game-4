@@ -16,21 +16,27 @@ unique_name_in_owner = true
 
 [node name="SpeedIncButton" parent="." index="3" instance=ExtResource("3_1er8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.359196, 0.71718, 0.125515)
+label = "→"
 
 [node name="SpeedStopButton" parent="." index="4" instance=ExtResource("3_1er8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.229645, 0.71718, 0.125515)
+label = "0"
 
 [node name="SpeedDecButton" parent="." index="5" instance=ExtResource("3_1er8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0976894, 0.71718, 0.125515)
+label = "←"
 
 [node name="ThrottleIncButton" parent="." index="6" instance=ExtResource("3_1er8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.097708, 0.71718, 0.125515)
+label = "↑"
 
 [node name="ThrottleStopButton" parent="." index="7" instance=ExtResource("3_1er8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.227259, 0.71718, 0.125515)
+label = "X"
 
 [node name="ThrottleDecButton" parent="." index="8" instance=ExtResource("3_1er8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.359215, 0.71718, 0.125515)
+label = "↓"
 
 [node name="ThrottleControlLamp" parent="." index="9" instance=ExtResource("4_s6lxc")]
 transform = Transform3D(1, 0, 0, 0, 0.663365, -0.748296, 0, 0.748296, 0.663365, -0.370638, 0.744551, 0.0128663)
