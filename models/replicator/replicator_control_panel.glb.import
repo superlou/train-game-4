@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://tvskjwwileri"
-path="res://.godot/imported/button.glb-1865d094e660c69d614d6db541b82f82.scn"
+uid="uid://mi22hm6rc36q"
+path="res://.godot/imported/replicator_control_panel.glb-b4b1f6090a3e3c534f0145a1ad64616e.scn"
 
 [deps]
 
-source_file="res://models/driver_panel/button.glb"
-dest_files=["res://.godot/imported/button.glb-1865d094e660c69d614d6db541b82f82.scn"]
+source_file="res://models/replicator/replicator_control_panel.glb"
+dest_files=["res://.godot/imported/replicator_control_panel.glb-b4b1f6090a3e3c534f0145a1ad64616e.scn"]
 
 [params]
 

@@ -1,25 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvi4s0ltoahc"]
+[gd_scene load_steps=4 format=3 uid="uid://cvi4s0ltoahc"]
 
 [ext_resource type="PackedScene" uid="uid://b5a3d7h1qy7bx" path="res://models/replicator/replicator.glb" id="1_aaq2b"]
 [ext_resource type="Script" path="res://models/replicator/replicator.gd" id="2_uo1v0"]
+[ext_resource type="PackedScene" uid="uid://ktbb1xv6xufl" path="res://models/replicator/replicator_control_panel.tscn" id="3_3l850"]
 
 [node name="Replicator" instance=ExtResource("1_aaq2b")]
 script = ExtResource("2_uo1v0")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(-1.1571, 0.580889, -0.3)
 bones/0/rotation = Quaternion(2.58655e-08, -2.5691e-08, -0.0405347, 0.999178)
 bones/1/rotation = Quaternion(0.00326934, -0.03773, 0.0862688, 0.995552)
+bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-0.00164316, 0.0378357, -0.0433606, 0.998341)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/4/rotation = Quaternion(5.17393e-09, 1.64035e-08, 0.0406944, 0.999172)
+bones/4/rotation = Quaternion(5.17394e-09, 1.64036e-08, 0.0406944, 0.999172)
 
 [node name="TopDoor1" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.999987, -0.00497424, 2.98023e-08, 0.00497422, 0.999988, -9.96515e-08, -2.98023e-08, 9.73232e-08, 1, 0.00779319, -0.00938869, 2.98023e-08)
+transform = Transform3D(0.999987, -0.00497425, -7.45058e-09, 0.00497422, 0.999988, -1.04774e-07, 0, 1.02911e-07, 1, 0.00779331, 0.00580072, 2.98023e-08)
 
 [node name="Cylinder" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.0249499, 2.08109e-08, 0.000124108, 0.000124108, -6.95864e-08, -0.0249499, -7.43574e-10, 0.698298, -2.42823e-09, -1.114, 1.06723, -0.303839)
+transform = Transform3D(0.0249499, -5.20272e-09, 0.000124109, 0.000124108, -7.31633e-08, -0.0249499, 0, 0.698298, -2.56765e-09, -1.114, 1.08242, -0.303839)
 
 [node name="TopDoor2" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, -0.000319667, -2.10742e-08, 0.00031966, 1, -6.12697e-08, 2.10938e-08, 6.12629e-08, 1, 0.00144172, 0.00057745, -5.96046e-08)
+transform = Transform3D(1, -0.000319697, -2.10741e-08, 0.00031969, 1, -6.12697e-08, 2.10937e-08, 6.1263e-08, 1, 0.00144172, 0.0157668, -2.98023e-08)
+
+[node name="ReplicatorControlPanel" parent="." index="8" instance=ExtResource("3_3l850")]
+transform = Transform3D(-0.86572, 0, 0.500529, 0, 1, 0, -0.500529, 0, -0.86572, -1.39278, 1.0194, 0.798089)

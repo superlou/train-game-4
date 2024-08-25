@@ -1,9 +1,10 @@
 @tool
 extends Node3D
+class_name PanelButton
 
 
 signal pressed
-@export var guard_color := Color(0.255, 0.255, 0.255)
+@export var guard_color := Color(0.255, 0.255, 0.255, 1.0)
 @export var cap_color := Color.WHITE
 @export var label := "" :
 	get:
@@ -15,10 +16,9 @@ signal pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var guard_material:StandardMaterial3D = $Guard.mesh.surface_get_material(0).duplicate()
+	var guard_material:StandardMaterial3D = $Guard.get_surface_override_material(0)
 	guard_material.albedo_color = guard_color
-	$Guard.mesh.surface_set_material(0, guard_material)
-	$Cap/Label.text = label
+	_update_label()
 
 
 func _update_label():
