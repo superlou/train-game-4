@@ -1,22 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvi4s0ltoahc"]
+[gd_scene load_steps=3 format=3 uid="uid://cvi4s0ltoahc"]
 
 [ext_resource type="PackedScene" uid="uid://b5a3d7h1qy7bx" path="res://models/replicator/replicator.glb" id="1_aaq2b"]
+[ext_resource type="Script" path="res://models/replicator/replicator.gd" id="2_uo1v0"]
 
 [node name="Replicator" instance=ExtResource("1_aaq2b")]
+script = ExtResource("2_uo1v0")
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(-1.1571, 0.580889, -0.3)
-bones/0/rotation = Quaternion(2.5982e-08, -2.19481e-08, -0.0405347, 0.999178)
+bones/0/rotation = Quaternion(2.58655e-08, -2.5691e-08, -0.0405347, 0.999178)
+bones/1/rotation = Quaternion(0.00326934, -0.03773, 0.0862688, 0.995552)
 bones/2/rotation = Quaternion(-0.00164316, 0.0378357, -0.0433606, 0.998341)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.707107, 0, 0, 0.707107)
 bones/4/rotation = Quaternion(5.17393e-09, 1.64035e-08, 0.0406944, 0.999172)
 
 [node name="TopDoor1" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.999988, -0.00497418, 5.21541e-08, 0.00497419, 0.999988, -9.45292e-08, -4.47035e-08, 9.49949e-08, 1, 0.00779116, -0.00938869, 2.98023e-08)
+transform = Transform3D(0.999987, -0.00497424, 2.98023e-08, 0.00497422, 0.999988, -9.96515e-08, -2.98023e-08, 9.73232e-08, 1, 0.00779319, -0.00938869, 2.98023e-08)
 
 [node name="Cylinder" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.0249499, 3.64191e-08, 0.000124107, 0.000124107, -6.60095e-08, -0.0249499, -1.11536e-09, 0.698298, -2.37014e-09, -1.114, 1.06723, -0.303839)
+transform = Transform3D(0.0249499, 2.08109e-08, 0.000124108, 0.000124108, -6.95864e-08, -0.0249499, -7.43574e-10, 0.698298, -2.42823e-09, -1.114, 1.06723, -0.303839)
 
 [node name="TopDoor2" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(1, -0.000319615, -1.3604e-08, 0.000319608, 1, -6.1806e-08, 1.36238e-08, 6.18016e-08, 1, 0.00143957, 0.000577211, -2.98023e-08)
+transform = Transform3D(1, -0.000319667, -2.10742e-08, 0.00031966, 1, -6.12697e-08, 2.10938e-08, 6.12629e-08, 1, 0.00144172, 0.00057745, -5.96046e-08)
