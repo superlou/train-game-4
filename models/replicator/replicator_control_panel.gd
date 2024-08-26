@@ -1,13 +1,8 @@
 extends Node3D
 
 
-enum State {
-	CLEARED,
-	ENTERED_1,
-	ENTERED_2,
-	ENTERED_3,
-	ENTERED_4,
-}
+var code := 0
+signal entered_code(code:int)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +13,24 @@ func _ready() -> void:
 
 
 func _on_button_pressed(value:String):
-	print(value)
+	match value:
+		"Clear":
+			code = 0
+		"Enter":
+			entered_code.emit(code)
+			code = 0
+		_:
+			var digit = int(value)
+			code = code * 10 + digit
+
+	_update_code_lamps()
+
+
+func _update_code_lamps():
+	$Lamps/LampNum1.active = code > 0
+	$Lamps/LampNum2.active = code > 9
+	$Lamps/LampNum3.active = code > 99
+	$Lamps/LampNum4.active = code > 999
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
