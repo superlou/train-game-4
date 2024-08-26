@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dddm6e5p7ry4k"]
+[gd_scene load_steps=17 format=3 uid="uid://dddm6e5p7ry4k"]
 
 [ext_resource type="Script" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
 [ext_resource type="PackedScene" uid="uid://bjyrstk4d3xch" path="res://models/control_crate/control_crate_door.tscn" id="3_46ab0"]
@@ -72,7 +72,10 @@ viewport_path = NodePath("CCCameraSubViewport1")
 [sub_resource type="ViewportTexture" id="ViewportTexture_js308"]
 viewport_path = NodePath("CCCameraSubViewport2")
 
-[node name="ControlCrate" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hbys0"]
+size = Vector3(11.4034, 0.256683, 2.73523)
+
+[node name="ControlCrate" type="AnimatableBody3D"]
 script = ExtResource("1_ln1km")
 
 [node name="control_crate_door" parent="." instance=ExtResource("3_46ab0")]
@@ -153,6 +156,10 @@ label = "💡"
 [node name="PanelLamp" parent="LightsButton" instance=ExtResource("9_imiil")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000945926, 0.00977659, -0.0897112)
 active = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.198639, 0.120468, -0.003479)
+shape = SubResource("BoxShape3D_hbys0")
 
 [connection signal="interacted" from="control_crate_door/DoorInteractable" to="." method="_on_door_interactable_interacted"]
 [connection signal="pressed" from="LightsButton" to="." method="_on_lights_button_pressed"]
