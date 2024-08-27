@@ -12,6 +12,8 @@ var state := ReplicatorState.OPEN
 var operation := -1		# -1 is no operation
 var work_timer := 0.0
 
+signal generated_element(element:int, amount:float)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 			do_working_state(delta)
 		ReplicatorState.OPENING:
 			do_opening_state()
+	
 
 
 func do_open_state() -> void:
@@ -49,6 +52,25 @@ func do_working_state(delta:float) -> void:
 		operation = -1
 		$AnimationPlayer.play("Open")
 		state = ReplicatorState.OPENING
+
+	for body:Node3D in $ConversionArea.get_overlapping_bodies():
+		var elements := body.find_child("Elements") as Elements
+		if not elements:
+			continue
+
+		if elements.provides_fuel > 0:
+			generated_element.emit(ElementType.FUEL, elements.provides_fuel)
+		
+		if elements.provides_food > 0:
+			generated_element.emit(ElementType.FOOD, elements.provides_food)
+
+		if elements.provides_material > 0:
+			generated_element.emit(ElementType.MATERIAL, elements.provides_material)
+
+		if elements.provides_tech > 0:
+			generated_element.emit(ElementType.TECH, elements.provides_tech)
+
+		body.queue_free()
 
 
 func do_opening_state() -> void:

@@ -49,6 +49,7 @@ func _process(_delta):
 # velocity between the train and other objects won't be quite right
 # when accelerating.
 func _physics_process(delta):
+	var fuel := %ElementStore.fuel_qty as float
 	var head_accel := Vector3.ZERO
 
 	if control_mode == ControlMode.VELOCITY:
@@ -58,8 +59,15 @@ func _physics_process(delta):
 
 	throttle = clampf(throttle, -1.0, 1.0)
 
+	fuel -= absf(throttle) * (100.0 * delta)
+	fuel = maxf(fuel, 0.0)
+
+	var effective_thrust := throttle * max_thrust
+	if fuel == 0.0:
+		effective_thrust = 0.0
+
 	# todo This should all be vector math
-	var thrust := 0.05 * throttle * max_thrust + 0.95 * thrust_prev
+	var thrust := 0.05 * effective_thrust + 0.95 * thrust_prev
 	thrust_prev = thrust
 
 	var drag := _calc_drag(head_velocity.x)
@@ -79,6 +87,7 @@ func _physics_process(delta):
 
 	%DriverPanel.velocity = head_velocity.x
 	%DriverPanel.torque = thrust
+	%ElementStore.fuel_qty = fuel
 
 
 func x_bounds() -> Array[float]:
@@ -115,4 +124,3 @@ func _on_driver_panel_requested_throttle_change(amount:float):
 	throttle += amount
 	control_mode = ControlMode.THROTTLE
 	%DriverPanel.control_mode = control_mode
-
