@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://baseirh0p456l"]
+
+[ext_resource type="PackedScene" uid="uid://dak7fvn135o8t" path="res://models/column_gauge/column_gauge.glb" id="1_umfdk"]
+[ext_resource type="Script" path="res://column_gauge.gd" id="2_d7yun"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7rkb0"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="ColumnGauge" instance=ExtResource("1_umfdk")]
+script = ExtResource("2_d7yun")
+damping = 0.9
+
+[node name="Liquid" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_7rkb0")

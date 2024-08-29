@@ -8,10 +8,14 @@ var material_qty := 0.0
 var tech_qty := 0.0
 
 
+signal changed_fuel_qty(qty:float)
+
+
 func _on_replicator_generated_element(element:int, amount:float) -> void:
 	match element:
 		ElementType.FUEL:
 			fuel_qty += amount
+			changed_fuel_qty.emit(fuel_qty)
 		ElementType.FOOD:
 			food_qty += amount
 		ElementType.MATERIAL:
