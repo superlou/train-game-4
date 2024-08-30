@@ -1,6 +1,13 @@
 extends Node
 class_name Elements
 
+enum Type {
+	FUEL,
+	FOOD,
+	MATERIAL,
+	TECH,
+}
+
 @export_group("Provides", "provides_")
 @export var provides_fuel := 0.0
 @export var provides_food := 0.0

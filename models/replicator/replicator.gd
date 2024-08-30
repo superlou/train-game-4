@@ -12,7 +12,7 @@ var state := ReplicatorState.OPEN
 var operation := -1		# -1 is no operation
 var work_timer := 0.0
 
-signal generated_element(element:int, amount:float)
+signal generated_element(element:Elements.Type, amount:float)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -59,16 +59,16 @@ func do_working_state(delta:float) -> void:
 			continue
 
 		if elements.provides_fuel > 0:
-			generated_element.emit(ElementType.FUEL, elements.provides_fuel)
+			generated_element.emit(Elements.Type.FUEL, elements.provides_fuel)
 		
 		if elements.provides_food > 0:
-			generated_element.emit(ElementType.FOOD, elements.provides_food)
+			generated_element.emit(Elements.Type.FOOD, elements.provides_food)
 
 		if elements.provides_material > 0:
-			generated_element.emit(ElementType.MATERIAL, elements.provides_material)
+			generated_element.emit(Elements.Type.MATERIAL, elements.provides_material)
 
 		if elements.provides_tech > 0:
-			generated_element.emit(ElementType.TECH, elements.provides_tech)
+			generated_element.emit(Elements.Type.TECH, elements.provides_tech)
 
 		body.queue_free()
 

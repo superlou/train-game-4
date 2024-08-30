@@ -41,14 +41,6 @@ trainset = NodePath("../Trainset")
 
 [node name="Trainset" parent="." instance=ExtResource("1_l72nw")]
 process_physics_priority = -1
-head_velocity = null
-acceleration = null
-breaking = null
-mass = null
-rolling_mu = null
-static_mu = null
-max_thrust = null
-throttle = null
 
 [node name="Locomotive" parent="Trainset" instance=ExtResource("4_rif6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2529, 0, 0)
@@ -115,6 +107,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.92223, 2, 0)
 [connection signal="requested_throttle_stop" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_stop"]
 [connection signal="requested_velocity_change" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_velocity_change"]
 [connection signal="requested_velocity_stop" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_velocity_stop"]
-[connection signal="generated_element" from="Trainset/Flatcar1/ControlCrate/Replicator" to="Trainset/Flatcar1/ControlCrate/ElementStore" method="_on_replicator_generated_element"]
+[connection signal="generated_element" from="Trainset/Flatcar1/ControlCrate/Replicator" to="Trainset" method="_on_replicator_generated_element"]
 [connection signal="changed_fuel_qty" from="Trainset/Flatcar1/ControlCrate/ElementStore" to="Trainset/Flatcar1/ControlCrate/FuelGauge" method="_on_element_store_changed_fuel_qty"]
 [connection signal="died" from="Player" to="Trainset/Flatcar1/Respawner" method="respawn"]

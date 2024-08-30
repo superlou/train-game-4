@@ -48,8 +48,7 @@ func _process(_delta):
 # Physics priority needs to be set lower than other nodes otherwise
 # velocity between the train and other objects won't be quite right
 # when accelerating.
-func _physics_process(delta):
-	var fuel := %ElementStore.fuel_qty as float
+func _physics_process(delta:float):
 	var head_accel := Vector3.ZERO
 
 	if control_mode == ControlMode.VELOCITY:
@@ -59,12 +58,12 @@ func _physics_process(delta):
 
 	throttle = clampf(throttle, -1.0, 1.0)
 
-	fuel -= absf(throttle) * (100.0 * delta)
-	fuel = maxf(fuel, 0.0)
-
+	var fuel_needed := absf(throttle) * (100.0 * delta)
+	var fuel := %ElementStore.take(Elements.Type.FUEL, fuel_needed) as float
 	var effective_thrust := throttle * max_thrust
-	if fuel == 0.0:
-		effective_thrust = 0.0
+
+	if fuel_needed > 0:
+		effective_thrust *= fuel / fuel_needed
 
 	# todo This should all be vector math
 	var thrust := 0.05 * effective_thrust + 0.95 * thrust_prev
@@ -87,7 +86,6 @@ func _physics_process(delta):
 
 	%DriverPanel.velocity = head_velocity.x
 	%DriverPanel.torque = thrust
-	%ElementStore.fuel_qty = fuel
 
 
 func x_bounds() -> Array[float]:
@@ -124,3 +122,7 @@ func _on_driver_panel_requested_throttle_change(amount:float):
 	throttle += amount
 	control_mode = ControlMode.THROTTLE
 	%DriverPanel.control_mode = control_mode
+
+
+func _on_replicator_generated_element(element:Elements.Type, amount:float) -> void:
+	%ElementStore.add(element, amount)
