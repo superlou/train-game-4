@@ -2,43 +2,37 @@ extends Node
 class_name ElementStore
 
 
-@export var fuel_qty := 1000.0
-@export var food_qty := 0.0
-@export var material_qty := 0.0
-@export var tech_qty := 0.0
+@export var element_qtys = {
+	Elements.Type.FUEL: 0.0,
+	Elements.Type.FOOD: 0.0,
+	Elements.Type.MATERIAL: 0.0,
+	Elements.Type.TECH: 0.0,
+}
+
+@export var element_maxes = {
+	Elements.Type.FUEL: 10_000.0,
+	Elements.Type.FOOD: 1_000.0,
+	Elements.Type.MATERIAL: 1_000.0,
+	Elements.Type.TECH: 1_000.0,
+}
 
 
-signal changed_fuel_qty(qty:float)
+signal changed_qty(element_type:Elements.Type, qty:float)
+
+
+func _ready() -> void:
+	for element_type in Elements.Type.values():
+		changed_qty.emit(element_type, element_qtys[element_type])
 
 
 func add(element:Elements.Type, qty:float) -> void:
-	match element:
-		Elements.Type.FUEL:
-			fuel_qty += qty
-			changed_fuel_qty.emit(fuel_qty)
-		Elements.Type.FOOD:
-			food_qty += qty
-		Elements.Type.MATERIAL:
-			material_qty += qty
-		Elements.Type.TECH:
-			tech_qty += qty
+	element_qtys[element] += qty
+	element_qtys[element] = minf(element_qtys[element], element_maxes[element])
+	changed_qty.emit(element, element_qtys[element])
 
 
 func take(element:Elements.Type, qty:float) -> float:
-	var qty_taken := 0.0
-
-	match element:
-		Elements.Type.FUEL:
-			qty_taken = min(qty, fuel_qty)
-			fuel_qty -= qty_taken
-		Elements.Type.FOOD:
-			qty_taken = min(qty, food_qty)
-			food_qty -= qty_taken
-		Elements.Type.MATERIAL:
-			qty_taken = min(qty, material_qty)
-			material_qty -= qty_taken
-		Elements.Type.TECH:
-			qty_taken = min(qty, tech_qty)
-			tech_qty -= qty_taken
-
+	var qty_taken := minf(qty, element_qtys[element])
+	element_qtys[element] -= qty_taken
+	changed_qty.emit(element, element_qtys[element])
 	return qty_taken

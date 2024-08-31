@@ -18,12 +18,9 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# todo This equation is not good
 	# Consider https://stackoverflow.com/questions/1023860/exponential-moving-average-sampled-at-varying-times
 	var new_value:float = (1.0 - damping) * value + damping * prev_value
 	prev_value = new_value
 	$Liquid.scale.y = remap(new_value, -0.05, 1.05, 0, 1)
-
-func _on_element_store_changed_fuel_qty(qty:float) -> void:
-	value = qty

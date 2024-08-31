@@ -11,6 +11,8 @@ extends Node3D
 @export var max_thrust := 50_000.0
 @export_range(-1.0, 1.0) var throttle := 0.0
 
+@export var element_store:ElementStore
+
 var velocity_pid := PIDController.new()
 var velocity_target := 0.0
 var thrust_prev := 0.0
@@ -59,7 +61,7 @@ func _physics_process(delta:float):
 	throttle = clampf(throttle, -1.0, 1.0)
 
 	var fuel_needed := absf(throttle) * (100.0 * delta)
-	var fuel := %ElementStore.take(Elements.Type.FUEL, fuel_needed) as float
+	var fuel := element_store.take(Elements.Type.FUEL, fuel_needed)
 	var effective_thrust := throttle * max_thrust
 
 	if fuel_needed > 0:
@@ -125,4 +127,16 @@ func _on_driver_panel_requested_throttle_change(amount:float):
 
 
 func _on_replicator_generated_element(element:Elements.Type, amount:float) -> void:
-	%ElementStore.add(element, amount)
+	element_store.add(element, amount)
+
+
+func _on_element_store_changed_qty(element_type:Elements.Type, qty:float) -> void:
+	# todo This is gross, defining the map in here
+	var gauge_map = {
+		Elements.Type.FUEL: $Flatcar1/ControlCrate/FuelGauge,
+		Elements.Type.FOOD: $Flatcar1/ControlCrate/FoodGauge,
+		Elements.Type.MATERIAL: $Flatcar1/ControlCrate/MaterialGauge,
+		Elements.Type.TECH: $Flatcar1/ControlCrate/TechGauge,
+	}
+
+	gauge_map[element_type].value = qty / element_store.element_maxes[element_type]
