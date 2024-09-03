@@ -56,7 +56,7 @@ enum SupportType {
 		support_type = value
 		_update()
 
-@export var support_spacing := 0.8 :
+@export var support_spacing := 1.0 :
 	set(value):
 		support_spacing = value
 		_update()
@@ -71,13 +71,23 @@ enum SupportType {
 @onready var backing_mesh:MeshInstance3D = $Sign/BackingMesh
 @onready var frame_mesh:MeshInstance3D = $Sign/FrameMesh
 
+var needs_update := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_update()
 
 
+func _process(_delta):
+	if needs_update:
+		_update()
+
+
 func _update():
+	if label == null or backing_mesh == null or frame_mesh == null:
+		needs_update = true
+		return
+
 	var backing_material = StandardMaterial3D.new()
 	backing_material.albedo_color = backing_color
 
@@ -85,15 +95,27 @@ func _update():
 	frame_material.albedo_color = border_color
 
 	label.text = text
-	# todo This doesn't always work. Sometimes the AABB isn't updated.
+	# todo Using `get_aabb()` doesn't always work. Sometimes the AABB isn't updated.
 	# Waiting until the next frame also isn't enough.
-	var label_aabb := label.get_aabb()
+	# var label_aabb := label.get_aabb()
+
+	var text_size := label.font.get_string_size(
+		label.text,
+		HORIZONTAL_ALIGNMENT_CENTER,
+		-1,
+		label.font_size
+	) * label.pixel_size
+	
+	var label_aabb := AABB(
+		Vector3(-text_size[0] / 2, -text_size[1] / 2, 0.0),
+		Vector3(text_size[0], text_size[1], 0.0)
+	)
 
 	label.modulate = text_color
 	backing_mesh.mesh = _build_backing(label_aabb, backing_material, frame_material)
 	frame_mesh.mesh = _build_frame(label_aabb, frame_material)
 
-	var pole_height = 1.5
+	var pole_height = 1.8
 	var pole_width = 0.15
 
 	if support_type == SupportType.POLES:

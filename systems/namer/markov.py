@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import json
 
 
 def load_wikipedia_table() -> pd.Series:
@@ -69,9 +70,16 @@ def generate(transition_table, order) -> str:
 
 
 def main():
-    order = 2
+    order = 3
     stations = load_wikipedia_table()
     transition_table = build_model(stations.tolist(), order)
+
+    model = {
+        "transition_table": transition_table,
+        "order": order,
+    }
+
+    json.dump(model, open("station_name_markov.json", "w"))
 
     for i in range(10):
         print(generate(transition_table, order))

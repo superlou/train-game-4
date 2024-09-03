@@ -19,6 +19,7 @@ config/icon="res://assets/icon.svg"
 
 WorldManager="*res://world_manager.gd"
 RelativeWorld="*res://systems/relative_world/relative_world.gd"
+Namer="*res://systems/namer/namer.gd"
 
 [filesystem]
 
