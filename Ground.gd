@@ -7,7 +7,7 @@ var ground_velocity = 0
 var tile_scene = preload("res://ground_tile.tscn")
 const LOOK_AHEAD := 500.0
 const LOOK_BEHIND := 500.0
-var request_station := false
+var request_station = null
 
 func _ready():
 	plant_tiles()
@@ -47,8 +47,8 @@ func plant_tiles():
 	while rightmost_tile.position.x < (train_max_x + LOOK_AHEAD):
 		var tile = tile_scene.instantiate()
 		if request_station:
-			tile.has_station = true
-			request_station = false
+			tile.station = request_station
+			request_station = null
 		tile.position.x = rightmost_tile.position.x + rightmost_tile.width
 		add_child(tile)
 		rightmost_tile = tile

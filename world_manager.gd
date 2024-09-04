@@ -11,4 +11,6 @@ func _ready():
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("spawn_station"):
 		print("Spawned station")
-		world.get_node("Ground").request_station = true
+		var station = Station.instantiate()
+		station.station_name = Namer.generate_station_name()
+		world.get_node("Ground").request_station = station

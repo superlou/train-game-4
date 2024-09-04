@@ -5,7 +5,7 @@ extends AnimatableBody3D
 @export var plank_separation := 1.0
 
 var is_dirty := false
-var has_station := false
+var station = null
 
 var Station = preload("res://models/station/station.tscn")
 
@@ -13,8 +13,8 @@ var Station = preload("res://models/station/station.tscn")
 func _ready():
 	is_dirty = true
 
-	if has_station:
-		add_child(Station.instantiate())
+	if station:
+		add_child(station)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

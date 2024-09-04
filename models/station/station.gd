@@ -10,6 +10,5 @@ func _ready() -> void:
 
 
 func _build() -> void:
-	station_name = Namer.generate_station_name()
 	$Sign.text = station_name.to_upper() + " STATION"
 	$Sign2.text = station_name.to_upper() + " STATION"

@@ -5,17 +5,17 @@
 [sub_resource type="SystemFont" id="SystemFont_pamr3"]
 subpixel_positioning = 0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k41ce"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xa6ir"]
 albedo_color = Color(0.745098, 0.745098, 0.745098, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uoucq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_egtn7"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_h2jy5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_f4ona"]
 _surfaces = [{
 "aabb": AABB(-1.297, -0.325, 0, 2.594, 0.65, 1e-05),
 "format": 34359738369,
-"material": SubResource("StandardMaterial3D_k41ce"),
+"material": SubResource("StandardMaterial3D_xa6ir"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 6,
@@ -23,18 +23,18 @@ _surfaces = [{
 }, {
 "aabb": AABB(-1.297, -0.325, -0.05, 2.594, 0.65, 0.05),
 "format": 34359738375,
-"material": SubResource("StandardMaterial3D_uoucq"),
+"material": SubResource("StandardMaterial3D_egtn7"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 30,
 "vertex_data": PackedByteArray("GgSmP2dmpr7NzEy9GgSmP2Zmpj7NzEy9GQSmv2Zmpj7NzEy9GgSmP2dmpr7NzEy9GQSmv2Zmpj7NzEy9GQSmv2dmpr7NzEy9GgSmP2Zmpj4AAAAAGgSmP2Zmpj7NzEy9GgSmP2dmpr7NzEy9GgSmP2Zmpj4AAAAAGgSmP2dmpr7NzEy9GgSmP2dmpr4AAAAAGQSmv2dmpr4AAAAAGQSmv2dmpr7NzEy9GQSmv2Zmpj7NzEy9GQSmv2dmpr4AAAAAGQSmv2Zmpj7NzEy9GQSmv2Zmpj4AAAAAGQSmv2Zmpj4AAAAAGQSmv2Zmpj7NzEy9GgSmP2Zmpj7NzEy9GQSmv2Zmpj4AAAAAGgSmP2Zmpj7NzEy9GgSmP2Zmpj4AAAAAGQSmv2dmpr4AAAAAGgSmP2dmpr4AAAAAGgSmP2dmpr7NzEy9GQSmv2dmpr4AAAAAGgSmP2dmpr7NzEy9GQSmv2dmpr7NzEy9//////9/AID//////38AgP//////fwCA//////9/AID//////38AgP//////fwCA////f/9//7////9//3//v////3//f/+/////f/9//7////9//3//v////3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+//3///wAA/7//f///AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+//38AAAAA/7//fwAAAAD/v/9/AAAAAP+/")
 }]
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_55rto"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tsj3k"]
 _surfaces = [{
 "aabb": AABB(-1.297, -0.325, 0, 2.594, 0.65, 0.05),
 "format": 34359738375,
-"material": SubResource("StandardMaterial3D_uoucq"),
+"material": SubResource("StandardMaterial3D_egtn7"),
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
 "vertex_count": 96,
@@ -43,7 +43,6 @@ _surfaces = [{
 
 [node name="RectangularSign" type="Node3D"]
 script = ExtResource("1_o2daa")
-support_spacing = 1.0
 
 [node name="Sign" type="Node3D" parent="."]
 
@@ -56,11 +55,11 @@ font_size = 128
 outline_size = 0
 
 [node name="BackingMesh" type="MeshInstance3D" parent="Sign"]
-mesh = SubResource("ArrayMesh_h2jy5")
+mesh = SubResource("ArrayMesh_f4ona")
 skeleton = NodePath("../..")
 
 [node name="FrameMesh" type="MeshInstance3D" parent="Sign"]
-mesh = SubResource("ArrayMesh_55rto")
+mesh = SubResource("ArrayMesh_tsj3k")
 skeleton = NodePath("../..")
 
 [node name="Poles" type="Node3D" parent="."]
