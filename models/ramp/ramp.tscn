@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://5n0x0e5lv51x"]
+[gd_scene load_steps=8 format=3 uid="uid://5n0x0e5lv51x"]
 
 [ext_resource type="Script" path="res://models/ramp/ramp.gd" id="1_y1fhy"]
 [ext_resource type="PackedScene" uid="uid://ptsn64jjttgy" path="res://models/ramp/ramp_plate.tscn" id="2_8ydw7"]
@@ -7,11 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://ctg2r4pidcbm" path="res://models/ramp/ramp_light.tscn" id="5_qbq50"]
 [ext_resource type="PackedScene" uid="uid://b61iabpqt7mow" path="res://models/ramp/gate_buttons.tscn" id="6_aaggw"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_tekk8"]
+size = Vector3(3.08209, 0.163208, 0.191528)
+
 [node name="Ramp" type="Node3D"]
 script = ExtResource("1_y1fhy")
 
 [node name="ramp_base" parent="." instance=ExtResource("2_isxxn")]
 sync_to_physics = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ramp_base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00576782, 0.266052, -1.54048)
+shape = SubResource("BoxShape3D_tekk8")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="ramp_base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00576782, 0.266052, 1.56249)
+shape = SubResource("BoxShape3D_tekk8")
 
 [node name="Plate" parent="." instance=ExtResource("2_8ydw7")]
 

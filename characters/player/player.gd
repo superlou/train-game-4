@@ -56,7 +56,11 @@ var last_platform_vel := Vector3.ZERO
 func _physics_process(delta):
 	var speed = sprint_speed if Input.is_action_pressed("sprint") else walk_speed
 
-	velocity = _walk(delta, speed) +_gravity(delta) + _jump(delta)
+	if _do_step_up():
+		velocity = _walk(delta, speed) + Vector3(0, speed, 0) #+ _jump(delta)
+	else:
+		velocity = _walk(delta, speed) +_gravity(delta) + _jump(delta)
+
 	move_and_slide()
 
 
@@ -93,6 +97,21 @@ func _jump(delta: float) -> Vector3:
 	
 	jump_vel = Vector3.ZERO if is_on_floor() else jump_vel.move_toward(Vector3.DOWN + platform_vel_at_jump, gravity * delta)
 	return jump_vel
+
+
+var was_on_wall := false
+
+func _do_step_up() -> bool:
+	var can_step:bool = $FeetRayCast.is_colliding() and !$StepUpRayCast.is_colliding()
+
+	if is_on_wall():
+		was_on_wall = true
+		return can_step
+	elif was_on_wall and can_step:
+		return true
+	else:
+		was_on_wall = false
+		return false
 
 
 func _rotate_camera(event: InputEventMouseMotion) -> void:

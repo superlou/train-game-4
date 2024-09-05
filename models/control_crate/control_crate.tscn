@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dddm6e5p7ry4k"]
+[gd_scene load_steps=17 format=3 uid="uid://dddm6e5p7ry4k"]
 
 [ext_resource type="Script" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
 [ext_resource type="PackedScene" uid="uid://bjyrstk4d3xch" path="res://models/control_crate/control_crate_door.tscn" id="3_46ab0"]
@@ -74,13 +74,6 @@ viewport_path = NodePath("CCCameraSubViewport2")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hbys0"]
 size = Vector3(11.4034, 0.256683, 2.73523)
-
-[sub_resource type="PrismMesh" id="PrismMesh_cx7sk"]
-left_to_right = 1.0
-size = Vector3(0.5, 0.3, 1)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pn2yj"]
-data = PackedVector3Array(0.25, 0.15, 0.5, 0.25, -0.15, 0.5, -0.25, -0.15, 0.5, 0.25, 0.15, -0.5, -0.25, -0.15, -0.5, 0.25, -0.15, -0.5, 0.25, 0.15, 0.5, 0.25, 0.15, -0.5, 0.25, -0.15, 0.5, 0.25, 0.15, -0.5, 0.25, -0.15, -0.5, 0.25, -0.15, 0.5, 0.25, 0.15, -0.5, 0.25, 0.15, 0.5, -0.25, -0.15, -0.5, 0.25, 0.15, 0.5, -0.25, -0.15, 0.5, -0.25, -0.15, -0.5, -0.25, -0.15, 0.5, 0.25, -0.15, 0.5, -0.25, -0.15, -0.5, 0.25, -0.15, 0.5, 0.25, -0.15, -0.5, -0.25, -0.15, -0.5)
 
 [node name="ControlCrate" type="AnimatableBody3D"]
 script = ExtResource("1_ln1km")
@@ -168,17 +161,6 @@ active = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.198639, 0.120468, -0.003479)
 shape = SubResource("BoxShape3D_hbys0")
-
-[node name="EntryRamp" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.15802, 0.153601, 0)
-visible = false
-mesh = SubResource("PrismMesh_cx7sk")
-
-[node name="StaticBody3D" type="AnimatableBody3D" parent="EntryRamp"]
-collision_layer = 64
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EntryRamp/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_pn2yj")
 
 [connection signal="interacted" from="control_crate_door/DoorInteractable" to="." method="_on_door_interactable_interacted"]
 [connection signal="pressed" from="LightsButton" to="." method="_on_lights_button_pressed"]
