@@ -89,10 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(0.452155, 0, -0.89194, 0, 1, 0, 0.89194, 0, 0.452155, 11.1379, 1.64249, 0.660603)
-walk_speed = null
-sprint_speed = null
-acceleration = null
-jump_height = null
 
 [node name="FpsDisplay" parent="." instance=ExtResource("1_2ar2q")]
 

@@ -27,7 +27,7 @@ var control_mode := ControlMode.THROTTLE
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	velocity_pid.ki = 0.001
-	element_store.add(Elements.Type.FUEL, 4_000)
+	element_store.add(Elements.Type.FUEL, 10_000)
 
 
 func _calc_drag(flow_vel: float) -> float:
