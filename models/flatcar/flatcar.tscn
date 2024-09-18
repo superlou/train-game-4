@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://rgv4era602k3"]
+[gd_scene load_steps=7 format=3 uid="uid://rgv4era602k3"]
 
 [ext_resource type="PackedScene" uid="uid://cckjeq34nikwk" path="res://blender/train_truck.glb" id="1_y3h61"]
 [ext_resource type="PackedScene" uid="uid://bpm64cyskof0e" path="res://blender/flatbed_body.glb" id="2_draw0"]
@@ -11,9 +11,16 @@ size = Vector3(21.4971, 1.24609, 2.75)
 radius = 8.0
 height = 28.0
 
-[node name="Flatcar" type="AnimatableBody3D"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_6y7os"]
+vertices = PackedVector3Array(-10.2455, -0.0336262, -0.874268, -10.2455, -0.0336262, 0.875732, 10.2545, -0.0336262, 0.875732, 10.2545, -0.0336262, -0.874268)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_parsed_geometry_type = 1
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"Navigable"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Flatcar" type="AnimatableBody3D" groups=["Navigable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["Navigable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00302124, 0.630778, 0.000732422)
 shape = SubResource("BoxShape3D_8p5yr")
 
@@ -31,5 +38,9 @@ zero_radius = 4.0
 
 [node name="CollisionShape3D" parent="RssiArea" index="0"]
 shape = SubResource("CapsuleShape3D_psiox")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54136, 0)
+navigation_mesh = SubResource("NavigationMesh_6y7os")
 
 [editable path="RssiArea"]

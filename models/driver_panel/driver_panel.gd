@@ -1,4 +1,5 @@
 extends Node3D
+class_name DriverPanel
 
 
 @export var velocity := 0.0

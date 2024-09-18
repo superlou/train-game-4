@@ -1,21 +1,15 @@
-[gd_scene load_steps=19 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=13 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_073to"]
-[ext_resource type="PackedScene" uid="uid://5n0x0e5lv51x" path="res://models/ramp/ramp.tscn" id="4_4424q"]
 [ext_resource type="PackedScene" uid="uid://t1vl3wm84h30" path="res://models/locomotive/locomotive.tscn" id="4_rif6w"]
+[ext_resource type="PackedScene" uid="uid://br7qx5fwroqug" path="res://models/flatcar/control_flatcar.tscn" id="5_rfhbl"]
 [ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
-[ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="5_u6pxx"]
-[ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="7_jaivv"]
-[ext_resource type="PackedScene" uid="uid://cvi4s0ltoahc" path="res://models/replicator/replicator.tscn" id="9_8dldn"]
-[ext_resource type="Script" path="res://systems/elements/element_store.gd" id="10_2hhlu"]
 [ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
-[ext_resource type="PackedScene" uid="uid://baseirh0p456l" path="res://models/column_gauge/column_gauge.tscn" id="11_je6g1"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
-[ext_resource type="PackedScene" uid="uid://f44h7ujundy5" path="res://models/driver_panel/driver_panel.tscn" id="13_ydrwk"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
 sky_material = ExtResource("5_s2rs5")
@@ -39,53 +33,19 @@ directional_shadow_max_distance = 20.0
 script = ExtResource("1_ewr1a")
 trainset = NodePath("../Trainset")
 
-[node name="Trainset" parent="." node_paths=PackedStringArray("element_store") instance=ExtResource("1_l72nw")]
+[node name="Trainset" parent="." node_paths=PackedStringArray("element_store", "driver_panel") instance=ExtResource("1_l72nw")]
 process_physics_priority = -1
-element_store = NodePath("Flatcar1/ControlCrate/ElementStore")
+element_store = NodePath("ControlFlatcar/ControlCrate/ElementStore")
+driver_panel = NodePath("ControlFlatcar/ControlCrate/DriverPanel")
 
 [node name="Locomotive" parent="Trainset" instance=ExtResource("4_rif6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2529, 0, 0)
 
-[node name="Flatcar1" parent="Trainset" instance=ExtResource("2_34f60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8256, 0.299534, 0)
+[node name="ControlFlatcar" parent="Trainset" instance=ExtResource("5_rfhbl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6586, 0, 0)
 
-[node name="Ramp" parent="Trainset/Flatcar1" instance=ExtResource("4_4424q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.77186, 1.25032, 0)
-
-[node name="ControlCrate" parent="Trainset/Flatcar1" instance=ExtResource("5_u6pxx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.07547, 1.25138, 0)
-
-[node name="DriverPanel" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("13_ydrwk")]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.59624, 0.207306, -0.624079)
-
-[node name="Replicator" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("9_8dldn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.246101, 0)
-
-[node name="ElementStore" type="Node" parent="Trainset/Flatcar1/ControlCrate"]
-unique_name_in_owner = true
-script = ExtResource("10_2hhlu")
-
-[node name="FuelGauge" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("11_je6g1")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -3.17599, 1.11134, -1.08209)
-
-[node name="FoodGauge" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("11_je6g1")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.93346, 1.11134, -1.08209)
-color = Color(0.76, 0.139333, 0.0152, 1)
-
-[node name="MaterialGauge" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("11_je6g1")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.71153, 1.11134, -1.08209)
-color = Color(0.91, 0.849333, 0, 1)
-
-[node name="TechGauge" parent="Trainset/Flatcar1/ControlCrate" instance=ExtResource("11_je6g1")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, -2.469, 1.11134, -1.08209)
-color = Color(0.76662, 0.76662, 0.76662, 1)
-
-[node name="Respawner" parent="Trainset/Flatcar1" instance=ExtResource("7_jaivv")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.503452, 1.77135, 0)
-
-[node name="Flatcar2" parent="Trainset" instance=ExtResource("2_34f60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0588, 0.299534, 0)
+[node name="Flatcar" parent="Trainset" instance=ExtResource("2_34f60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.059, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(0.452155, 0, -0.89194, 0, 1, 0, 0.89194, 0, 0.452155, 11.1379, 1.64249, 0.660603)
@@ -104,10 +64,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.1215, 2.0756, 0)
 [node name="repeater" parent="." instance=ExtResource("12_65y17")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.92223, 2, 0)
 
-[connection signal="requested_throttle_change" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_change"]
-[connection signal="requested_throttle_stop" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_stop"]
-[connection signal="requested_velocity_change" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_velocity_change"]
-[connection signal="requested_velocity_stop" from="Trainset/Flatcar1/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_velocity_stop"]
-[connection signal="generated_element" from="Trainset/Flatcar1/ControlCrate/Replicator" to="Trainset" method="_on_replicator_generated_element"]
-[connection signal="changed_qty" from="Trainset/Flatcar1/ControlCrate/ElementStore" to="Trainset" method="_on_element_store_changed_qty"]
-[connection signal="died" from="Player" to="Trainset/Flatcar1/Respawner" method="respawn"]
+[connection signal="requested_throttle_change" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_change"]
+[connection signal="requested_throttle_stop" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_stop"]
+[connection signal="requested_velocity_change" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_velocity_change"]
+[connection signal="requested_velocity_stop" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_velocity_stop"]
+[connection signal="changed_qty" from="Trainset/ControlFlatcar/ControlCrate/ElementStore" to="Trainset" method="_on_element_store_changed_qty"]
+
+[editable path="Trainset/ControlFlatcar"]
+[editable path="Trainset/ControlFlatcar/RssiArea"]

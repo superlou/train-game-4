@@ -12,6 +12,7 @@ extends Node3D
 @export_range(-1.0, 1.0) var throttle := 0.0
 
 @export var element_store:ElementStore
+@export var driver_panel:DriverPanel
 
 var velocity_pid := PIDController.new()
 var velocity_target := 0.0
@@ -87,8 +88,8 @@ func _physics_process(delta:float):
 	head_velocity += head_accel * delta
 	RelativeWorld.accel = -head_accel
 
-	%DriverPanel.velocity = head_velocity.x
-	%DriverPanel.torque = thrust
+	driver_panel.velocity = head_velocity.x
+	driver_panel.torque = thrust
 
 
 func x_bounds() -> Array[float]:
@@ -106,25 +107,25 @@ func x_bounds() -> Array[float]:
 func _on_driver_panel_requested_velocity_stop():
 	velocity_target = 0.0
 	control_mode = ControlMode.VELOCITY
-	%DriverPanel.control_mode = control_mode
+	driver_panel.control_mode = control_mode
 
 
 func _on_driver_panel_requested_velocity_change(amount:float):
 	velocity_target += amount
 	control_mode = ControlMode.VELOCITY
-	%DriverPanel.control_mode = control_mode
+	driver_panel.control_mode = control_mode
 
 
 func _on_driver_panel_requested_throttle_stop():
 	throttle = 0.0
 	control_mode = ControlMode.THROTTLE
-	%DriverPanel.control_mode = control_mode
+	driver_panel.control_mode = control_mode
 
 
 func _on_driver_panel_requested_throttle_change(amount:float):
 	throttle += amount
 	control_mode = ControlMode.THROTTLE
-	%DriverPanel.control_mode = control_mode
+	driver_panel.control_mode = control_mode
 
 
 func _on_replicator_generated_element(element:Elements.Type, amount:float) -> void:
@@ -134,10 +135,10 @@ func _on_replicator_generated_element(element:Elements.Type, amount:float) -> vo
 func _on_element_store_changed_qty(element_type:Elements.Type, qty:float) -> void:
 	# todo This is gross, defining the map in here
 	var gauge_map = {
-		Elements.Type.FUEL: $Flatcar1/ControlCrate/FuelGauge,
-		Elements.Type.FOOD: $Flatcar1/ControlCrate/FoodGauge,
-		Elements.Type.MATERIAL: $Flatcar1/ControlCrate/MaterialGauge,
-		Elements.Type.TECH: $Flatcar1/ControlCrate/TechGauge,
+		Elements.Type.FUEL: $ControlFlatcar/ControlCrate/FuelGauge,
+		Elements.Type.FOOD: $ControlFlatcar/ControlCrate/FoodGauge,
+		Elements.Type.MATERIAL: $ControlFlatcar/ControlCrate/MaterialGauge,
+		Elements.Type.TECH: $ControlFlatcar/ControlCrate/TechGauge,
 	}
 
 	gauge_map[element_type].value = qty / element_store.element_maxes[element_type]
