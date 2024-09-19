@@ -39,13 +39,13 @@ element_store = NodePath("ControlFlatcar/ControlCrate/ElementStore")
 driver_panel = NodePath("ControlFlatcar/ControlCrate/DriverPanel")
 
 [node name="Locomotive" parent="Trainset" instance=ExtResource("4_rif6w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2529, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.2529, 0.259517, 0)
 
 [node name="ControlFlatcar" parent="Trainset" instance=ExtResource("5_rfhbl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6586, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6586, 0.259517, 0)
 
 [node name="Flatcar" parent="Trainset" instance=ExtResource("2_34f60")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.059, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.059, 0.259517, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_073to")]
 transform = Transform3D(0.452155, 0, -0.89194, 0, 1, 0, 0.89194, 0, 0.452155, 11.1379, 1.64249, 0.660603)
