@@ -34,3 +34,15 @@ func _on_lights_button_pressed():
 func _toggle_lights():
 	for child:RampLight in $Lights.get_children():
 		child.set_state(not child.is_on)
+
+
+func _on_element_store_changed_qty(element_type:Elements.Type, qty:float) -> void:
+	var gauge_map = {
+		Elements.Type.FUEL: $FuelGauge,
+		Elements.Type.FOOD: $FoodGauge,
+		Elements.Type.MATERIAL: $MaterialGauge,
+		Elements.Type.TECH: $TechGauge,
+	}
+
+	print($ElementStore)
+	gauge_map[element_type].value = qty / $ElementStore.element_maxes[element_type]

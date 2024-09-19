@@ -130,15 +130,3 @@ func _on_driver_panel_requested_throttle_change(amount:float):
 
 func _on_replicator_generated_element(element:Elements.Type, amount:float) -> void:
 	element_store.add(element, amount)
-
-
-func _on_element_store_changed_qty(element_type:Elements.Type, qty:float) -> void:
-	# todo This is gross, defining the map in here
-	var gauge_map = {
-		Elements.Type.FUEL: $ControlFlatcar/ControlCrate/FuelGauge,
-		Elements.Type.FOOD: $ControlFlatcar/ControlCrate/FoodGauge,
-		Elements.Type.MATERIAL: $ControlFlatcar/ControlCrate/MaterialGauge,
-		Elements.Type.TECH: $ControlFlatcar/ControlCrate/TechGauge,
-	}
-
-	gauge_map[element_type].value = qty / element_store.element_maxes[element_type]
