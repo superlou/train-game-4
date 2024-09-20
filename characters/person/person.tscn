@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://bkbhhy4vo7thw"]
+
+[ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
+radius = 0.3
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0dv2f"]
+radius = 0.3
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4lea"]
+albedo_color = Color(0.24, 0.607333, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_5qkyg"]
+material = SubResource("StandardMaterial3D_x4lea")
+radius = 0.31
+height = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lg71a"]
+albedo_color = Color(0.86, 0.420253, 0.4128, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_trqsm"]
+material = SubResource("StandardMaterial3D_lg71a")
+radius = 0.32
+height = 0.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qk1a"]
+metallic = 0.1
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_pxlu1"]
+material = SubResource("StandardMaterial3D_3qk1a")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fx408"]
+albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_f4cri"]
+material = SubResource("StandardMaterial3D_fx408")
+radius = 0.01
+height = 0.01
+
+[node name="Person" type="RigidBody3D"]
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("1_6wwqe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_mex0s")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_0dv2f")
+
+[node name="Pants" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("CapsuleMesh_5qkyg")
+
+[node name="Shirt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815152, 0)
+mesh = SubResource("CapsuleMesh_trqsm")
+
+[node name="LeftEye" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12563, 1.35524, 0.264974)
+mesh = SubResource("SphereMesh_pxlu1")
+
+[node name="LeftPupil" type="MeshInstance3D" parent="LeftEye"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.0499282)
+mesh = SubResource("SphereMesh_f4cri")
+skeleton = NodePath("../..")
+
+[node name="RightEye" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126, 1.355, 0.265)
+mesh = SubResource("SphereMesh_pxlu1")
+
+[node name="RightPupil" type="MeshInstance3D" parent="RightEye"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.0499282)
+mesh = SubResource("SphereMesh_f4cri")
+skeleton = NodePath("../..")
+
+[node name="NavigationAgent" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+
+[connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_navigation_agent_velocity_computed"]

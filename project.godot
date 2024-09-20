@@ -25,6 +25,10 @@ Namer="*res://systems/namer/namer.gd"
 
 import/blender/enabled=false
 
+[global_group]
+
+nav_marker=""
+
 [input]
 
 move_left={

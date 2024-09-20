@@ -44,5 +44,4 @@ func _on_element_store_changed_qty(element_type:Elements.Type, qty:float) -> voi
 		Elements.Type.TECH: $TechGauge,
 	}
 
-	print($ElementStore)
 	gauge_map[element_type].value = qty / $ElementStore.element_maxes[element_type]

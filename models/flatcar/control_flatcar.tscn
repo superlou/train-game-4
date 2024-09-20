@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://br7qx5fwroqug"]
+[gd_scene load_steps=11 format=3 uid="uid://br7qx5fwroqug"]
 
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="1_3bkn7"]
+[ext_resource type="Script" path="res://models/flatcar/control_flatcar.gd" id="2_m1v62"]
 [ext_resource type="PackedScene" uid="uid://5n0x0e5lv51x" path="res://models/ramp/ramp.tscn" id="2_xd8h3"]
 [ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="3_wbw7p"]
 [ext_resource type="PackedScene" uid="uid://f44h7ujundy5" path="res://models/driver_panel/driver_panel.tscn" id="4_gbmrl"]
@@ -16,7 +17,8 @@ geometry_parsed_geometry_type = 1
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"Navigable"
 
-[node name="Flatcar" instance=ExtResource("1_3bkn7")]
+[node name="ControlFlatcar" instance=ExtResource("1_3bkn7")]
+script = ExtResource("2_m1v62")
 
 [node name="NavigationRegion3D" parent="." index="5"]
 navigation_mesh = SubResource("NavigationMesh_ouwg5")
@@ -56,6 +58,7 @@ color = Color(0.76662, 0.76662, 0.76662, 1)
 [node name="Respawner" parent="." index="8" instance=ExtResource("8_eashd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.503452, 1.77135, 0)
 
+[connection signal="deployed" from="Ramp" to="." method="_on_ramp_deployed"]
 [connection signal="generated_element" from="ControlCrate/Replicator" to="ControlCrate/ElementStore" method="add"]
 [connection signal="changed_qty" from="ControlCrate/ElementStore" to="ControlCrate" method="_on_element_store_changed_qty"]
 

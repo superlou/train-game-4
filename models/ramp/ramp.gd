@@ -19,6 +19,8 @@ var deploy_dir := DeployDir.LEFT
 @export var deploy_speed := 1.0
 @onready var plate: RigidBody3D = $Plate
 
+signal deployed
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -92,6 +94,7 @@ func _physics_process(_delta: float):
 		if at_pivot:
 			joint.enabled = false
 			state = RampState.OUT
+			deployed.emit()
 	elif state == RampState.OUT:
 		gate.raise()
 		_set_lights(LightsMode.SAFE if gate.state == "raised" else LightsMode.WARN, deploy_dir)
