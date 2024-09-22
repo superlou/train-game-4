@@ -77,4 +77,7 @@ script = ExtResource("4_f32ml")
 provides_fuel = 1000.0
 provides_material = 10.0
 
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.4
+
 [editable path="Carryable"]

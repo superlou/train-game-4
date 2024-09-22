@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=15 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 
@@ -43,10 +43,24 @@ material = SubResource("StandardMaterial3D_fx408")
 radius = 0.01
 height = 0.01
 
-[node name="Person" type="RigidBody3D"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_khjpt"]
+material = SubResource("StandardMaterial3D_x4lea")
+radius = 0.31
+height = 0.62
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhwl8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_deslt"]
+material = SubResource("StandardMaterial3D_dhwl8")
+size = Vector3(0.6, 0.01, 0.4)
+
+[node name="Person" type="CharacterBody3D"]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_6wwqe")
+walk_speed = null
+sprint_speed = null
+jump_height = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -65,7 +79,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815152, 0)
 mesh = SubResource("CapsuleMesh_trqsm")
 
 [node name="LeftEye" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12563, 1.35524, 0.264974)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12563, 1.32485, 0.264974)
 mesh = SubResource("SphereMesh_pxlu1")
 
 [node name="LeftPupil" type="MeshInstance3D" parent="LeftEye"]
@@ -74,7 +88,7 @@ mesh = SubResource("SphereMesh_f4cri")
 skeleton = NodePath("../..")
 
 [node name="RightEye" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126, 1.355, 0.265)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126, 1.32461, 0.265)
 mesh = SubResource("SphereMesh_pxlu1")
 
 [node name="RightPupil" type="MeshInstance3D" parent="RightEye"]
@@ -82,7 +96,21 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 mesh = SubResource("SphereMesh_f4cri")
 skeleton = NodePath("../..")
 
+[node name="Hat" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49112, 0)
+mesh = SubResource("CapsuleMesh_khjpt")
+
+[node name="HatBrim" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42509, 0.283236)
+mesh = SubResource("BoxMesh_deslt")
+
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
+[node name="JumpTestRay" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.679902, 0.733303, 0, -0.733303, 0.679902, 0, 0.190617, 0)
+target_position = Vector3(0, -0.4, 0)
+
+[connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
+[connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_navigation_agent_velocity_computed"]

@@ -16,9 +16,10 @@ var look_dir: Vector2	# Input direction for look/aim
 var walk_vel: Vector3
 var grav_vel: Vector3
 var jump_vel: Vector3
+var platform_vel_at_jump := Vector3.ZERO
+var jumping := false
 
 var mouse_captured := false
-var jumping := false
 
 
 func _ready():
@@ -50,9 +51,6 @@ func release_mouse() -> void:
 	mouse_captured = false
 
 
-var last_platform_vel := Vector3.ZERO
-
-
 func _physics_process(delta):
 	var speed = sprint_speed if Input.is_action_pressed("sprint") else walk_speed
 
@@ -81,9 +79,6 @@ func _gravity(delta: float) -> Vector3:
 	return grav_vel
 
 
-var platform_vel_at_jump := Vector3.ZERO
-
-
 func _jump(delta: float) -> Vector3:
 	if jumping:
 		if is_on_floor():
@@ -91,8 +86,7 @@ func _jump(delta: float) -> Vector3:
 			jump_vel = Vector3(0, sqrt(4 * jump_height * gravity), 0) + platform_vel_at_jump
 		
 		jumping = false
-		# Subtract off ground velocity for the first frame of the jump, otherwise
-		# it will be double-counted.
+		# Remove ground velocity for first frame of the jump, otherwise it's double-counted.
 		return jump_vel - platform_vel_at_jump
 	
 	jump_vel = Vector3.ZERO if is_on_floor() else jump_vel.move_toward(Vector3.DOWN + platform_vel_at_jump, gravity * delta)
