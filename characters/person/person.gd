@@ -10,9 +10,11 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var grav_vel := Vector3.ZERO
 var jump_vel: Vector3
 var platform_vel_at_jump := Vector3.ZERO
+var start_jump := false
 var jumping := false
 
 var navigating := false
+var nav_reached_target := false
 var nav_target:Marker3D = null
 
 
@@ -21,7 +23,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _physics_process(delta:float) -> void:
+func _physics_process(_delta:float) -> void:
 	if not navigating:
 		var targets := get_tree().get_nodes_in_group("nav_marker")
 
@@ -29,9 +31,8 @@ func _physics_process(delta:float) -> void:
 			if nav_target != target:
 				nav_target = target
 				navigating = true
+				nav_reached_target = false
 				break
-		
-		print(nav_target)
 	
 	if navigating:
 		_move_towards_nav_target()
@@ -60,6 +61,33 @@ func _jump(delta: float) -> Vector3:
 	return jump_vel
 
 
+var wants_leap := false
+var is_leaping := false
+var leap_target := Vector3.ZERO
+var leap_vel := Vector3.ZERO
+
+
+func _leap(delta: float) -> Vector3:
+	# Check if we want to initiate a leap
+	if wants_leap and is_on_floor():
+		# todo this should be a function of how high/hard we leap, i.e., hang time
+		var travel_vel := leap_target - global_position
+		var leap_height := 0.5
+		leap_vel = Vector3(travel_vel.x, sqrt(4 * leap_height * gravity), travel_vel.z)
+		is_leaping = true
+		wants_leap = false
+		return leap_vel
+
+	# Handle leaping
+	if is_leaping and not is_on_floor():
+		leap_vel = leap_vel.move_toward(Vector3.DOWN * gravity, delta)
+	else:
+		leap_vel = Vector3.ZERO
+		is_leaping = false
+	
+	return leap_vel
+
+
 func _move_towards_nav_target():
 	nav.target_position = nav_target.global_position
 	nav.velocity = (nav.get_next_path_position() - global_position).normalized() * walk_speed
@@ -68,20 +96,30 @@ func _move_towards_nav_target():
 func _on_navigation_agent_velocity_computed(safe_velocity:Vector3) -> void:
 	var delta := get_physics_process_delta_time()
 
-	_jump(delta)
-	# print(jump_vel)
-	# if jump_vel.length() != 0.0:
-	# 	safe_velocity = Vector3.ZERO
+	var move_velocity := Vector3(safe_velocity.x, 0.0, safe_velocity.z)
 
-	velocity = safe_velocity + _gravity(delta) + jump_vel
-	rotation.y = atan2(safe_velocity.x, safe_velocity.z)
+	if is_leaping or wants_leap:
+		velocity = _leap(delta) + _gravity(delta)
+	else:
+		velocity = move_velocity + _gravity(delta)
+	
+	if velocity.x != 0.0 or velocity.z != 0.0:
+		rotation.y = atan2(velocity.x, velocity.z)
+
 	move_and_slide()
 
 
 func _on_navigation_agent_navigation_finished() -> void:
+	print("finished nav. reached = ", nav_reached_target)
 	navigating = false
 
 
-func _on_navigation_agent_link_reached(_details:Dictionary) -> void:
-	if not $JumpTestRay.is_colliding():
-		jumping = true
+func _on_navigation_agent_target_reached() -> void:
+	nav_reached_target = true
+
+
+func _on_navigation_agent_link_reached(details:Dictionary) -> void:
+	if not $JumpTestRay.is_colliding() and not is_leaping:
+		leap_target = details["link_exit_position"]
+		wants_leap = true
+
