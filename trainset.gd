@@ -29,6 +29,29 @@ var control_mode := ControlMode.THROTTLE
 func _ready():
 	velocity_pid.ki = 0.001
 	element_store.add(Elements.Type.FUEL, 10_000)
+	_update_navigation_links()
+
+
+func _update_navigation_links():
+	for node in $NavigationLinks.get_children():
+		node.queue_free()
+
+	# todo Need a better way to get the train cars.
+	# todo This should take into account train car distance.
+	var children = get_children().filter(func(child): return child is AnimatableBody3D)
+	for i in range(0, len(children) - 1):
+		var car = children[i]		
+		var next_car = children[i + 1]
+
+		var current_marker := car.get_node("BackNavLink") as Marker3D
+		var next_marker := next_car.get_node("FrontNavLink") as Marker3D
+
+		if current_marker and next_marker:
+			var nav_link := NavigationLink3D.new()
+			$NavigationLinks.add_child(nav_link)
+			nav_link.global_position = (current_marker.global_position + next_marker.global_position) / 2
+			nav_link.start_position = current_marker.global_position - nav_link.global_position
+			nav_link.end_position = next_marker.global_position - nav_link.global_position	
 
 
 func _calc_drag(flow_vel: float) -> float:

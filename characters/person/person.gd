@@ -2,16 +2,11 @@ extends CharacterBody3D
 
 @export var walk_speed := 1.0 		# m/s
 @export var sprint_speed := 4.0 	# m/s
-@export var jump_height := 1.0 		# m
 
 @onready var nav:NavigationAgent3D = $NavigationAgent
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var grav_vel := Vector3.ZERO
-var jump_vel: Vector3
-var platform_vel_at_jump := Vector3.ZERO
-var start_jump := false
-var jumping := false
 
 var navigating := false
 var nav_reached_target := false
@@ -45,20 +40,6 @@ func _gravity(delta: float) -> Vector3:
 		grav_vel = grav_vel.move_toward(Vector3(0, velocity.y - gravity, 0), gravity * delta)
 	
 	return grav_vel
-
-
-func _jump(delta: float) -> Vector3:
-	if jumping:
-		if is_on_floor():
-			platform_vel_at_jump = get_platform_velocity()
-			jump_vel = Vector3(0, sqrt(4 * jump_height * gravity), 0) + platform_vel_at_jump
-		
-		jumping = false
-		# Remove ground velocity for first frame of the jump, otherwise it's double-counted.
-		return jump_vel - platform_vel_at_jump
-	
-	jump_vel = Vector3.ZERO if is_on_floor() else jump_vel.move_toward(Vector3.DOWN + platform_vel_at_jump, gravity * delta)
-	return jump_vel
 
 
 var wants_leap := false
