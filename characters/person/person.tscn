@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=4 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
@@ -7,109 +7,47 @@
 radius = 0.3
 height = 1.8
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_0dv2f"]
-radius = 0.3
-height = 1.8
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4lea"]
-albedo_color = Color(0.24, 0.607333, 1, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_5qkyg"]
-material = SubResource("StandardMaterial3D_x4lea")
-radius = 0.31
-height = 1.2
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lg71a"]
-albedo_color = Color(0.86, 0.420253, 0.4128, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_trqsm"]
-material = SubResource("StandardMaterial3D_lg71a")
-radius = 0.32
-height = 0.9
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3qk1a"]
-metallic = 0.1
-roughness = 0.0
-
-[sub_resource type="SphereMesh" id="SphereMesh_pxlu1"]
-material = SubResource("StandardMaterial3D_3qk1a")
-radius = 0.05
-height = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fx408"]
-albedo_color = Color(0.136826, 0.136826, 0.136826, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_f4cri"]
-material = SubResource("StandardMaterial3D_fx408")
-radius = 0.01
-height = 0.01
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_khjpt"]
-material = SubResource("StandardMaterial3D_x4lea")
-radius = 0.31
-height = 0.62
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhwl8"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_deslt"]
-material = SubResource("StandardMaterial3D_dhwl8")
-size = Vector3(0.6, 0.01, 0.4)
-
 [node name="Person" type="CharacterBody3D"]
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 script = ExtResource("1_6wwqe")
 
+[node name="PersonModel" parent="." instance=ExtResource("2_3f21c")]
+
+[node name="Skeleton3D" parent="PersonModel/Armature" index="0"]
+bones/0/position = Vector3(0.00408905, 0.529597, -5.4309e-09)
+bones/0/rotation = Quaternion(-0.026348, -1.95012e-08, 1.89401e-08, 0.999653)
+bones/1/rotation = Quaternion(0.0700954, 4.18288e-08, -2.77282e-08, 0.99754)
+bones/2/rotation = Quaternion(-0.0482707, -1.01085e-07, 2.9965e-08, 0.998834)
+bones/2/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(8.94739e-05, 0.0519583, -0.817278, 0.573897)
+bones/4/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(-0.0109095, 0.0348425, -0.459828, 0.887257)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/rotation = Quaternion(0.091036, -0.000190587, -0.056309, 0.994254)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.0473233, 0.000669952, 0.0141385, 0.998779)
+bones/8/rotation = Quaternion(8.97917e-05, -0.0519579, 0.817278, 0.573897)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(0.00142762, -0.0257121, 0.441791, 0.896749)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.0910359, 0.00019066, 0.056309, 0.994254)
+bones/11/rotation = Quaternion(-0.0473233, -0.000669986, -0.0141384, 0.998779)
+bones/12/rotation = Quaternion(-0.0236718, 0.257013, 0.963423, -0.0721185)
+bones/13/rotation = Quaternion(-0.486458, 0.000786846, -0.0591935, 0.871696)
+bones/14/rotation = Quaternion(0.759913, -0.0916545, 0.0532775, 0.641321)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(-0.000207886, 0.0786521, 0.995853, 0.0457154)
+bones/16/rotation = Quaternion(-0.46549, -0.000341758, 0.0246206, 0.884711)
+bones/17/rotation = Quaternion(0.856265, 0.0576774, -0.000501902, 0.513305)
+bones/19/position = Vector3(0.232943, 0.0765387, 0.0566081)
+bones/19/rotation = Quaternion(-0.700951, 0.0739548, 0.0735115, 0.705545)
+bones/21/position = Vector3(-0.208267, 0.0765352, -0.116403)
+bones/21/rotation = Quaternion(-0.703038, -0.0500206, -0.0496561, 0.707651)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_mex0s")
-
-[node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_0dv2f")
-
-[node name="Pants" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_5qkyg")
-
-[node name="Shirt" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815152, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_trqsm")
-
-[node name="LeftEye" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12563, 1.32485, 0.264974)
-visible = false
-mesh = SubResource("SphereMesh_pxlu1")
-
-[node name="LeftPupil" type="MeshInstance3D" parent="LeftEye"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.0499282)
-visible = false
-mesh = SubResource("SphereMesh_f4cri")
-skeleton = NodePath("../..")
-
-[node name="RightEye" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.126, 1.32461, 0.265)
-visible = false
-mesh = SubResource("SphereMesh_pxlu1")
-
-[node name="RightPupil" type="MeshInstance3D" parent="RightEye"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.0499282)
-visible = false
-mesh = SubResource("SphereMesh_f4cri")
-skeleton = NodePath("../..")
-
-[node name="Hat" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49112, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_khjpt")
-
-[node name="HatBrim" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42509, 0.283236)
-visible = false
-mesh = SubResource("BoxMesh_deslt")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -117,39 +55,6 @@ avoidance_enabled = true
 [node name="JumpTestRay" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.679902, 0.733303, 0, -0.733303, 0.679902, 0, 0.190617, 0)
 target_position = Vector3(0, -0.4, 0)
-
-[node name="PersonModel" parent="." instance=ExtResource("2_3f21c")]
-
-[node name="Skeleton3D" parent="PersonModel/Armature" index="0"]
-bones/0/position = Vector3(6.68918e-09, 0.448583, 0.000620431)
-bones/0/rotation = Quaternion(-0.0453773, -1.99341e-08, 1.56913e-08, 0.99897)
-bones/1/rotation = Quaternion(0.095693, 4.12602e-08, -3.10333e-08, 0.995411)
-bones/2/rotation = Quaternion(-0.0821766, -1.01797e-07, 3.16373e-08, 0.996618)
-bones/2/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(8.94762e-05, 0.0519583, -0.817278, 0.573897)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.163745, 0.134429, -0.45493, 0.86496)
-bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.38543, -0.0178841, -0.0188216, 0.922372)
-bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0473233, 0.000669951, 0.0141385, 0.998779)
-bones/8/rotation = Quaternion(8.97925e-05, -0.0519579, 0.817278, 0.573897)
-bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.209184, 0.123898, 0.434667, 0.867154)
-bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.638328, 0.0576401, 0.0370339, 0.76671)
-bones/12/rotation = Quaternion(0.0388926, 0.466406, 0.883286, -0.0275525)
-bones/13/rotation = Quaternion(-0.442689, 0.000807931, -0.0538675, 0.895055)
-bones/14/rotation = Quaternion(0.642089, 0.0420202, 0.0150267, 0.76533)
-bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(0.000269497, -0.381754, 0.923724, 0.031587)
-bones/16/rotation = Quaternion(-0.335817, -0.000849523, 0.0408626, 0.94104)
-bones/17/rotation = Quaternion(0.836252, -0.0261654, -0.000919208, 0.547719)
-bones/17/scale = Vector3(1, 1, 1)
-bones/19/position = Vector3(0.186153, 0.0819368, 0.310213)
-bones/19/rotation = Quaternion(-0.786252, -2.05619e-05, 1.80012e-05, 0.617907)
-bones/21/position = Vector3(-0.186162, 0.205374, -0.456016)
-bones/21/rotation = Quaternion(-0.421662, -0.000541955, 0.000558422, 0.906753)
 
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
