@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var sprint_speed := 4.0 	# m/s
 
 @onready var nav:NavigationAgent3D = $NavigationAgent
+@onready var animation:AnimationPlayer = $PersonModel/AnimationPlayer
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var grav_vel := Vector3.ZERO
@@ -13,9 +14,8 @@ var nav_reached_target := false
 var nav_target:Marker3D = null
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _physics_process(_delta:float) -> void:
@@ -86,6 +86,11 @@ func _on_navigation_agent_velocity_computed(safe_velocity:Vector3) -> void:
 	
 	if velocity.x != 0.0 or velocity.z != 0.0:
 		rotation.y = atan2(velocity.x, velocity.z)
+
+	if absf(velocity.x) < 0.001 and absf(velocity.z) < 0.001:
+		animation.play("Idle")
+	else:
+		animation.play("Walk")
 
 	move_and_slide()
 
