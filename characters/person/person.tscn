@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=5 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
+[ext_resource type="Script" path="res://systems/ai/person_ai.gd" id="3_5ihs5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
 radius = 0.3
@@ -15,35 +16,34 @@ script = ExtResource("1_6wwqe")
 [node name="PersonModel" parent="." instance=ExtResource("2_3f21c")]
 
 [node name="Skeleton3D" parent="PersonModel/Armature" index="0"]
-bones/0/position = Vector3(0.00408905, 0.529597, -5.4309e-09)
-bones/0/rotation = Quaternion(-0.026348, -1.95012e-08, 1.89401e-08, 0.999653)
-bones/1/rotation = Quaternion(0.0700954, 4.18288e-08, -2.77282e-08, 0.99754)
-bones/2/rotation = Quaternion(-0.0482707, -1.01085e-07, 2.9965e-08, 0.998834)
+bones/0/position = Vector3(0, 0.6032, 0)
+bones/0/rotation = Quaternion(-0.0453773, -1.99341e-08, 1.56913e-08, 0.99897)
+bones/1/rotation = Quaternion(0.0956931, 4.12602e-08, -3.10333e-08, 0.995411)
+bones/2/rotation = Quaternion(-0.0821766, -1.01797e-07, 3.16373e-08, 0.996618)
 bones/2/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(8.94739e-05, 0.0519583, -0.817278, 0.573897)
+bones/4/rotation = Quaternion(8.94749e-05, 0.0519583, -0.817278, 0.573897)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.0109095, 0.0348425, -0.459828, 0.887257)
+bones/5/rotation = Quaternion(-0.0122643, 0.00532292, -0.070248, 0.99744)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.091036, -0.000190587, -0.056309, 0.994254)
+bones/6/rotation = Quaternion(0.091036, -0.000190589, -0.0563091, 0.994254)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0473233, 0.000669952, 0.0141385, 0.998779)
-bones/8/rotation = Quaternion(8.97917e-05, -0.0519579, 0.817278, 0.573897)
+bones/7/rotation = Quaternion(-0.0473233, 0.000669951, 0.0141385, 0.998779)
+bones/8/rotation = Quaternion(8.97995e-05, -0.0519579, 0.817278, 0.573897)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.00142762, -0.0257121, 0.441791, 0.896749)
+bones/9/rotation = Quaternion(-0.0122644, -0.00532289, 0.070248, 0.99744)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.0910359, 0.00019066, 0.056309, 0.994254)
-bones/11/rotation = Quaternion(-0.0473233, -0.000669986, -0.0141384, 0.998779)
-bones/12/rotation = Quaternion(-0.0236718, 0.257013, 0.963423, -0.0721185)
-bones/13/rotation = Quaternion(-0.486458, 0.000786846, -0.0591935, 0.871696)
-bones/14/rotation = Quaternion(0.759913, -0.0916545, 0.0532775, 0.641321)
+bones/10/rotation = Quaternion(0.091036, 0.000190659, 0.056309, 0.994254)
+bones/12/rotation = Quaternion(-0.000947674, -0.0126987, 0.999846, -0.0121091)
+bones/13/rotation = Quaternion(-0.124233, 0.000895567, -0.0151169, 0.992138)
+bones/14/rotation = Quaternion(0.675191, 0.00158629, 0.00254433, 0.737637)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.000207886, 0.0786521, 0.995853, 0.0457154)
-bones/16/rotation = Quaternion(-0.46549, -0.000341758, 0.0246206, 0.884711)
-bones/17/rotation = Quaternion(0.856265, 0.0576774, -0.000501902, 0.513305)
-bones/19/position = Vector3(0.232943, 0.0765387, 0.0566081)
-bones/19/rotation = Quaternion(-0.700951, 0.0739548, 0.0735115, 0.705545)
-bones/21/position = Vector3(-0.208267, 0.0765352, -0.116403)
-bones/21/rotation = Quaternion(-0.703038, -0.0500206, -0.0496561, 0.707651)
+bones/15/rotation = Quaternion(0.000756412, -0.0118754, 0.999883, 0.00956321)
+bones/16/rotation = Quaternion(-0.124738, -0.000383265, 0.0065976, 0.992168)
+bones/17/rotation = Quaternion(0.678454, 0.00779216, 0.0123554, 0.734497)
+bones/19/position = Vector3(0.186153, 0.0765367, -0.0281513)
+bones/19/rotation = Quaternion(-0.704792, -1.9367e-05, 1.94683e-05, 0.709414)
+bones/21/position = Vector3(-0.186153, 0.0765367, -0.0281512)
+bones/21/rotation = Quaternion(-0.704792, -1.9367e-05, 1.94683e-05, 0.709414)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -56,9 +56,13 @@ avoidance_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.679902, 0.733303, 0, -0.733303, 0.679902, 0, 0.190617, 0)
 target_position = Vector3(0, -0.4, 0)
 
+[node name="PersonAI" type="Node" parent="."]
+script = ExtResource("3_5ihs5")
+
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
 [connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_navigation_agent_velocity_computed"]
+[connection signal="picked_navigation_goal" from="PersonAI" to="." method="_on_person_ai_picked_navigation_goal"]
 
 [editable path="PersonModel"]

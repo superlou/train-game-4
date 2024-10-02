@@ -11,7 +11,7 @@ var grav_vel := Vector3.ZERO
 
 var navigating := false
 var nav_reached_target := false
-var nav_target:Marker3D = null
+var nav_target:Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -19,16 +19,6 @@ func _ready() -> void:
 
 
 func _physics_process(_delta:float) -> void:
-	if not navigating:
-		var targets := get_tree().get_nodes_in_group("nav_marker")
-
-		for target in targets:
-			if nav_target != target:
-				nav_target = target
-				navigating = true
-				nav_reached_target = false
-				break
-	
 	if navigating:
 		_move_towards_nav_target()
 
@@ -70,7 +60,7 @@ func _leap(delta: float) -> Vector3:
 
 
 func _move_towards_nav_target():
-	nav.target_position = nav_target.global_position
+	nav.target_position = nav_target #.global_position
 	nav.velocity = (nav.get_next_path_position() - global_position).normalized() * walk_speed
 
 
@@ -109,3 +99,8 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 		leap_target = details["link_exit_position"]
 		wants_leap = true
 
+
+func _on_person_ai_picked_navigation_goal(pos:Vector3) -> void:
+	nav_target = pos
+	navigating = true
+	nav_reached_target = false
