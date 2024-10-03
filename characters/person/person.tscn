@@ -63,6 +63,6 @@ script = ExtResource("3_5ihs5")
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
 [connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_navigation_agent_velocity_computed"]
-[connection signal="picked_navigation_goal" from="PersonAI" to="." method="_on_person_ai_picked_navigation_goal"]
+[connection signal="picked_movement_goal" from="PersonAI" to="." method="_on_person_ai_picked_movement_goal"]
 
 [editable path="PersonModel"]

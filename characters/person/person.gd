@@ -100,7 +100,7 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 		wants_leap = true
 
 
-func _on_person_ai_picked_navigation_goal(pos:Vector3) -> void:
+func _on_person_ai_picked_movement_goal(pos:Vector3) -> void:
 	nav_target = pos
 	navigating = true
 	nav_reached_target = false

@@ -4,11 +4,11 @@ class_name PersonAI
 
 @onready var agent:Node = get_node("..")
 
-signal picked_navigation_goal(pos: Vector3)
+signal picked_movement_goal(pos: Vector3)
 
 enum AIState {
 	IDLE,
-	NAVIGATING,
+	MOVING,
 	BEHAVING,
 }
 
@@ -29,5 +29,5 @@ func _pick_behavior() -> Behavior:
 func _process(_delta: float) -> void:
 	if state == AIState.IDLE:
 		target_behavior = _pick_behavior()
-		state = AIState.NAVIGATING
-		picked_navigation_goal.emit(target_behavior.global_position)
+		state = AIState.MOVING
+		picked_movement_goal.emit(target_behavior.global_position)
