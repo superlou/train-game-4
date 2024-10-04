@@ -18,9 +18,20 @@ func _ready() -> void:
 	pass
 
 
-func _physics_process(_delta:float) -> void:
+func _physics_process(delta:float) -> void:
 	if navigating:
-		_move_towards_nav_target()
+		_navigate_towards_nav_target()
+	else:
+		var move_pos := global_position.move_toward(nav_target, walk_speed * delta)
+		var move_vel = (nav_target - move_pos) / delta
+
+		nav.avoidance_enabled = false
+		if absf(move_vel.x) < 0.005 and absf(move_vel.z) < 0.005:
+			animation.play("Idle")
+		else:
+			animation.play("Walk")
+
+		global_position = move_pos
 
 
 func _gravity(delta: float) -> Vector3:
@@ -59,7 +70,8 @@ func _leap(delta: float) -> Vector3:
 	return leap_vel
 
 
-func _move_towards_nav_target():
+func _navigate_towards_nav_target():
+	nav.avoidance_enabled = true
 	nav.target_position = nav_target #.global_position
 	nav.velocity = (nav.get_next_path_position() - global_position).normalized() * walk_speed
 
@@ -88,6 +100,7 @@ func _on_navigation_agent_velocity_computed(safe_velocity:Vector3) -> void:
 func _on_navigation_agent_navigation_finished() -> void:
 	print("finished nav. reached = ", nav_reached_target)
 	navigating = false
+	nav.velocity = Vector3.ZERO
 
 
 func _on_navigation_agent_target_reached() -> void:

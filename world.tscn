@@ -80,23 +80,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6967, 2, 1.27275)
 [node name="Person" parent="." instance=ExtResource("11_10vm5")]
 transform = Transform3D(0.601257, 0, 0.799055, 0, 1, 0, -0.799055, 0, 0.601257, -4.76153, 2.01616, 0)
 
-[node name="StandPoint" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.3895, 2.12772, 0)
-
-[node name="StandPoint5" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.312, 2.12772, 1.28945)
-
-[node name="StandPoint6" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.3589, 2.12772, 0.133832)
-
 [node name="StandPoint2" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27826, 2.12772, 0.775887)
-
-[node name="StandPoint3" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91751, 2.12772, -0.494519)
-
-[node name="StandPoint4" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.616101, 2.12772, 0.467649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27826, 1.54221, 0.775887)
 
 [connection signal="requested_throttle_change" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_change"]
 [connection signal="requested_throttle_stop" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_stop"]
