@@ -131,10 +131,6 @@ enable_shadows = true
 ambient_mode = 2
 ambient_color = Color(0.051971, 0.051971, 0.051971, 1)
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.41285, 2.70781, -0.394375)
-shadow_enabled = true
-
 [node name="Lights" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -5.80238, 2.32607, -0.0709197)
 

@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://dh6ykun8bv60u"]
+[gd_resource type="ShaderMaterial" load_steps=12 format=3 uid="uid://bapitfkw13lbd"]
 
-[ext_resource type="Shader" path="res://sky/stylized_sky.gdshader" id="1_i5n5i"]
+[ext_resource type="Shader" path="res://sky/stylized_sky.gdshader" id="1_0rkrk"]
 
 [sub_resource type="Gradient" id="Gradient_hjww8"]
 offsets = PackedFloat32Array(0.48, 0.6)
@@ -40,7 +40,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_nsbgi")
 
 [resource]
-shader = ExtResource("1_i5n5i")
+shader = ExtResource("1_0rkrk")
 shader_parameter/clouds_samples = 16
 shader_parameter/shadow_sample = 2
 shader_parameter/clouds_density = 0.5
@@ -60,6 +60,6 @@ shader_parameter/astro_tint = Color(0.905882, 0.788235, 0.627451, 1)
 shader_parameter/astro_scale = 9.0
 shader_parameter/astro_intensity = 3.0
 shader_parameter/astro_sampler = SubResource("GradientTexture2D_xucge")
-shader_parameter/stars_intensity = 0.0
+shader_parameter/stars_intensity = 5.0
 shader_parameter/shooting_stars_intensity = 0.0
 shader_parameter/shooting_star_tint = null

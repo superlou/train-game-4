@@ -1,35 +1,229 @@
-[gd_scene load_steps=15 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=19 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
+[ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_x3s3a"]
+[ext_resource type="Script" path="res://systems/time/world_time_controller.gd" id="2_6vdpe"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_073to"]
 [ext_resource type="PackedScene" uid="uid://t1vl3wm84h30" path="res://models/locomotive/locomotive.tscn" id="4_rif6w"]
 [ext_resource type="PackedScene" uid="uid://br7qx5fwroqug" path="res://models/flatcar/control_flatcar.tscn" id="5_rfhbl"]
-[ext_resource type="Material" uid="uid://dh6ykun8bv60u" path="res://sky/examples/day_sky.tres" id="5_s2rs5"]
 [ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
 [ext_resource type="PackedScene" uid="uid://bkbhhy4vo7thw" path="res://characters/person/person.tscn" id="11_10vm5"]
 [ext_resource type="PackedScene" uid="uid://8timke4ydnsw" path="res://systems/ai/StandPoint.tscn" id="12_24y4f"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
-sky_material = ExtResource("5_s2rs5")
+sky_material = ExtResource("1_x3s3a")
 
 [sub_resource type="Environment" id="Environment_j3mav"]
 background_mode = 2
 sky = SubResource("Sky_6sy21")
+ambient_light_energy = 0.0
 ssao_enabled = true
+
+[sub_resource type="Animation" id="Animation_6bwmt"]
+resource_name = "Environment"
+length = 24.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SunLight:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 6.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SunLight:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6, 6.33333, 6.7, 7.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0.2845, 0.19, 1), Color(0.907688, 0.631217, 0.318593, 1), Color(0.93, 0.93, 0.93, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/clouds_light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6, 7.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0555, 0.228475, 0.37, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/top_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6, 7.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0275, 0.101667, 0.25, 1), Color(0.35, 0.566667, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/bottom_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6, 7.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0275, 0.101667, 0.25, 1), Color(0, 0.323334, 0.97, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/sun_scatter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6, 7.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.0555, 0.228475, 0.37, 1), Color(0.298039, 0.298039, 0.298039, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/stars_intensity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 6, 6.46667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [5.0, 5.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_w8kjs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SunLight:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SunLight:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/clouds_light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/top_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.35, 0.566667, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/bottom_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.323334, 0.97, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/sun_scatter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.298039, 0.298039, 0.298039, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/stars_intensity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7tmex"]
+_data = {
+"Environment": SubResource("Animation_6bwmt"),
+"RESET": SubResource("Animation_w8kjs")
+}
 
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_j3mav")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.25, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
+light_energy = 0.0
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
+
+[node name="EnvironmentController" type="Node" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("2_6vdpe")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnvironmentController"]
+libraries = {
+"": SubResource("AnimationLibrary_7tmex")
+}
+speed_scale = 0.0
 
 [node name="Ground" type="Node3D" parent="." node_paths=PackedStringArray("trainset")]
 script = ExtResource("1_ewr1a")
