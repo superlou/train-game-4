@@ -3,6 +3,7 @@ extends Node
 
 var Station = preload("res://models/station/station.tscn")
 @onready var world = get_tree().get_root().get_node("World")
+@onready var environment_animation:EnvironmentAnimation = world.get_node("EnvironmentAnimation")
 
 
 var stations = []
@@ -10,9 +11,10 @@ var stations = []
 
 func _ready():
 	add_station()
+	environment_animation.clock = 12.0
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if Input.is_action_just_pressed("spawn_station"):
 		print("Spawned station")
 		add_station()
