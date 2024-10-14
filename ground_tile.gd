@@ -7,8 +7,6 @@ extends AnimatableBody3D
 var is_dirty := false
 var station = null
 
-var Station = preload("res://models/station/station.tscn")
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_dirty = true
