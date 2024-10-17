@@ -11,7 +11,7 @@ var stations = []
 
 func _ready():
 	add_station()
-	environment_animation.clock = 12.0
+	environment_animation.clock = 10.0
 
 
 func _physics_process(delta):
