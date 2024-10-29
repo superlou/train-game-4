@@ -47,10 +47,10 @@ buffer = PackedFloat32Array(0, 0, 1, -24.502, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 
 
 [sub_resource type="Curve3D" id="Curve3D_1j134"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -24.6544, 0, 10.1037, 0, 0, 0, 0, 0, 0, -19.5886, 0, 9.89695, 0, 0, 0, 0, 0, 0, -14.1092, 0, 13.6188, 0, 0, 0, 0, 0, 0, -6.97571, 0, 17.0304, 0, 0, 0, 0, 0, 0, 2.12208, 0, 15.0661, 0, 0, 0, 0, 0, 0, 6.77436, 0, 10.1037, 0, 0, 0, 0, 0, 0, 13.2876, 0, 9.69018, 0, 0, 0, 0, 0, 0, 18.1466, 0, 11.8612, 0, 0, 0, 0, 0, 0, 23.3158, 0, 11.6545, 0, 0, 0, 0, 0, 0, 24.8666, 0, 11.7579),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -19.5886, 0, 5.55478, 0, 0, 0, 0, 0, 0, 18.3916, 0, 5.5456),
+"tilts": PackedFloat32Array(0, 0)
 }
-point_count = 10
+point_count = 2
 
 [node name="GroundTile" type="AnimatableBody3D"]
 script = ExtResource("1_yg8tq")
@@ -122,6 +122,6 @@ multimesh = SubResource("MultiMesh_lyopa")
 [node name="UtilityPath" type="Path3D" parent="."]
 curve = SubResource("Curve3D_1j134")
 script = ExtResource("3_m0vwn")
-spacing = 12.0
+num_poles = 4
 
 [connection signal="curve_changed" from="TrackPath" to="." method="_on_track_path_curve_changed"]
