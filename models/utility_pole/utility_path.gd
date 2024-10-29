@@ -13,6 +13,14 @@ var pole_roots = [
 	Vector3(0.0, 11.986, 0.0),
 ]
 
+const WIRE_DIAMETER = 0.08
+var wire_profile:Array = [
+	Vector3(WIRE_DIAMETER, 0, 0),
+	Vector3(0, WIRE_DIAMETER, 0),
+	Vector3(-WIRE_DIAMETER, 0, 0),
+	Vector3(0, -WIRE_DIAMETER, 0),
+]
+
 var multimesh_instance = MultiMeshInstance3D.new()
 var multimesh = MultiMesh.new()
 
@@ -32,17 +40,8 @@ func _ready() -> void:
 		multimesh.set_instance_transform(i, pole_transform)
 
 	add_child(multimesh_instance)
-
 	string_lines()
 
-const WIRE_DIAMETER = 0.08
-
-var wire_profile := [
-	Vector3(WIRE_DIAMETER, 0, 0),
-	Vector3(0, WIRE_DIAMETER, 0),
-	Vector3(-WIRE_DIAMETER, 0, 0),
-	Vector3(0, -WIRE_DIAMETER, 0),
-]
 
 func string_lines():
 	var wire_material = StandardMaterial3D.new()
@@ -67,49 +66,12 @@ func string_lines():
 			wire_curve.add_point(mid)
 			wire_curve.add_point(mid1)
 			wire_curve.add_point(end)
-
-			var st := SurfaceTool.new()
-			st.begin(Mesh.PRIMITIVE_TRIANGLES)
-
-			var extrude_fractions = [0.0, 0.25, 0.5, 0.75, 1.0]
-			var wire_length := wire_curve.get_baked_length()
-			for f in range(1, len(extrude_fractions)):
-				var start_length = wire_length * extrude_fractions[f - 1]
-				var end_length = wire_length * extrude_fractions[f]
-
-				var start_loop = wire_profile.map(func (p):
-					return wire_curve.sample_baked_with_rotation(start_length) * p
-				)
-				var end_loop = wire_profile.map(func (p):
-					return wire_curve.sample_baked_with_rotation(end_length) * p
-				)
-
-				var vertices = fill_loop(start_loop, end_loop)
-
-				st.add_triangle_fan(PackedVector3Array(vertices))
 			
 			var wire := MeshInstance3D.new()
-			wire.mesh = st.commit()
+			wire.mesh = ProcGeo.extrude_along_curve(
+				wire_profile,
+				wire_curve,
+				[0.0, 0.25, 0.5, 0.75, 1.0]
+			)
 			wire.mesh.surface_set_material(0, wire_material)
 			add_child(wire)
-
-
-func fill_loop(start_loop, end_loop) -> Array:
-	var num_points = len(start_loop)
-	var vertices := []
-
-	for i in range(num_points):
-		var i0 := i
-		var i1:int = (i + 1) % num_points
-
-		vertices += [
-			start_loop[i0], start_loop[i1], end_loop[i0],
-			start_loop[i1], end_loop[i1], end_loop[i0],
-		]
-
-	return vertices
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
