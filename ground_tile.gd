@@ -1,11 +1,15 @@
 @tool
 extends AnimatableBody3D
+class_name GroundTile
 
 @export var width := 50.0
 @export var plank_separation := 1.0
 
 var is_dirty := false
 var station = null
+
+var prev_tile:GroundTile = null  # Tile in the -x direction
+var next_tile:GroundTile = null	 # Tile in the +x direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,3 +53,21 @@ func update_track():
 
 func _on_track_path_curve_changed():
 	is_dirty = true
+
+
+func link_geometry():
+	print(prev_tile, " ", next_tile)
+
+	var own_utility_paths := find_children("*", "UtilityPath")
+
+	var nodes = []
+	if prev_tile:
+		nodes += prev_tile.find_children("*", "UtilityPath") as Array[UtilityPath]
+	if next_tile:
+		nodes += next_tile.find_children("*", "UtilityPath") as Array[UtilityPath]
+	
+	var neighbor_utility_paths:Array[UtilityPath] = []
+	neighbor_utility_paths.assign(nodes)
+
+	for utility_path in own_utility_paths:
+		utility_path.bridge_paths(neighbor_utility_paths)

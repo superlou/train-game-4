@@ -34,28 +34,36 @@ func plant_tiles():
 	
 	# Make sure the first child is the leftmost (-x) and the
 	# last child is the rightmost (+x).
-	var leftmost_tile = get_child(0)
-	var rightmost_tile = get_child(-1)
+	var rear_tile = get_child(0)
+	var lead_tile = get_child(-1)
 
 	# Add more tiles behind
-	while leftmost_tile.position.x > (train_min_x - LOOK_BEHIND):
-		var tile = GroundTile.instantiate()
-		tile.position.x = leftmost_tile.position.x - leftmost_tile.width
-		add_child(tile)
-		move_child(tile, 0)
-		leftmost_tile = tile
+	while rear_tile.position.x > (train_min_x - LOOK_BEHIND):
+		var new_tile := GroundTile.instantiate()
+		new_tile.position.x = rear_tile.position.x - rear_tile.width
+		new_tile.next_tile = rear_tile
+		rear_tile.prev_tile = new_tile
+		add_child(new_tile)
+		move_child(new_tile, 0)
+		new_tile.link_geometry()
+		rear_tile = new_tile
 
 	# Add more tiles ahead
-	while rightmost_tile.position.x < (train_max_x + LOOK_AHEAD):
-		var tile = GroundTile.instantiate()
-		tile.position.x = rightmost_tile.position.x + rightmost_tile.width
-		tile.station = WorldManager.instantiate_next_station()
-		add_child(tile)
-		rightmost_tile = tile
+	while lead_tile.position.x < (train_max_x + LOOK_AHEAD):
+		var new_tile := GroundTile.instantiate()
+		new_tile.position.x = lead_tile.position.x + lead_tile.width
+		new_tile.prev_tile = lead_tile
+		lead_tile.next_tile = new_tile
+		new_tile.station = WorldManager.instantiate_next_station()
+		add_child(new_tile)
+		new_tile.link_geometry()
+		lead_tile = new_tile
 
 	# Remove old tiles behind
 	# Don't remove "old" tiles ahead so that players can't regenerate tiles
 	# that already existed.
-	if leftmost_tile.position.x < (train_min_x - LOOK_BEHIND):
-		remove_child(leftmost_tile)
-		leftmost_tile.queue_free()
+	if rear_tile.position.x < (train_min_x - LOOK_BEHIND - rear_tile.width):
+		remove_child(rear_tile)
+		rear_tile.queue_free()
+		var new_rear_tile := get_child(0)
+		new_rear_tile.prev_tile = null
