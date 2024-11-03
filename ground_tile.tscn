@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0ss7nky432g3"]
 
 [ext_resource type="Script" path="res://ground_tile.gd" id="1_yg8tq"]
-[ext_resource type="Material" uid="uid://cq6h272t70wni" path="res://rail.tres" id="2_r208t"]
+[ext_resource type="Material" uid="uid://c241cqdh0ipt4" path="res://rail.tres" id="2_r208t"]
 [ext_resource type="Script" path="res://models/utility_pole/utility_path.gd" id="3_m0vwn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tnhv"]
@@ -47,7 +47,7 @@ buffer = PackedFloat32Array(0, 0, 1, -24.502, 0, 1, 0, 0, -1, 0, 0, 0, 0, 0, 0, 
 
 [sub_resource type="Curve3D" id="Curve3D_1j134"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -19.5886, 0, 5.55478, 0, 0, 0, 0, 0, 0, 18.3916, 0, 5.5456),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -25, 0, 5, 0, 0, 0, 0, 0, 0, 25, 0, 5),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -122,6 +122,7 @@ multimesh = SubResource("MultiMesh_lyopa")
 [node name="UtilityPath" type="Path3D" parent="."]
 curve = SubResource("Curve3D_1j134")
 script = ExtResource("3_m0vwn")
-num_poles = 4
+num_poles = 3
+max_overlap_distance = 1.0
 
 [connection signal="curve_changed" from="TrackPath" to="." method="_on_track_path_curve_changed"]

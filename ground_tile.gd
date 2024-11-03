@@ -8,8 +8,6 @@ class_name GroundTile
 var is_dirty := false
 var station = null
 
-var prev_tile:GroundTile = null  # Tile in the -x direction
-var next_tile:GroundTile = null	 # Tile in the +x direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,19 +53,15 @@ func _on_track_path_curve_changed():
 	is_dirty = true
 
 
-func link_geometry():
-	print(prev_tile, " ", next_tile)
-
+func bridge_to(tile:GroundTile):
 	var own_utility_paths := find_children("*", "UtilityPath")
 
-	var nodes = []
-	if prev_tile:
-		nodes += prev_tile.find_children("*", "UtilityPath") as Array[UtilityPath]
-	if next_tile:
-		nodes += next_tile.find_children("*", "UtilityPath") as Array[UtilityPath]
-	
+	var nodes = tile.find_children("*", "UtilityPath")
 	var neighbor_utility_paths:Array[UtilityPath] = []
 	neighbor_utility_paths.assign(nodes)
 
 	for utility_path in own_utility_paths:
-		utility_path.bridge_paths(neighbor_utility_paths)
+		for other_utility_path in neighbor_utility_paths:
+			var poles = utility_path.find_terminal_pole_overlaps(other_utility_path)
+			if len(poles) == 2:
+				utility_path.bridge(poles[0], other_utility_path, poles[1])

@@ -4,7 +4,7 @@ class_name UtilityPath
 
 
 @export var num_poles := 5
-@export var max_connect_distance := 10
+@export var max_overlap_distance := 1.0
 
 var UtilityPole:ArrayMesh = preload("res://models/utility_pole/utility_pole.res")
 var pole_roots = [
@@ -26,12 +26,15 @@ var multimesh_instance = MultiMeshInstance3D.new()
 var multimesh = MultiMesh.new()
 var wire_material = StandardMaterial3D.new()
 var pole_connections:Array[int] = []
+var wires = []	# Each index holds the wires from the current pole to the next.
+				# There is one less index than the number of poles.
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	wire_material.albedo_color = Color.BLACK
 
+	# Multimesh remains at the local origin
 	multimesh.mesh = UtilityPole
 	multimesh.transform_format = MultiMesh.TRANSFORM_3D
 	multimesh_instance.multimesh = multimesh
@@ -47,49 +50,90 @@ func _ready() -> void:
 
 	add_child(multimesh_instance)
 	add_internal_lines()
-	print(pole_connections)
 
 
 func add_internal_lines():
-	for i in range(1, num_poles):
-		var start_pole := i - 1
-		var end_pole := i
+	for i in range(num_poles - 1):
+		var start_pole := i
+		var end_pole := i + 1
 		var start_pole_transform := get_pole_transform(start_pole)
 		var end_pole_transform := get_pole_transform(end_pole)
-		add_lines_between_poles(start_pole_transform, end_pole_transform)
+		var wire_mesh_instances := add_lines_between_poles(start_pole_transform, end_pole_transform)
+		wires.append(wire_mesh_instances)
 		pole_connections[start_pole] += 1
 		pole_connections[end_pole] += 1
 
 
 func get_pole_transform(pole_id:int) -> Transform3D:
+	if pole_id < 0:
+		pole_id += num_poles
 	return multimesh.get_instance_transform(pole_id)
 
 
-func bridge_paths(utility_paths:Array[UtilityPath]):
-	if len(utility_paths) == 0:
-		return
+func get_pole_global_transform(pole_id:int) -> Transform3D:
+	if pole_id < 0:
+		pole_id += num_poles
+	return global_transform * multimesh.get_instance_transform(pole_id)
 
-	for self_pole_id in range(len(pole_connections)):
-		if pole_connections[self_pole_id] < 2:
-			var self_pole_transform := get_pole_transform(self_pole_id)
 
-			var closest_utility_path:UtilityPath = null
-			var closest_pole_id := -1
-			var closest_distance_squared := INF
+func find_terminal_pole_overlaps(other_path:UtilityPath) -> Array[int]:
+	"""	Returns the pole ids that overlap, with the first in self, and the second in other.
+	Returns an empty array if there are no overlapping poles.
+	"""
+	var self_first_pos := get_pole_global_transform(0).origin
+	var self_last_pos := get_pole_global_transform(-1).origin
+	var other_first_pos := other_path.get_pole_global_transform(0).origin
+	var other_last_pos := other_path.get_pole_global_transform(-1).origin
 
-			for other_utility_path in utility_paths:
-				for other_pole_id in range(other_utility_path.num_poles):
-					print(other_pole_id)
-					var other_pole_transform := other_utility_path.get_pole_transform(other_pole_id)
-					var distance := self_pole_transform.origin.distance_squared_to(other_pole_transform.origin)
-					if distance < closest_distance_squared:
-						closest_distance_squared = distance
-						closest_utility_path = other_utility_path
-						closest_pole_id = other_pole_id
+	if self_first_pos.distance_to(other_first_pos) < max_overlap_distance:
+		return [0, 0]
+	elif self_first_pos.distance_to(other_last_pos) < max_overlap_distance:
+		return [0, -1]
+	elif self_last_pos.distance_to(other_first_pos) < max_overlap_distance:
+		return[-1, 0]
+	elif self_last_pos.distance_to(other_last_pos) < max_overlap_distance:
+		return [-1, -1]
+	else:
+		return []
+
+
+func bridge(self_pole:int, _other_path:UtilityPath, _other_pole:int):
+	"""
+	It's the responsibility of the ground tile
+	to draw UtilityPath curves so that you can simply hide the overlapping
+	pole.
+
+	If this was a city builder, it might be better to do something like the
+	following steps:
+ 
+		1. Hide common pole from self
+		2. Remove wires to the hidden pole
+		3. Rotate common pole from other to average self and other's pole
+		4. Re-add wires
+	"""
+	print(self_pole)
+	hide_pole(self_pole)
+
+	# if self_pole == 0:
+	# 	for instance in wires[0]:
+	# 		remove_child(instance)
+	# 		instance.queue_free()
+	# elif self_pole == num_poles - 1:
+	# 	for instance in wires[-1]:
+	# 		remove_child(instance)
+	# 		instance.queue_free()
+
+
+func hide_pole(pole_id:int):
+	if pole_id < 0:
+		pole_id += num_poles
+	var ZERO_TRANSFORM = Transform3D.IDENTITY.scaled(Vector3.ZERO)
+	multimesh.set_instance_transform(pole_id, ZERO_TRANSFORM)
 			
 
+func add_lines_between_poles(transform0, transform1) -> Array[MeshInstance3D]:
+	var wire_mesh_instances = []
 
-func add_lines_between_poles(transform0, transform1):
 	for root in pole_roots:
 		var wire_curve := Curve3D.new()
 		var start: Vector3 = transform0 * root
@@ -114,3 +158,8 @@ func add_lines_between_poles(transform0, transform1):
 		)
 		wire.mesh.surface_set_material(0, wire_material)
 		add_child(wire)
+		wire_mesh_instances.append(wire)
+	
+	var wire_mesh_instances_typed:Array[MeshInstance3D] = []
+	wire_mesh_instances_typed.assign(wire_mesh_instances)
+	return wire_mesh_instances_typed

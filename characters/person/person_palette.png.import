@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://vt1dd4xkxbkh"
+uid="uid://dvnk4sf1dsjnp"
 path.s3tc="res://.godot/imported/person_palette.png-670d9604517f817ef47121eed7b47ee6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "d60b95b13c71d2196f49e8dafad8e0ed"
 }
 
 [deps]

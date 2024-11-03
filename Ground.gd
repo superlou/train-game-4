@@ -41,22 +41,18 @@ func plant_tiles():
 	while rear_tile.position.x > (train_min_x - LOOK_BEHIND):
 		var new_tile := GroundTile.instantiate()
 		new_tile.position.x = rear_tile.position.x - rear_tile.width
-		new_tile.next_tile = rear_tile
-		rear_tile.prev_tile = new_tile
 		add_child(new_tile)
 		move_child(new_tile, 0)
-		new_tile.link_geometry()
+		new_tile.bridge_to(rear_tile)
 		rear_tile = new_tile
 
 	# Add more tiles ahead
 	while lead_tile.position.x < (train_max_x + LOOK_AHEAD):
 		var new_tile := GroundTile.instantiate()
 		new_tile.position.x = lead_tile.position.x + lead_tile.width
-		new_tile.prev_tile = lead_tile
-		lead_tile.next_tile = new_tile
 		new_tile.station = WorldManager.instantiate_next_station()
 		add_child(new_tile)
-		new_tile.link_geometry()
+		new_tile.bridge_to(lead_tile)
 		lead_tile = new_tile
 
 	# Remove old tiles behind
@@ -66,4 +62,3 @@ func plant_tiles():
 		remove_child(rear_tile)
 		rear_tile.queue_free()
 		var new_rear_tile := get_child(0)
-		new_rear_tile.prev_tile = null
