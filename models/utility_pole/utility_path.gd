@@ -111,7 +111,6 @@ func bridge(self_pole:int, _other_path:UtilityPath, _other_pole:int):
 		3. Rotate common pole from other to average self and other's pole
 		4. Re-add wires
 	"""
-	print(self_pole)
 	hide_pole(self_pole)
 
 	# if self_pole == 0:
