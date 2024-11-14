@@ -2,7 +2,8 @@ extends CharacterBody3D
 
 signal died(player)
 
-@export var walk_speed := 1.0 		# m/s
+@export var crouch_speed := 0.7 	# m/s
+@export var walk_speed := 2.0 		# m/s
 @export var sprint_speed := 4.0 	# m/s
 @export var acceleration := 10.0 	# m/s^2
 @export var jump_height := 1.0 		# m
@@ -20,7 +21,10 @@ var platform_vel_at_jump := Vector3.ZERO
 var jumping := false
 
 var mouse_captured := false
+var is_crouching := false
 
+const CAMERA_STAND_HEIGHT = 1.312
+const CAMERA_CROUCH_HEIGHT = 0.8
 
 func _ready():
 	capture_mouse()
@@ -39,6 +43,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			release_mouse()
 		else:
 			capture_mouse()
+		
+	is_crouching = Input.is_action_pressed("crouch")
+
+
+func _crouch(delta:float):
+	if is_crouching:
+		%Camera.position.y = move_toward(%Camera.position.y, CAMERA_CROUCH_HEIGHT, delta * 5.0)
+	else:
+		%Camera.position.y = move_toward(%Camera.position.y, CAMERA_STAND_HEIGHT, delta * 5.0)
 
 
 func capture_mouse() -> void:
@@ -52,7 +65,8 @@ func release_mouse() -> void:
 
 
 func _physics_process(delta):
-	var speed = sprint_speed if Input.is_action_pressed("sprint") else walk_speed
+	_crouch(delta)
+	var speed := _determine_speed()
 
 	if _do_step_up():
 		velocity = _walk(delta, speed) + Vector3(0, speed, 0) #+ _jump(delta)
@@ -60,6 +74,15 @@ func _physics_process(delta):
 		velocity = _walk(delta, speed) +_gravity(delta) + _jump(delta)
 
 	move_and_slide()
+
+
+func _determine_speed() -> float:
+	if is_crouching:
+		return crouch_speed
+	elif Input.is_action_pressed("sprint"):
+		return sprint_speed
+	else:
+		return walk_speed
 
 
 func _walk(delta: float, speed: float) -> Vector3:
