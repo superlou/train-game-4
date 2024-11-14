@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
-[ext_resource type="Script" path="res://systems/ai/person_ai.gd" id="3_5ihs5"]
+[ext_resource type="Script" path="res://systems/ai/utility_ai.gd" id="3_5ihs5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
 radius = 0.3
@@ -56,13 +56,13 @@ avoidance_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.679902, 0.733303, 0, -0.733303, 0.679902, 0, 0.190617, 0)
 target_position = Vector3(0, -0.4, 0)
 
-[node name="PersonAI" type="Node" parent="."]
+[node name="UtilityAI" type="Node" parent="."]
 script = ExtResource("3_5ihs5")
 
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
 [connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_navigation_agent_velocity_computed"]
-[connection signal="picked_movement_goal" from="PersonAI" to="." method="_on_person_ai_picked_movement_goal"]
+[connection signal="picked_movement_goal" from="UtilityAI" to="." method="_on_person_ai_picked_movement_goal"]
 
 [editable path="PersonModel"]

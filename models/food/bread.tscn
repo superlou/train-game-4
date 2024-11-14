@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://doytauxargffh"]
+
+[ext_resource type="PackedScene" uid="uid://f63ousxtme1q" path="res://models/food/bread.glb" id="1_1ym3a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kvxs0"]
+size = Vector3(0.295471, 0.170654, 0.191101)
+
+[node name="Bread" instance=ExtResource("1_1ym3a")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0121155, 0.0789795, 0.00515747)
+shape = SubResource("BoxShape3D_kvxs0")

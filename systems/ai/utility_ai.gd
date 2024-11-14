@@ -1,5 +1,5 @@
 extends Node
-class_name PersonAI
+class_name UtilityAI
 
 
 @onready var agent:Node = get_node("..")
@@ -12,6 +12,7 @@ enum AIState {
 	BEHAVING,
 }
 
+var known_behaviors:Array[Behavior] = []
 var target_behavior:Behavior = null
 var state := AIState.IDLE
 
@@ -22,7 +23,8 @@ func _ready() -> void:
 
 func _pick_behavior() -> Behavior:
 	var behaviors := get_tree().get_nodes_in_group("behavior")
-	return behaviors.pick_random()  # todo utility AI
+	known_behaviors.assign(behaviors)
+	return known_behaviors.pick_random()  # todo utility AI
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
