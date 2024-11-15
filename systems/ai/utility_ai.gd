@@ -3,6 +3,7 @@ class_name UtilityAI
 
 
 @onready var agent:Node = get_node("..")
+@export var needs:UtilityAINeeds
 
 signal picked_movement_goal(pos: Vector3)
 

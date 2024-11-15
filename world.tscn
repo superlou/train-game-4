@@ -237,9 +237,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6967, 2, 1.27275)
 [node name="Person" parent="." instance=ExtResource("11_10vm5")]
 transform = Transform3D(0.601257, 0, 0.799055, 0, 1, 0, -0.799055, 0, 0.601257, -4.76153, 2.01616, 0)
 
-[node name="Person2" parent="." instance=ExtResource("11_10vm5")]
-transform = Transform3D(0.601257, 0, 0.799055, 0, 1, 0, -0.799055, 0, 0.601257, 0.488036, 3.81321, -3.48252)
-
 [node name="StandPoint2" parent="." instance=ExtResource("12_24y4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27826, 1.54221, 0.775887)
 

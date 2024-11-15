@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=6 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
 [ext_resource type="Script" path="res://systems/ai/utility_ai.gd" id="3_5ihs5"]
+[ext_resource type="Script" path="res://systems/ai/utility_ai_needs.gd" id="4_hg740"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
 radius = 0.3
@@ -56,8 +57,12 @@ avoidance_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.679902, 0.733303, 0, -0.733303, 0.679902, 0, 0.190617, 0)
 target_position = Vector3(0, -0.4, 0)
 
-[node name="UtilityAI" type="Node" parent="."]
+[node name="UtilityAI" type="Node" parent="." node_paths=PackedStringArray("needs")]
 script = ExtResource("3_5ihs5")
+needs = NodePath("../Needs")
+
+[node name="Needs" type="Node" parent="."]
+script = ExtResource("4_hg740")
 
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
