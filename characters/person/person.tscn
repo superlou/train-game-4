@@ -1,13 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=7 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
 [ext_resource type="Script" path="res://systems/ai/utility_ai.gd" id="3_5ihs5"]
-[ext_resource type="Script" path="res://systems/ai/utility_ai_needs.gd" id="4_hg740"]
+[ext_resource type="Script" path="res://systems/ai/utility_motives.gd" id="4_hg740"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
 radius = 0.3
 height = 1.8
+
+[sub_resource type="Resource" id="Resource_ysh3t"]
+script = ExtResource("4_hg740")
+fullness = 1.0
+energy = 1.0
+security = 1.0
+fun = 1.0
+health = 1.0
+space = 1.0
 
 [node name="Person" type="CharacterBody3D"]
 axis_lock_angular_x = true
@@ -57,17 +66,15 @@ avoidance_enabled = true
 transform = Transform3D(1, 0, 0, 0, 0.679902, 0.733303, 0, -0.733303, 0.679902, 0, 0.190617, 0)
 target_position = Vector3(0, -0.4, 0)
 
-[node name="UtilityAI" type="Node" parent="." node_paths=PackedStringArray("needs")]
+[node name="UtilityAI" type="Node" parent="."]
 script = ExtResource("3_5ihs5")
-needs = NodePath("../Needs")
-
-[node name="Needs" type="Node" parent="."]
-script = ExtResource("4_hg740")
+motives = SubResource("Resource_ysh3t")
 
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
 [connection signal="target_reached" from="NavigationAgent" to="." method="_on_navigation_agent_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_navigation_agent_velocity_computed"]
-[connection signal="picked_movement_goal" from="UtilityAI" to="." method="_on_person_ai_picked_movement_goal"]
+[connection signal="move_to" from="UtilityAI" to="." method="_on_utility_ai_move_to"]
+[connection signal="stop_move_to" from="UtilityAI" to="." method="_on_utility_ai_stop_move_to"]
 
 [editable path="PersonModel"]

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var walk_speed := 1.0 		# m/s
+@export var walk_speed := 1.5 		# m/s
 @export var sprint_speed := 4.0 	# m/s
 
 @onready var nav:NavigationAgent3D = $NavigationAgent
@@ -11,7 +11,7 @@ var grav_vel := Vector3.ZERO
 
 var navigating := false
 var nav_reached_target := false
-var nav_target:Vector3 = Vector3.ZERO
+var move_to_target:Vector3 = Vector3.ZERO
 
 
 func _ready() -> void:
@@ -22,8 +22,13 @@ func _physics_process(delta:float) -> void:
 	if navigating:
 		_navigate_towards_nav_target()
 	else:
-		var move_pos := global_position.move_toward(nav_target, walk_speed * delta)
-		var move_vel = (nav_target - move_pos) / delta
+		if move_to_target == Vector3.ZERO:
+			# Hacky way to determine that no movement is needed
+			animation.play("Idle")
+			return
+
+		var move_pos := global_position.move_toward(move_to_target, walk_speed * delta)
+		var move_vel = (move_to_target - move_pos) / delta
 
 		nav.avoidance_enabled = false
 		if absf(move_vel.x) < 0.005 and absf(move_vel.z) < 0.005:
@@ -32,6 +37,12 @@ func _physics_process(delta:float) -> void:
 			animation.play("Walk")
 
 		global_position = move_pos
+
+
+func _stop_move_to():
+	navigating = false
+	nav.avoidance_enabled = false
+	move_to_target = Vector3.ZERO
 
 
 func _gravity(delta: float) -> Vector3:
@@ -72,7 +83,7 @@ func _leap(delta: float) -> Vector3:
 
 func _navigate_towards_nav_target():
 	nav.avoidance_enabled = true
-	nav.target_position = nav_target #.global_position
+	nav.target_position = move_to_target
 	nav.velocity = (nav.get_next_path_position() - global_position).normalized() * walk_speed
 
 
@@ -113,7 +124,11 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 		wants_leap = true
 
 
-func _on_person_ai_picked_movement_goal(pos:Vector3) -> void:
-	nav_target = pos
+func _on_utility_ai_move_to(pos:Vector3) -> void:
+	move_to_target = pos
 	navigating = true
 	nav_reached_target = false
+
+
+func _on_utility_ai_stop_move_to() -> void:
+	_stop_move_to()

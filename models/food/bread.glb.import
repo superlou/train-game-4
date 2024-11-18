@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bread.glb-8c434b7829d4c9d0610212dd61c10b78.sc
 
 [params]
 
-nodes/root_type="RigidBody3D"
+nodes/root_type="RelativeBody"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

@@ -3,19 +3,14 @@ class_name UtilityAI
 
 
 @onready var agent:Node = get_node("..")
-@export var needs:UtilityAINeeds
+@export var motives:UtilityMotives
 
-signal picked_movement_goal(pos: Vector3)
-
-enum AIState {
-	IDLE,
-	MOVING,
-	BEHAVING,
-}
+signal move_to(pos: Vector3)
+signal stop_move_to
 
 var known_behaviors:Array[Behavior] = []
-var target_behavior:Behavior = null
-var state := AIState.IDLE
+var current_behavior:Behavior = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,6 +18,7 @@ func _ready() -> void:
 
 
 func _pick_behavior() -> Behavior:
+	# todo Known behaviors should be based on sensors, location, or something
 	var behaviors := get_tree().get_nodes_in_group("behavior")
 	known_behaviors.assign(behaviors)
 	return known_behaviors.pick_random()  # todo utility AI
@@ -30,7 +26,14 @@ func _pick_behavior() -> Behavior:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if state == AIState.IDLE:
-		target_behavior = _pick_behavior()
-		state = AIState.MOVING
-		picked_movement_goal.emit(target_behavior.global_position)
+	if not current_behavior:
+		current_behavior = _pick_behavior()
+		current_behavior.choose(agent)
+		return
+
+	var action = current_behavior.get_action_for(agent)
+
+	if action is MoveToAction:
+		move_to.emit(action.position)
+	elif action is StopAction:
+		stop_move_to.emit()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=19 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://br7qx5fwroqug" path="res://models/flatcar/control_flatcar.tscn" id="5_rfhbl"]
 [ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="10_w3jha"]
 [ext_resource type="PackedScene" uid="uid://bkbhhy4vo7thw" path="res://characters/person/person.tscn" id="11_10vm5"]
-[ext_resource type="PackedScene" uid="uid://8timke4ydnsw" path="res://systems/ai/StandPoint.tscn" id="12_24y4f"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
 [ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="14_4b8xi"]
 
@@ -176,7 +175,8 @@ _data = {
 environment = SubResource("Environment_j3mav")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
-light_color = Color(0.93, 0.93, 0.93, 1)
+light_color = Color(0, 0, 0, 1)
+light_energy = 0.0
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
 
@@ -237,11 +237,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6967, 2, 1.27275)
 [node name="Person" parent="." instance=ExtResource("11_10vm5")]
 transform = Transform3D(0.601257, 0, 0.799055, 0, 1, 0, -0.799055, 0, 0.601257, -4.76153, 2.01616, 0)
 
-[node name="StandPoint2" parent="." instance=ExtResource("12_24y4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27826, 1.54221, 0.775887)
-
 [node name="Bread" parent="." instance=ExtResource("14_4b8xi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.67792, 2.49299, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05683, 2.49299, -0.231922)
 
 [connection signal="requested_throttle_change" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_change"]
 [connection signal="requested_throttle_stop" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_stop"]
