@@ -4,31 +4,40 @@ class_name Behavior
 @export var enabled := true
 @export var offer_motives:UtilityMotives
 
-var agent_states = {}
-var agent_actions = {}
+var ai_states = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_to_group("behavior")
 
 
-func _calc_offer() -> UtilityOffer:
+func _precondition(_ai:UtilityAI) -> bool:
+	""" Override to specify a precondition to consider a behavior"""
+	return true
+
+
+func _build_offer() -> UtilityOffer:
 	""" Override to have dynamic offer logic """
 	var offer := UtilityOffer.new()
 	offer.motives = offer_motives
 	offer.global_position = global_position
-	offer.duration = 0.0
 	return offer
 
 
-func advertises() -> UtilityOffer:
-	if not enabled:
+func make_offer_to(ai:UtilityAI) -> UtilityOffer:
+	if (not enabled) or (not _precondition(ai)):
 		# Return null if this behavior shouldn't be executed.
 		return null
 
-	return _calc_offer()
+	var offer := _build_offer()
+	return offer
 
 
 func choose(agent):
 	""" Override with behavior actions """
 	print("%s picked unimplemented behavior %s." % [agent, self])
+
+
+func _complete_behavior(ai:UtilityAI):
+	ai_states.erase(ai)
+	ai.current_behavior = null

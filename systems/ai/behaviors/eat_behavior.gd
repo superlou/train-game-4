@@ -12,30 +12,28 @@ enum EatBehaviorState {
 }
 
 
-func choose(agent):
-	agent_states[agent] = EatBehaviorState.MOVE_TO
-	var action = MoveToAction.new()
-	action.position = global_position
-	agent_actions[agent] = action
-
-
-func get_action_for(agent):
-	if agent in agent_actions:
-		return agent_actions[agent]
-	else:
-		return null
-
+func choose(ai:UtilityAI):
+	ai_states[ai] = EatBehaviorState.MOVE_TO
+	
 
 func _process(_delta:float):
-	for agent in agent_states.keys():
-		_process_agent(agent)
+	for ai in ai_states.keys():
+		_process_ai(ai, ai_states[ai])
 
 
-func _process_agent(agent):
-	if agent_states[agent] == EatBehaviorState.MOVE_TO:
-		if _agent_can_reach(agent):
-			agent_states[agent] = EatBehaviorState.STOP
-			agent_actions[agent] = StopAction.new()
+func _process_ai(ai:UtilityAI, state:EatBehaviorState):
+	# Update
+	match state:
+		EatBehaviorState.MOVE_TO:
+			if _agent_can_reach(ai.agent):
+				state = EatBehaviorState.STOP
+
+	# Act
+	match state:
+		EatBehaviorState.MOVE_TO:
+			ai.move_to.emit(global_position)
+		EatBehaviorState.STOP:
+			ai.stop_move_to.emit()
 
 
 func _agent_can_reach(agent):

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=15 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
 [ext_resource type="Script" path="res://systems/ai/utility_ai.gd" id="3_5ihs5"]
 [ext_resource type="Script" path="res://systems/ai/utility_motives.gd" id="4_hg740"]
+[ext_resource type="Script" path="res://systems/ai/utility_weights.gd" id="5_o85ye"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
 radius = 0.3
@@ -17,6 +18,39 @@ security = 1.0
 fun = 1.0
 health = 1.0
 space = 1.0
+
+[sub_resource type="Curve" id="Curve_26brt"]
+_data = [Vector2(0.650558, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_lxggg"]
+_data = [Vector2(0.178439, 1), 0.0, 0.0, 0, 0, Vector2(0.992565, 0.124043), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_yj13s"]
+_data = [Vector2(0.598513, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_sryrr"]
+_data = [Vector2(0.591078, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_17koj"]
+_data = [Vector2(0.672862, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_bxxlw"]
+_data = [Vector2(0.635688, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_simjm"]
+script = ExtResource("5_o85ye")
+fullness = SubResource("Curve_lxggg")
+energy = SubResource("Curve_26brt")
+security = SubResource("Curve_17koj")
+fun = SubResource("Curve_yj13s")
+health = SubResource("Curve_sryrr")
+space = SubResource("Curve_bxxlw")
 
 [node name="Person" type="CharacterBody3D"]
 axis_lock_angular_x = true
@@ -60,6 +94,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_mex0s")
 
 [node name="NavigationAgent" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.5
 avoidance_enabled = true
 
 [node name="JumpTestRay" type="RayCast3D" parent="."]
@@ -69,6 +104,7 @@ target_position = Vector3(0, -0.4, 0)
 [node name="UtilityAI" type="Node" parent="."]
 script = ExtResource("3_5ihs5")
 motives = SubResource("Resource_ysh3t")
+weights = SubResource("Resource_simjm")
 
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]

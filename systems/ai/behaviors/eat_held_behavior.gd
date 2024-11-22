@@ -1,5 +1,5 @@
 extends Behavior
-class_name PickUpBehavior
+class_name EatHeldBehavior
 
 
 enum States {
@@ -8,7 +8,7 @@ enum States {
 
 
 func _precondition(ai:UtilityAI):
-	return ai.agent_can_reach(global_position)
+	return false
 
 
 func choose(ai:UtilityAI):
