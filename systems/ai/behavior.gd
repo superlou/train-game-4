@@ -32,6 +32,8 @@ func make_offer_to(ai:UtilityAI) -> UtilityOffer:
 
 	var offer := _build_offer()
 	
+	# todo This isn't completely thought through. It might be that
+	# offers calculated in the wrong order might get the wrong results.
 	if not offer.motives and base_motives_behavior:
 		offer.motives = base_motives_behavior.offer_motives
 	elif base_motives_behavior:
