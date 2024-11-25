@@ -3,6 +3,7 @@ class_name Behavior
 
 @export var enabled := true
 @export var offer_motives:UtilityMotives
+@export var base_motives_behavior:Behavior
 
 var ai_states = {}
 
@@ -30,6 +31,14 @@ func make_offer_to(ai:UtilityAI) -> UtilityOffer:
 		return null
 
 	var offer := _build_offer()
+	
+	if not offer.motives and base_motives_behavior:
+		offer.motives = base_motives_behavior.offer_motives
+	elif base_motives_behavior:
+		offer.motives.add_base_motives(base_motives_behavior.offer_motives)
+	else:
+		offer.motives = UtilityMotives.new()
+	
 	return offer
 
 

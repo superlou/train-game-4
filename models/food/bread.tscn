@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://doytauxargffh"]
+[gd_scene load_steps=10 format=3 uid="uid://doytauxargffh"]
 
 [ext_resource type="PackedScene" uid="uid://f63ousxtme1q" path="res://models/food/bread.glb" id="1_1ym3a"]
 [ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="2_tftyy"]
@@ -12,24 +12,6 @@ size = Vector3(0.295471, 0.170654, 0.191101)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l2ljn"]
 size = Vector3(0.298828, 0.101135, 0.171631)
-
-[sub_resource type="Resource" id="Resource_2kyxp"]
-script = ExtResource("4_1c2lp")
-fullness = 0.4
-energy = 0.0
-security = 0.0
-fun = 0.0
-health = 0.0
-space = 0.0
-
-[sub_resource type="Resource" id="Resource_gprhs"]
-script = ExtResource("4_1c2lp")
-fullness = 0.4
-energy = 0.0
-security = 0.0
-fun = 0.0
-health = 0.0
-space = 0.0
 
 [sub_resource type="Resource" id="Resource_hc28t"]
 script = ExtResource("4_1c2lp")
@@ -52,13 +34,13 @@ shape = SubResource("BoxShape3D_kvxs0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00488281, 0.0870056, 0.0111084)
 shape = SubResource("BoxShape3D_l2ljn")
 
-[node name="MoveToReachBehavior" type="Node3D" parent="." index="3"]
+[node name="MoveToReachBehavior" type="Node3D" parent="." index="3" node_paths=PackedStringArray("base_motives_behavior")]
 script = ExtResource("5_bed16")
-offer_motives = SubResource("Resource_2kyxp")
+base_motives_behavior = NodePath("../EatHeldBehavior")
 
-[node name="PickUpBehavior" type="Node3D" parent="." index="4"]
+[node name="PickUpBehavior" type="Node3D" parent="." index="4" node_paths=PackedStringArray("base_motives_behavior")]
 script = ExtResource("5_yuxkd")
-offer_motives = SubResource("Resource_gprhs")
+base_motives_behavior = NodePath("../EatHeldBehavior")
 
 [node name="EatHeldBehavior" type="Node3D" parent="." index="5"]
 script = ExtResource("6_equow")
