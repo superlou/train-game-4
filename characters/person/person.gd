@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var sprint_speed := 4.0 	# m/s
 
 @onready var nav:NavigationAgent3D = $NavigationAgent
-@onready var animation:AnimationPlayer = $PersonModel/AnimationPlayer
+@onready var animation:AnimationTree = $AnimationTree
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var grav_vel := Vector3.ZERO
@@ -12,6 +12,10 @@ var grav_vel := Vector3.ZERO
 var navigating := false
 var nav_reached_target := false
 var move_to_target:Vector3 = Vector3.ZERO
+
+
+var IdleAnimaiton = "Idle"
+var moving = false
 
 
 func _ready() -> void:
@@ -24,17 +28,14 @@ func _physics_process(delta:float) -> void:
 	else:
 		if move_to_target == Vector3.ZERO:
 			# Hacky way to determine that no movement is needed
-			animation.play("Idle")
+			moving = false
 			return
 
 		var move_pos := global_position.move_toward(move_to_target, walk_speed * delta)
 		var move_vel = (move_to_target - move_pos) / delta
 
 		nav.avoidance_enabled = false
-		if absf(move_vel.x) < 0.005 and absf(move_vel.z) < 0.005:
-			animation.play("Idle")
-		else:
-			animation.play("Walk")
+		moving = !(absf(move_vel.x) < 0.005 and absf(move_vel.z) < 0.005)
 
 		global_position = move_pos
 
@@ -100,10 +101,7 @@ func _on_navigation_agent_velocity_computed(safe_velocity:Vector3) -> void:
 	if velocity.x != 0.0 or velocity.z != 0.0:
 		rotation.y = atan2(velocity.x, velocity.z)
 
-	if absf(velocity.x) < 0.001 and absf(velocity.z) < 0.001:
-		animation.play("Idle")
-	else:
-		animation.play("Walk")
+	moving = !(absf(velocity.x) < 0.001 and absf(velocity.z) < 0.001)
 
 	move_and_slide()
 
@@ -132,3 +130,7 @@ func _on_utility_ai_move_to(pos:Vector3) -> void:
 
 func _on_utility_ai_stop_move_to() -> void:
 	_stop_move_to()
+
+
+func _on_utility_ai_pick_up(target:Node3D) -> void:
+	animation.get("parameters/playback").travel("PickUp")

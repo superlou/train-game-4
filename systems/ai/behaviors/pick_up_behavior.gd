@@ -13,6 +13,7 @@ func _precondition(ai:UtilityAI):
 
 func choose(ai:UtilityAI):
 	ai_states[ai] = States.IN_PROGRESS
+	ai.pick_up.emit(get_parent())
 
 
 func _process(_delta:float):
