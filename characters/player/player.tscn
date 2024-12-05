@@ -34,13 +34,12 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31224, 0)
 size = 4.0
 
-[node name="PlayerInteractor" parent="Camera" node_paths=PackedStringArray("carry_joint") instance=ExtResource("2_k7kkf")]
+[node name="PlayerInteractor" parent="Camera" node_paths=PackedStringArray("carry_point") instance=ExtResource("2_k7kkf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-carry_joint = NodePath("../CarryJoint")
+carry_point = NodePath("../CarryPoint")
 
-[node name="CarryJoint" type="Generic6DOFJoint3D" parent="Camera"]
+[node name="CarryPoint" type="Marker3D" parent="Camera"]
 transform = Transform3D(-4.32266e-08, 0, -0.988909, 0, 0.988909, 0, 0.988909, 0, -4.32266e-08, 0, -0.197182, -1.28221)
-node_a = NodePath("../..")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15

@@ -2,7 +2,7 @@ extends Node3D
 class_name Interactor
 
 var carried_obj:RigidBody3D = null
-@export var carry_joint: Generic6DOFJoint3D = null
+@export var carry_point:Marker3D = null
 
 
 func interact(interactable: Interactable) -> void:

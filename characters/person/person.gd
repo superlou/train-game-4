@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @onready var nav:NavigationAgent3D = $NavigationAgent
 @onready var animation:AnimationTree = $AnimationTree
+@onready var interactor:NPCInteractor = $NPCInteractor
+@onready var ai:UtilityAI = $UtilityAI
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var grav_vel := Vector3.ZERO
@@ -120,6 +122,12 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 	if not $JumpTestRay.is_colliding() and not is_leaping:
 		leap_target = details["link_exit_position"]
 		wants_leap = true
+
+
+func _interact_to_pick_up() -> void:
+	print("here")
+	var carryable = ai.current_behavior.get_parent().get_node("Carryable")  # todo Gross
+	interactor.try_interact_with(carryable)
 
 
 func _on_utility_ai_move_to(pos:Vector3) -> void:

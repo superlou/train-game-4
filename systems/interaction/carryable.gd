@@ -6,15 +6,11 @@ class_name Carryable
 var is_carried := false
 var carry_target:Node3D = null
 
-# var force_pid := PIDController3.new()
-# var torque_pid := PIDController3.new()
 var pickup_rot_y := 0.0
 
 
 func _ready():
 	interacted.connect(on_interacted)
-	# force_pid.set_k_all(100., 1., 70.)
-	# torque_pid.set_k_all(2., 0.01, 0.5)
 
 
 func on_interacted(interactor: Interactor):
@@ -26,14 +22,8 @@ func on_interacted(interactor: Interactor):
 
 func pick_up(interactor: Interactor):
 	interactor.set_carried(body)
-	carry_target = interactor.carry_joint
+	carry_target = interactor.carry_point
 	is_carried = true
-
-	# force_pid.reset()
-	# torque_pid.reset()
-
-	# force_pid.set_scale_all(body.mass)
-	# torque_pid.set_scale_all(body.mass)  # Should be inertia?
 	pickup_rot_y = global_rotation.y - carry_target.global_rotation.y
 
 
@@ -43,40 +33,20 @@ func drop(interactor: Interactor):
 	is_carried = false
 
 	# Not sure why this can_sleep hack is necessary
-	body.can_sleep = false
-	await get_tree().process_frame
-	body.sleeping = false
-	body.can_sleep = true
+	# body.can_sleep = false
+	# await get_tree().process_frame
+	# body.sleeping = false
+	# body.can_sleep = true
 	
 
-
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_carried:
-		# var target_pos := carry_target.global_position
-		# var pos_offset := global_position - target_pos
-		# var force := force_pid.run(pos_offset, Vector3.ZERO, delta)
-
-		# var rot_offset := global_rotation - carry_target.global_rotation
-		# var y_error := rot_offset.y - pickup_rot_y
-		# y_error = wrapf(y_error, -PI, PI)
-
-		# print()
-		# print("carryable: ", global_rotation)
-		# print("carry_target: ", carry_target.global_rotation)
-		# print("pickup_rot_y:", pickup_rot_y)
-		# print(y_error)
-
-		# var torque := torque_pid.run(
-		# 	Vector3(global_rotation.x, y_error, global_rotation.z),
-		# 	Vector3.ZERO,
-		# 	delta
-		# )
-
-		# print(torque)
-		# body.apply_central_force(force)
-		# body.apply_torque(torque)
-		body.linear_velocity = (carry_target.global_position - global_position) * 50
-		body.angular_velocity = calc_angular_velocity(body.global_basis, carry_target.global_basis) * 10	
+		body.force_linear_velocity(
+			(carry_target.global_position - global_position) * 20
+		)
+		body.force_angular_velocity(
+			calc_angular_velocity(body.global_basis, carry_target.global_basis) * 20
+		)
 
 
 # From https://github.com/babypandabear3/godot4_portal_style_grab/blob/main/grabable/grabable_box.gd
