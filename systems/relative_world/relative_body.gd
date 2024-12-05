@@ -17,11 +17,7 @@ func sum(accum, number):
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	# print(is_carried)
-	# if is_carried:
-	# 	state.linear_velocity = carry_linear_velocity
-	# 	state.angular_velocity = carry_angular_velocity
-	# 	print(state.linear_velocity)
+	can_sleep = (len(force_linear_velocities) + len(force_angular_velocities)) == 0
 
 	if len(force_linear_velocities) > 0:
 		var forced:Vector3 = force_linear_velocities.reduce(sum, Vector3.ZERO)
