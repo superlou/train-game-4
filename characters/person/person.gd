@@ -42,7 +42,7 @@ func _physics_process(delta:float) -> void:
 		global_position = move_pos
 
 
-func _stop_move_to():
+func stop_move_to():
 	navigating = false
 	nav.avoidance_enabled = false
 	move_to_target = Vector3.ZERO
@@ -125,7 +125,6 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 
 
 func _interact_to_pick_up() -> void:
-	print("here")
 	var carryable = ai.current_behavior.get_parent().get_node("Carryable")  # todo Gross
 	interactor.try_interact_with(carryable)
 
@@ -136,9 +135,11 @@ func _on_utility_ai_move_to(pos:Vector3) -> void:
 	nav_reached_target = false
 
 
-func _on_utility_ai_stop_move_to() -> void:
-	_stop_move_to()
+func move_to(pos:Vector3) -> void:
+	move_to_target = pos
+	navigating = true
+	nav_reached_target = false	
 
 
-func _on_utility_ai_pick_up(target:Node3D) -> void:
+func pick_up(target:Node3D) -> void:
 	animation.get("parameters/playback").travel("PickUp")

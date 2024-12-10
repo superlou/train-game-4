@@ -22,7 +22,8 @@ func _process(_delta:float):
 
 func _process_ai(ai:UtilityAI):
 	if ai.agent_can_reach(global_position):
-		ai.stop_move_to.emit()
+		ai.agent.stop_move_to()
 		_complete_behavior(ai)
 	else:
-		ai.move_to.emit(global_position)
+		# ai.move_to.emit(global_position)
+		ai.agent.move_to(global_position)

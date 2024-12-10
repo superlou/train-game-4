@@ -2,14 +2,10 @@ extends Node
 class_name UtilityAI
 
 
-@onready var agent:Node = get_node("..")
+@export var agent:Node3D
 @export var motives:UtilityMotives
 @export var weights:UtilityWeights
 
-signal move_to(pos: Vector3)
-signal stop_move_to
-signal pick_up(target:Node3D)
-signal eat(target:Node3D)
 
 var known_behaviors:Array[Behavior] = []
 var current_behavior:Behavior = null

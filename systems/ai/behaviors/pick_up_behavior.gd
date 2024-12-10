@@ -8,12 +8,12 @@ enum States {
 
 
 func _precondition(ai:UtilityAI):
-	return ai.agent_can_reach(global_position)
+	return ai.agent_can_reach(global_position) and ai.agent.has_method("pick_up")
 
 
 func choose(ai:UtilityAI):
 	ai_states[ai] = States.IN_PROGRESS
-	ai.pick_up.emit(get_parent())
+	ai.agent.pick_up(get_parent())
 
 
 func _process(_delta:float):
