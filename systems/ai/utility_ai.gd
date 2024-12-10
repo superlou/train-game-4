@@ -65,8 +65,3 @@ func agent_can_reach(target_position:Vector3):
 	pos2.y = 0.0
 
 	return pos1.distance_to(pos2) < 1.0
-
-
-func agent_is_holding(target:Node3D) -> bool:
-	# todo
-	return false

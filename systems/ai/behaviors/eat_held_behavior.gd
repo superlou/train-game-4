@@ -2,13 +2,16 @@ extends Behavior
 class_name EatHeldBehavior
 
 
+@onready var target:Node3D = get_parent()
+
+
 enum States {
     IN_PROGRESS
 }
 
 
 func _precondition(ai:UtilityAI):
-	return false
+	return ai.agent.is_holding(target)
 
 
 func choose(ai:UtilityAI):

@@ -42,6 +42,12 @@ func _physics_process(delta:float) -> void:
 		global_position = move_pos
 
 
+func move_to(pos:Vector3) -> void:
+	move_to_target = pos
+	navigating = true
+	nav_reached_target = false	
+
+
 func stop_move_to():
 	navigating = false
 	nav.avoidance_enabled = false
@@ -124,22 +130,35 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 		wants_leap = true
 
 
-func _interact_to_pick_up() -> void:
-	var carryable = ai.current_behavior.get_parent().get_node("Carryable")  # todo Gross
-	interactor.try_interact_with(carryable)
+enum PickUpState {
+	ANIMATING,
+	DONE
+}
 
-
-func _on_utility_ai_move_to(pos:Vector3) -> void:
-	move_to_target = pos
-	navigating = true
-	nav_reached_target = false
-
-
-func move_to(pos:Vector3) -> void:
-	move_to_target = pos
-	navigating = true
-	nav_reached_target = false	
+var pick_up_state = PickUpState.DONE
+var pick_up_target = null
 
 
 func pick_up(target:Node3D) -> void:
 	animation.get("parameters/playback").travel("PickUp")
+	pick_up_state = PickUpState.ANIMATING
+	pick_up_target = target
+
+
+func _interact_to_pick_up() -> void:
+	var carryable = pick_up_target.get_node("Carryable")
+	interactor.try_interact_with(carryable)
+
+
+func _pick_up_animation_done() -> void:
+	pick_up_state = PickUpState.DONE
+
+
+func is_holding(target:Node3D) -> bool:
+	if pick_up_state == PickUpState.ANIMATING:
+		return false
+
+	if target == null:
+		return interactor.carried_obj != null
+
+	return interactor.carried_obj == target
