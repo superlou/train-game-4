@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=28 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://systems/interaction/npc_interactor.gd" id="3_t4w5d"]
 [ext_resource type="Script" path="res://systems/ai/utility_motives.gd" id="4_hg740"]
 [ext_resource type="Script" path="res://systems/ai/utility_weights.gd" id="5_o85ye"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2p0g7"]
+animation = &"EatInHand"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rhnq5"]
 animation = &"Idle"
@@ -43,7 +46,12 @@ xfade_time = 0.5
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ln56b"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ifh8w"]
+states/EatInHand/node = SubResource("AnimationNodeAnimation_2p0g7")
+states/EatInHand/position = Vector2(794, 192)
 states/End/position = Vector2(877, 92)
 states/Idle/node = SubResource("AnimationNodeAnimation_rhnq5")
 states/Idle/position = Vector2(397, 92)
@@ -54,7 +62,7 @@ states/PickUp/position = Vector2(397, 192)
 states/Start/position = Vector2(205, 92)
 states/Walk/node = SubResource("AnimationNodeAnimation_0nmja")
 states/Walk/position = Vector2(566, 92)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w8qj7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_mmn3u"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wt8qb"), "Idle", "PickUp", SubResource("AnimationNodeStateMachineTransition_ywr3o"), "PickUp", "IdleHolding", SubResource("AnimationNodeStateMachineTransition_wwv23")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w8qj7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_mmn3u"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wt8qb"), "Idle", "PickUp", SubResource("AnimationNodeStateMachineTransition_ywr3o"), "PickUp", "IdleHolding", SubResource("AnimationNodeStateMachineTransition_wwv23"), "IdleHolding", "EatInHand", SubResource("AnimationNodeStateMachineTransition_ln56b")]
 graph_offset = Vector2(-52, -15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
@@ -111,34 +119,35 @@ script = ExtResource("1_6wwqe")
 [node name="PersonModel" parent="." instance=ExtResource("2_3f21c")]
 
 [node name="Skeleton3D" parent="PersonModel/Armature" index="0"]
-bones/0/position = Vector3(0.00408905, 0.569512, -0.0499429)
-bones/0/rotation = Quaternion(0.0552816, -1.81252e-08, 2.04879e-08, 0.998471)
-bones/1/rotation = Quaternion(-0.0321283, 4.46685e-08, -2.32786e-08, 0.999484)
-bones/2/rotation = Quaternion(0.0394446, -9.76235e-08, 3.86513e-08, 0.999222)
+bones/0/position = Vector3(0.00408905, 0.557285, -2.91634e-09)
+bones/0/rotation = Quaternion(-0.026348, -1.95012e-08, 1.89401e-08, 0.999653)
+bones/1/rotation = Quaternion(0.0700954, 4.18288e-08, -2.77282e-08, 0.99754)
+bones/2/rotation = Quaternion(-0.0482707, -1.01085e-07, 2.9965e-08, 0.998834)
 bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(-0.00673206, 1.57708e-07, -5.33742e-09, 0.999977)
-bones/4/rotation = Quaternion(8.94739e-05, 0.0519583, -0.817278, 0.573897)
+bones/3/rotation = Quaternion(0.03717, 1.57321e-07, -1.22551e-08, 0.999309)
+bones/4/rotation = Quaternion(-0.00432693, 0.049844, -0.803984, 0.592542)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(0.527676, -0.466536, -0.352947, 0.615897)
+bones/5/rotation = Quaternion(0.540808, -0.385905, -0.412697, 0.623125)
 bones/5/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(0.229512, -0.0296768, -0.05563, 0.971261)
+bones/6/rotation = Quaternion(0.0922829, 0.00993501, -0.153891, 0.983719)
 bones/6/scale = Vector3(1, 1, 1)
-bones/7/rotation = Quaternion(-0.0473233, 0.000669952, 0.0141385, 0.998779)
-bones/8/rotation = Quaternion(8.97917e-05, -0.0519579, 0.817278, 0.573897)
+bones/7/rotation = Quaternion(-0.0473233, 0.00066995, 0.0141385, 0.998779)
+bones/8/rotation = Quaternion(-0.000282506, -0.0563621, 0.801069, 0.595912)
 bones/8/scale = Vector3(1, 1, 1)
-bones/9/rotation = Quaternion(0.495511, 0.454174, 0.351533, 0.651628)
+bones/9/rotation = Quaternion(0.60721, 0.423364, 0.378306, 0.555827)
 bones/9/scale = Vector3(1, 1, 1)
-bones/10/rotation = Quaternion(0.351353, 0.0676084, 0.0522847, 0.932334)
-bones/11/rotation = Quaternion(-0.0473233, -0.000669986, -0.0141384, 0.998779)
-bones/12/rotation = Quaternion(-0.015128, 0.173672, 0.982331, -0.0680769)
-bones/13/rotation = Quaternion(-0.417769, 0.000818843, -0.0508351, 0.90713)
-bones/14/rotation = Quaternion(0.802633, -0.0922086, 0.0435914, 0.587689)
+bones/10/rotation = Quaternion(0.307401, 0.00647301, 0.0799702, 0.948192)
+bones/11/rotation = Quaternion(0.15028, -0.00568516, 0.00906934, 0.988586)
+bones/12/rotation = Quaternion(-0.0238704, 0.207117, 0.975888, -0.064622)
+bones/13/rotation = Quaternion(-0.390096, 0.000830092, -0.0474678, 0.91955)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/rotation = Quaternion(0.721999, -0.0954427, 0.0569943, 0.682905)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.00233157, 0.147711, 0.988256, 0.0390543)
-bones/16/rotation = Quaternion(-0.347154, -0.000362198, 0.0183616, 0.937628)
-bones/17/rotation = Quaternion(0.789994, 0.0624906, -0.0102119, 0.609836)
-bones/19/position = Vector3(0.232943, 0.0984773, -0.12176)
-bones/19/rotation = Quaternion(-0.686377, 0.0724361, 0.0750084, 0.719731)
+bones/15/rotation = Quaternion(-0.000583305, 0.0337462, 0.998601, 0.0406935)
+bones/16/rotation = Quaternion(-0.363161, -0.000359896, 0.0192083, 0.931528)
+bones/17/rotation = Quaternion(0.819529, 0.061381, -0.0054468, 0.569714)
+bones/19/position = Vector3(0.232943, 0.0765387, 0.0566081)
+bones/19/rotation = Quaternion(-0.700951, 0.0739548, 0.0735115, 0.705545)
 bones/21/position = Vector3(-0.208267, 0.0765352, -0.116403)
 bones/21/rotation = Quaternion(-0.703038, -0.0500206, -0.0496561, 0.707651)
 
@@ -165,7 +174,7 @@ script = ExtResource("3_t4w5d")
 carry_point = NodePath("../CarryPoint")
 
 [node name="CarryPoint" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.144, 0.456397)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="UtilityAI" type="Node" parent="." node_paths=PackedStringArray("agent")]
 script = ExtResource("3_5ihs5")

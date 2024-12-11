@@ -130,6 +130,7 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 		wants_leap = true
 
 
+# === Pick up related ===
 enum PickUpState {
 	ANIMATING,
 	DONE
@@ -162,3 +163,8 @@ func is_holding(target:Node3D) -> bool:
 		return interactor.carried_obj != null
 
 	return interactor.carried_obj == target
+
+
+# === Eat related ===
+func eat(target:Node3D) -> void:
+	animation.get("parameters/playback").travel("EatInHand")

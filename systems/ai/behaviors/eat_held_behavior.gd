@@ -16,6 +16,7 @@ func _precondition(ai:UtilityAI):
 
 func choose(ai:UtilityAI):
 	ai_states[ai] = States.IN_PROGRESS
+	ai.agent.eat(target)
 
 
 func _process(_delta:float):
