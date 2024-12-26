@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bkbhhy4vo7thw"]
+[gd_scene load_steps=32 format=3 uid="uid://bkbhhy4vo7thw"]
 
 [ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://systems/interaction/npc_interactor.gd" id="3_t4w5d"]
 [ext_resource type="Script" path="res://systems/ai/utility_motives.gd" id="4_hg740"]
 [ext_resource type="Script" path="res://systems/ai/utility_weights.gd" id="5_o85ye"]
-[ext_resource type="Script" path="res://systems/ai/behaviors/idle_behavior.gd" id="7_towu6"]
+[ext_resource type="Script" path="res://systems/ai/behaviors/idle_behavior.gd" id="7_0hxs2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2p0g7"]
 animation = &"EatInHand"
@@ -48,27 +48,26 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ln56b"]
-advance_mode = 0
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ylino"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ifqmx"]
 xfade_time = 1.0
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ifh8w"]
 states/EatInHand/node = SubResource("AnimationNodeAnimation_2p0g7")
-states/EatInHand/position = Vector2(577, 192)
+states/EatInHand/position = Vector2(575, 219)
 states/End/position = Vector2(877, 92)
 states/Idle/node = SubResource("AnimationNodeAnimation_rhnq5")
 states/Idle/position = Vector2(397, 92)
 states/IdleHolding/node = SubResource("AnimationNodeAnimation_rm2tg")
-states/IdleHolding/position = Vector2(407, 192)
+states/IdleHolding/position = Vector2(397, 219)
 states/PickUp/node = SubResource("AnimationNodeAnimation_x44vy")
-states/PickUp/position = Vector2(211, 192)
+states/PickUp/position = Vector2(227, 219)
 states/Start/position = Vector2(205, 92)
 states/Walk/node = SubResource("AnimationNodeAnimation_0nmja")
 states/Walk/position = Vector2(566, 92)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w8qj7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_mmn3u"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wt8qb"), "Idle", "PickUp", SubResource("AnimationNodeStateMachineTransition_ywr3o"), "PickUp", "IdleHolding", SubResource("AnimationNodeStateMachineTransition_wwv23"), "IdleHolding", "EatInHand", SubResource("AnimationNodeStateMachineTransition_ln56b"), "EatInHand", "Idle", SubResource("AnimationNodeStateMachineTransition_ylino")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w8qj7"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_mmn3u"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_wt8qb"), "Idle", "PickUp", SubResource("AnimationNodeStateMachineTransition_ywr3o"), "PickUp", "IdleHolding", SubResource("AnimationNodeStateMachineTransition_wwv23"), "IdleHolding", "EatInHand", SubResource("AnimationNodeStateMachineTransition_ln56b"), "EatInHand", "Idle", SubResource("AnimationNodeStateMachineTransition_ifqmx")]
 graph_offset = Vector2(-52, -15)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mex0s"]
@@ -132,56 +131,33 @@ script = ExtResource("1_6wwqe")
 [node name="PersonModel" parent="." instance=ExtResource("2_3f21c")]
 
 [node name="Skeleton3D" parent="PersonModel/Armature" index="0"]
-<<<<<<< HEAD
-bones/0/position = Vector3(0.00408905, 0.546442, -6.43704e-09)
-=======
-bones/0/position = Vector3(0.00408905, 0.549007, -5.29596e-09)
->>>>>>> 76da739e332887a37ff1c868dbde2058bdfffbaf
+bones/0/position = Vector3(0.00408905, 0.538027, -5.1804e-09)
 bones/0/rotation = Quaternion(-0.026348, -1.95012e-08, 1.89401e-08, 0.999653)
 bones/1/rotation = Quaternion(0.0700954, 4.18288e-08, -2.77282e-08, 0.99754)
 bones/2/rotation = Quaternion(-0.0482707, -1.01085e-07, 2.9965e-08, 0.998834)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.03717, 1.57321e-07, -1.22551e-08, 0.999309)
-<<<<<<< HEAD
-bones/4/rotation = Quaternion(-0.00263632, 0.0506567, -0.809126, 0.585442)
-=======
-bones/4/rotation = Quaternion(-0.00304705, 0.0504597, -0.807883, 0.587171)
->>>>>>> 76da739e332887a37ff1c868dbde2058bdfffbaf
+bones/4/rotation = Quaternion(-0.00127484, 0.0513082, -0.813219, 0.579691)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(-0.0109095, 0.0348425, -0.459828, 0.887257)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.091036, -0.000190587, -0.056309, 0.994254)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/rotation = Quaternion(-0.0473233, 0.000669952, 0.0141385, 0.998779)
-<<<<<<< HEAD
-bones/8/rotation = Quaternion(-0.000136926, -0.0546448, 0.807482, 0.587356)
-=======
-bones/8/rotation = Quaternion(-0.000171234, -0.0550501, 0.805979, 0.589379)
->>>>>>> 76da739e332887a37ff1c868dbde2058bdfffbaf
+bones/8/rotation = Quaternion(-2.40834e-05, -0.0533093, 0.812386, 0.580678)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/rotation = Quaternion(0.00142762, -0.0257121, 0.441791, 0.896749)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/rotation = Quaternion(0.0910359, 0.00019066, 0.056309, 0.994254)
 bones/11/rotation = Quaternion(-0.0473233, -0.000669986, -0.0141384, 0.998779)
-<<<<<<< HEAD
-bones/12/rotation = Quaternion(-0.0238444, 0.227956, 0.971026, -0.06764)
-bones/13/rotation = Quaternion(-0.430966, 0.000813208, -0.052441, 0.900843)
+bones/12/rotation = Quaternion(-0.023777, 0.242967, 0.96722, -0.0699077)
+bones/13/rotation = Quaternion(-0.459803, 0.000800038, -0.05595, 0.886256)
 bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(0.738142, -0.0939999, 0.0555486, 0.665751)
+bones/14/rotation = Quaternion(0.749458, -0.0928475, 0.0544211, 0.653246)
 bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.000375403, 0.0530083, 0.997681, 0.0427039)
-bones/16/rotation = Quaternion(-0.406936, -0.000352817, 0.0215236, 0.913203)
-bones/17/rotation = Quaternion(0.835317, 0.0599518, -0.00348817, 0.546479)
-=======
-bones/12/rotation = Quaternion(-0.0238565, 0.223333, 0.972147, -0.0669589)
-bones/13/rotation = Quaternion(-0.421756, 0.000817191, -0.0513203, 0.905256)
-bones/13/scale = Vector3(1, 1, 1)
-bones/14/rotation = Quaternion(0.734523, -0.0943473, 0.0558925, 0.669664)
-bones/14/scale = Vector3(1, 1, 1)
-bones/15/rotation = Quaternion(-0.000416405, 0.0487416, 0.997918, 0.0422437)
-bones/16/rotation = Quaternion(-0.397136, -0.000354486, 0.0210052, 0.91752)
-bones/17/rotation = Quaternion(0.831786, 0.0602915, -0.00394757, 0.551799)
->>>>>>> 76da739e332887a37ff1c868dbde2058bdfffbaf
+bones/15/rotation = Quaternion(-0.000270957, 0.0663555, 0.996816, 0.0442163)
+bones/16/rotation = Quaternion(-0.437437, -0.000347313, 0.0231368, 0.898951)
+bones/17/rotation = Quaternion(0.846246, 0.0588268, -0.00199169, 0.529531)
 bones/19/position = Vector3(0.232943, 0.0765387, 0.0566081)
 bones/19/rotation = Quaternion(-0.700951, 0.0739548, 0.0735115, 0.705545)
 bones/21/position = Vector3(-0.208267, 0.0765352, -0.116403)
@@ -217,18 +193,17 @@ agent = NodePath("..")
 motives = SubResource("Resource_ysh3t")
 weights = SubResource("Resource_simjm")
 
-<<<<<<< HEAD
-[node name="IdleBehavior" type="Node3D" parent="."]
-script = ExtResource("7_towu6")
-=======
 [node name="EatParticles" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33608, 0.433205)
 emitting = false
+lifetime = 0.3
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_yxr4m")
 draw_pass_1 = SubResource("PrismMesh_daa8e")
->>>>>>> 76da739e332887a37ff1c868dbde2058bdfffbaf
+
+[node name="IdleBehavior" type="Node3D" parent="."]
+script = ExtResource("7_0hxs2")
 
 [connection signal="link_reached" from="NavigationAgent" to="." method="_on_navigation_agent_link_reached"]
 [connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_navigation_agent_navigation_finished"]
