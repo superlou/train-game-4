@@ -168,3 +168,8 @@ func is_holding(target:Node3D) -> bool:
 # === Eat related ===
 func eat(target:Node3D) -> void:
 	animation.get("parameters/playback").travel("EatInHand")
+
+signal consumed_held
+
+func consume() -> void:
+	consumed_held.emit()

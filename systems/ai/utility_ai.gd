@@ -32,7 +32,11 @@ func _pick_behavior() -> Behavior:
 	# Sort by descending score
 	behavior_offer_scores.sort_custom(func(a, b): return a[2] > b[2])
 
-	# todo If no behaviors are available, pick idle.
+	# If no behaviors are available, something went wrong. Agents should carry
+	# an idle behavior.
+	if len(behavior_offer_scores) == 0:
+		return null
+
 	# todo Add some randomness to selecting behaviors
 	return behavior_offer_scores[0][0]
 

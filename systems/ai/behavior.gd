@@ -38,7 +38,7 @@ func make_offer_to(ai:UtilityAI) -> UtilityOffer:
 		offer.motives = base_motives_behavior.offer_motives
 	elif base_motives_behavior:
 		offer.motives.add_base_motives(base_motives_behavior.offer_motives)
-	else:
+	elif not offer.motives:
 		offer.motives = UtilityMotives.new()
 	
 	return offer

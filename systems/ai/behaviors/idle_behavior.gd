@@ -1,5 +1,5 @@
 extends Behavior
-class_name EatHeldBehavior
+class_name IdleBehavior
 
 
 @onready var target:Node3D = get_parent()
@@ -7,18 +7,21 @@ class_name EatHeldBehavior
 
 enum States {
     IN_PROGRESS,
-	CONSUMED,
+	DONE
 }
 
 
 func _precondition(ai:UtilityAI):
-	return ai.agent.is_holding(target)
+	# Only valid on self
+	return ai.agent == target
 
 
 func choose(ai:UtilityAI):
 	ai_states[ai] = States.IN_PROGRESS
-	ai.agent.consumed_held.connect(func(): ai_states[ai] = States.CONSUMED)
-	ai.agent.eat(target)
+
+	get_tree().create_timer(1.0).timeout.connect(func():
+		ai_states[ai] = States.DONE
+	)
 
 
 func _process(_delta:float):
@@ -27,7 +30,5 @@ func _process(_delta:float):
 
 
 func _process_ai(ai:UtilityAI):
-	# print(ai_states[ai])
-	if ai_states[ai] == States.CONSUMED:
-		# todo ADD THE OFFER TO THE AGENT
-		target.queue_free()
+	if ai_states[ai] == States.DONE:
+		_complete_behavior(ai)
