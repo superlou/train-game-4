@@ -29,5 +29,6 @@ func _process(_delta:float):
 func _process_ai(ai:UtilityAI):
 	# print(ai_states[ai])
 	if ai_states[ai] == States.CONSUMED:
-		# todo ADD THE OFFER TO THE AGENT
+		var offer := make_offer_to(ai)
+		ai.motives.add_on(offer.motives)
 		target.queue_free()
