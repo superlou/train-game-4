@@ -1,10 +1,10 @@
 [gd_scene load_steps=19 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
-[ext_resource type="Script" path="res://Ground.gd" id="1_ewr1a"]
+[ext_resource type="Script" uid="uid://dxw1a7nkmsb0" path="res://Ground.gd" id="1_ewr1a"]
 [ext_resource type="PackedScene" uid="uid://cdspl3aeqpd2r" path="res://trainset.tscn" id="1_l72nw"]
 [ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_x3s3a"]
-[ext_resource type="Script" path="res://systems/time/world_time_controller.gd" id="2_6vdpe"]
+[ext_resource type="Script" uid="uid://cs6rbr4bbyexx" path="res://systems/time/world_time_controller.gd" id="2_6vdpe"]
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="2_34f60"]
 [ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_073to"]
 [ext_resource type="PackedScene" uid="uid://t1vl3wm84h30" path="res://models/locomotive/locomotive.tscn" id="4_rif6w"]
@@ -165,8 +165,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5xn2"]
 _data = {
-"Environment": SubResource("Animation_ltokk"),
-"RESET": SubResource("Animation_k0uop")
+&"Environment": SubResource("Animation_ltokk"),
+&"RESET": SubResource("Animation_k0uop")
 }
 
 [node name="World" type="Node3D"]

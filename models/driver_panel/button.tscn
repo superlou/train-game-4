@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dlo812m3e6gas"]
 
 [ext_resource type="PackedScene" uid="uid://tvskjwwileri" path="res://models/driver_panel/button.glb" id="1_awqyw"]
-[ext_resource type="Script" path="res://models/driver_panel/button.gd" id="2_q81o1"]
+[ext_resource type="Script" uid="uid://b5q3icuo7okeh" path="res://models/driver_panel/button.gd" id="2_q81o1"]
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="3_60bvh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjhn1"]
@@ -43,8 +43,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tdkap"]
 _data = {
-"Press": SubResource("Animation_y6dp5"),
-"RESET": SubResource("Animation_3258y")
+&"Press": SubResource("Animation_y6dp5"),
+&"RESET": SubResource("Animation_3258y")
 }
 
 [node name="Button" instance=ExtResource("1_awqyw")]

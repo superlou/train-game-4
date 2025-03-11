@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://lyc32s6jlol4"]
 
-[ext_resource type="Script" path="res://systems/rssi/rssi_receiver.gd" id="1_l1h11"]
+[ext_resource type="Script" uid="uid://k3v8ss6guv3v" path="res://systems/rssi/rssi_receiver.gd" id="1_l1h11"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_eciy5"]
 radius = 0.1

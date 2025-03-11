@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ktbb1xv6xufl"]
 
 [ext_resource type="PackedScene" uid="uid://mi22hm6rc36q" path="res://models/replicator/replicator_control_panel.glb" id="1_ckmwq"]
-[ext_resource type="Script" path="res://models/replicator/replicator_control_panel.gd" id="2_oies7"]
+[ext_resource type="Script" uid="uid://seog0atysx3d" path="res://models/replicator/replicator_control_panel.gd" id="2_oies7"]
 [ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="2_qfplt"]
 [ext_resource type="PackedScene" uid="uid://dd6hn764ix4sk" path="res://models/driver_panel/panel_lamp.tscn" id="3_m50x6"]
 

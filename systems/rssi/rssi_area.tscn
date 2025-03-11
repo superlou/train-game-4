@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddsoyevg1xdm3"]
 
-[ext_resource type="Script" path="res://systems/rssi/rssi_area.gd" id="1_ky0er"]
+[ext_resource type="Script" uid="uid://dcvkbqmo23js5" path="res://systems/rssi/rssi_area.gd" id="1_ky0er"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qksl8"]
 

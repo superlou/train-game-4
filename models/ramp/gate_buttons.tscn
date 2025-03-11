@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b61iabpqt7mow"]
 
 [ext_resource type="ArrayMesh" uid="uid://cldvjd3krgbhl" path="res://models/ramp/gate_button.res" id="1_2a3at"]
-[ext_resource type="Script" path="res://models/ramp/gate_buttons.gd" id="1_l4opr"]
+[ext_resource type="Script" uid="uid://dvbdo8yjp1rsy" path="res://models/ramp/gate_buttons.gd" id="1_l4opr"]
 [ext_resource type="ArrayMesh" uid="uid://c6dxlq5qr06an" path="res://models/ramp/gate_button_frame.res" id="2_b84ah"]
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="2_cif3o"]
 
@@ -24,6 +24,22 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Button1Mesh:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.5, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_od87n"]
+resource_name = "Press2"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button2Mesh:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -60,27 +76,11 @@ tracks/1/keys = {
 "values": [Vector3(1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_od87n"]
-resource_name = "Press2"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Button2Mesh:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(1, 1, 1), Vector3(1, 0.5, 1), Vector3(1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ih7p"]
 _data = {
-"Press1": SubResource("Animation_g5qet"),
-"Press2": SubResource("Animation_od87n"),
-"RESET": SubResource("Animation_os2qj")
+&"Press1": SubResource("Animation_g5qet"),
+&"Press2": SubResource("Animation_od87n"),
+&"RESET": SubResource("Animation_os2qj")
 }
 
 [node name="GateButtons" type="Node3D"]

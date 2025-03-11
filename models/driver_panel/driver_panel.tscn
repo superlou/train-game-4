@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://f44h7ujundy5"]
 
 [ext_resource type="PackedScene" uid="uid://ccnuhy18xk4ty" path="res://models/driver_panel/driver_panel.glb" id="1_a8oh2"]
-[ext_resource type="Script" path="res://models/driver_panel/driver_panel.gd" id="2_dmmft"]
+[ext_resource type="Script" uid="uid://byav21cjtu75r" path="res://models/driver_panel/driver_panel.gd" id="2_dmmft"]
 [ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="3_1er8r"]
 [ext_resource type="PackedScene" uid="uid://dd6hn764ix4sk" path="res://models/driver_panel/panel_lamp.tscn" id="4_s6lxc"]
 

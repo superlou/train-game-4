@@ -1,12 +1,12 @@
 [gd_scene load_steps=32 format=3 uid="uid://bkbhhy4vo7thw"]
 
-[ext_resource type="Script" path="res://characters/person/person.gd" id="1_6wwqe"]
+[ext_resource type="Script" uid="uid://bquqanweg5boy" path="res://characters/person/person.gd" id="1_6wwqe"]
 [ext_resource type="PackedScene" uid="uid://dcykt2lfye4al" path="res://characters/person/person_model.tscn" id="2_3f21c"]
-[ext_resource type="Script" path="res://systems/ai/utility_ai.gd" id="3_5ihs5"]
-[ext_resource type="Script" path="res://systems/interaction/npc_interactor.gd" id="3_t4w5d"]
-[ext_resource type="Script" path="res://systems/ai/utility_motives.gd" id="4_hg740"]
-[ext_resource type="Script" path="res://systems/ai/utility_weights.gd" id="5_o85ye"]
-[ext_resource type="Script" path="res://systems/ai/behaviors/idle_behavior.gd" id="7_0hxs2"]
+[ext_resource type="Script" uid="uid://uclrwyu0ccxj" path="res://systems/ai/utility_ai.gd" id="3_5ihs5"]
+[ext_resource type="Script" uid="uid://dpttduf2qu3so" path="res://systems/interaction/npc_interactor.gd" id="3_t4w5d"]
+[ext_resource type="Script" uid="uid://dgdc8dfe5fjtl" path="res://systems/ai/utility_motives.gd" id="4_hg740"]
+[ext_resource type="Script" uid="uid://clj7ori1i41hg" path="res://systems/ai/utility_weights.gd" id="5_o85ye"]
+[ext_resource type="Script" uid="uid://t653xlonq0aw" path="res://systems/ai/behaviors/idle_behavior.gd" id="7_0hxs2"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2p0g7"]
 animation = &"EatInHand"
@@ -139,7 +139,6 @@ bones/2/scale = Vector3(1, 1, 1)
 bones/3/rotation = Quaternion(0.03717, 1.57321e-07, -1.22551e-08, 0.999309)
 bones/4/rotation = Quaternion(-0.00380569, 0.0500951, -0.805576, 0.590358)
 bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(-0.0109095, 0.0348425, -0.459828, 0.887257)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/rotation = Quaternion(0.091036, -0.000190587, -0.056309, 0.994254)
 bones/6/scale = Vector3(1, 1, 1)

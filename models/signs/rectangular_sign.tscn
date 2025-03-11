@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://cglspoqvecem3"]
 
-[ext_resource type="Script" path="res://models/signs/rectangular_sign.gd" id="1_o2daa"]
+[ext_resource type="Script" uid="uid://dtxtu8m621xcl" path="res://models/signs/rectangular_sign.gd" id="1_o2daa"]
 
 [sub_resource type="SystemFont" id="SystemFont_pamr3"]
 subpixel_positioning = 0

@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://j212o8v7lv0o"]
 
-[ext_resource type="Script" path="res://physics_test/physics_test.gd" id="1_gt8gq"]
-[ext_resource type="Script" path="res://physics_test/ShiftRigidBody3D.gd" id="2_6r7eb"]
+[ext_resource type="Script" uid="uid://cedyhn4uduoce" path="res://physics_test/physics_test.gd" id="1_gt8gq"]
+[ext_resource type="Script" uid="uid://bb7e1xw1idlt3" path="res://physics_test/ShiftRigidBody3D.gd" id="2_6r7eb"]
 [ext_resource type="PackedScene" uid="uid://bvk63o8523e2j" path="res://physics_test/test_player.tscn" id="3_xt0iw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kptpk"]

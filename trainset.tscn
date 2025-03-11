@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdspl3aeqpd2r"]
 
-[ext_resource type="Script" path="res://trainset.gd" id="1_dmfv1"]
+[ext_resource type="Script" uid="uid://ctrjjkjbjv8s" path="res://trainset.gd" id="1_dmfv1"]
 
 [node name="Trainset" type="Node3D"]
 script = ExtResource("1_dmfv1")

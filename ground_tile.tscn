@@ -1,8 +1,8 @@
 [gd_scene load_steps=15 format=3 uid="uid://d0ss7nky432g3"]
 
-[ext_resource type="Script" path="res://ground_tile.gd" id="1_yg8tq"]
+[ext_resource type="Script" uid="uid://cyh38rv7ngqkr" path="res://ground_tile.gd" id="1_yg8tq"]
 [ext_resource type="Material" uid="uid://c241cqdh0ipt4" path="res://rail.tres" id="2_r208t"]
-[ext_resource type="Script" path="res://models/utility_pole/utility_path.gd" id="3_m0vwn"]
+[ext_resource type="Script" uid="uid://peu73t5vptdv" path="res://models/utility_pole/utility_path.gd" id="3_m0vwn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tnhv"]
 albedo_color = Color(0.223529, 0.329412, 0.0941176, 1)

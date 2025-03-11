@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvi4s0ltoahc"]
 
 [ext_resource type="PackedScene" uid="uid://b5a3d7h1qy7bx" path="res://models/replicator/replicator.glb" id="1_aaq2b"]
-[ext_resource type="Script" path="res://models/replicator/replicator.gd" id="2_uo1v0"]
+[ext_resource type="Script" uid="uid://byinbed3qwnoq" path="res://models/replicator/replicator.gd" id="2_uo1v0"]
 [ext_resource type="PackedScene" uid="uid://ktbb1xv6xufl" path="res://models/replicator/replicator_control_panel.tscn" id="3_3l850"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4aicp"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://w2cnbdu161j2"]
 
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="1_ss5pt"]
-[ext_resource type="Script" path="res://systems/interaction/carryable.gd" id="2_x5tqq"]
+[ext_resource type="Script" uid="uid://bewqoqch8rkk7" path="res://systems/interaction/carryable.gd" id="2_x5tqq"]
 
 [node name="Carryable" instance=ExtResource("1_ss5pt")]
 script = ExtResource("2_x5tqq")

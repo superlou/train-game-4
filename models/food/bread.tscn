@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://f63ousxtme1q" path="res://models/food/bread.glb" id="1_1ym3a"]
 [ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="2_tftyy"]
-[ext_resource type="Script" path="res://systems/ai/utility_motives.gd" id="4_1c2lp"]
-[ext_resource type="Script" path="res://systems/ai/behaviors/move_to_reach_behavior.gd" id="5_bed16"]
-[ext_resource type="Script" path="res://systems/ai/behaviors/pick_up_behavior.gd" id="5_yuxkd"]
-[ext_resource type="Script" path="res://systems/ai/behaviors/eat_held_behavior.gd" id="6_equow"]
+[ext_resource type="Script" uid="uid://dgdc8dfe5fjtl" path="res://systems/ai/utility_motives.gd" id="4_1c2lp"]
+[ext_resource type="Script" uid="uid://b6ds3ehr18n88" path="res://systems/ai/behaviors/move_to_reach_behavior.gd" id="5_bed16"]
+[ext_resource type="Script" uid="uid://s4qc8xu6la2c" path="res://systems/ai/behaviors/pick_up_behavior.gd" id="5_yuxkd"]
+[ext_resource type="Script" uid="uid://cbiqruonpa7bp" path="res://systems/ai/behaviors/eat_held_behavior.gd" id="6_equow"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kvxs0"]
 size = Vector3(0.295471, 0.170654, 0.191101)

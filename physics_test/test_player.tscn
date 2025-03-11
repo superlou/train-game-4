@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bvk63o8523e2j"]
 
-[ext_resource type="Script" path="res://physics_test/ShiftRigidBody3D.gd" id="1_fyuee"]
-[ext_resource type="Script" path="res://physics_test/test_player_controller.gd" id="2_qpas6"]
+[ext_resource type="Script" uid="uid://bb7e1xw1idlt3" path="res://physics_test/ShiftRigidBody3D.gd" id="1_fyuee"]
+[ext_resource type="Script" uid="uid://3bfho1d6ji4g" path="res://physics_test/test_player_controller.gd" id="2_qpas6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h1jos"]
 

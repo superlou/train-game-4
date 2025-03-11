@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d4eyxjfs62i4f"]
 
-[ext_resource type="Script" path="res://models/station/station.gd" id="1_s1rnu"]
+[ext_resource type="Script" uid="uid://dwwp8b4e4c4l2" path="res://models/station/station.gd" id="1_s1rnu"]
 [ext_resource type="PackedScene" uid="uid://vgmuevll5a7c" path="res://models/station/station.glb" id="1_vlvqb"]
 [ext_resource type="PackedScene" uid="uid://cglspoqvecem3" path="res://models/signs/rectangular_sign.tscn" id="2_4mqyj"]
 

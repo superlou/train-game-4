@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfw83edf3xiyx"]
 
-[ext_resource type="Script" path="res://systems/fps_display/fps_display.gd" id="1_2a3j5"]
+[ext_resource type="Script" uid="uid://ce1jyuurtqadu" path="res://systems/fps_display/fps_display.gd" id="1_2a3j5"]
 
 [node name="FpsDisplay" type="Control"]
 layout_mode = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctg2r4pidcbm"]
 
 [ext_resource type="PackedScene" uid="uid://tiud4120b0gt" path="res://models/ramp/ramp_light.glb" id="1_vpvkf"]
-[ext_resource type="Script" path="res://models/ramp/ramp_light.gd" id="2_7w81h"]
+[ext_resource type="Script" uid="uid://baqwxsc3oscj4" path="res://models/ramp/ramp_light.gd" id="2_7w81h"]
 
 [node name="RampLight" instance=ExtResource("1_vpvkf")]
 script = ExtResource("2_7w81h")

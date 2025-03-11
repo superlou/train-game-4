@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://br7qx5fwroqug"]
 
 [ext_resource type="PackedScene" uid="uid://rgv4era602k3" path="res://models/flatcar/flatcar.tscn" id="1_3bkn7"]
-[ext_resource type="Script" path="res://models/flatcar/control_flatcar.gd" id="2_m1v62"]
+[ext_resource type="Script" uid="uid://jr3bfal75t26" path="res://models/flatcar/control_flatcar.gd" id="2_m1v62"]
 [ext_resource type="PackedScene" uid="uid://5n0x0e5lv51x" path="res://models/ramp/ramp.tscn" id="2_xd8h3"]
 [ext_resource type="PackedScene" uid="uid://dddm6e5p7ry4k" path="res://models/control_crate/control_crate.tscn" id="3_wbw7p"]
 [ext_resource type="PackedScene" uid="uid://f44h7ujundy5" path="res://models/driver_panel/driver_panel.tscn" id="4_gbmrl"]
 [ext_resource type="PackedScene" uid="uid://cvi4s0ltoahc" path="res://models/replicator/replicator.tscn" id="5_ktmxp"]
-[ext_resource type="Script" path="res://systems/elements/element_store.gd" id="6_7bdnf"]
+[ext_resource type="Script" uid="uid://w5yuqatcbxoi" path="res://systems/elements/element_store.gd" id="6_7bdnf"]
 [ext_resource type="PackedScene" uid="uid://baseirh0p456l" path="res://models/column_gauge/column_gauge.tscn" id="7_x60xs"]
 [ext_resource type="PackedScene" uid="uid://betpbwnrmw0de" path="res://systems/respawner/respawner.tscn" id="8_eashd"]
 

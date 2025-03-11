@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://dddm6e5p7ry4k"]
 
-[ext_resource type="Script" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
+[ext_resource type="Script" uid="uid://cecdr8w3122h5" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
 [ext_resource type="PackedScene" uid="uid://bjyrstk4d3xch" path="res://models/control_crate/control_crate_door.tscn" id="3_46ab0"]
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="3_jnlb0"]
 [ext_resource type="PackedScene" uid="uid://bs5di6hh8n60f" path="res://models/control_crate/control_crate_import.tscn" id="4_geu5s"]
-[ext_resource type="Script" path="res://systems/subviewport_camera/CCCameraSubViewport.gd" id="5_8fbfd"]
+[ext_resource type="Script" uid="uid://cxgloauyfh14k" path="res://systems/subviewport_camera/CCCameraSubViewport.gd" id="5_8fbfd"]
 [ext_resource type="PackedScene" uid="uid://olofps5wp01n" path="res://models/cc_camera/cc_camera.tscn" id="5_l4doa"]
 [ext_resource type="PackedScene" uid="uid://ctg2r4pidcbm" path="res://models/ramp/ramp_light.tscn" id="7_272jf"]
 [ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="8_y3tbf"]
@@ -62,8 +62,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xrvwa"]
 _data = {
-"DoorSwing": SubResource("Animation_4w5dt"),
-"RESET": SubResource("Animation_8nd3i")
+&"DoorSwing": SubResource("Animation_4w5dt"),
+&"RESET": SubResource("Animation_8nd3i")
 }
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_p0sl8"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://5n0x0e5lv51x"]
 
-[ext_resource type="Script" path="res://models/ramp/ramp.gd" id="1_y1fhy"]
+[ext_resource type="Script" uid="uid://c5fqudufikyhy" path="res://models/ramp/ramp.gd" id="1_y1fhy"]
 [ext_resource type="PackedScene" uid="uid://ptsn64jjttgy" path="res://models/ramp/ramp_plate.tscn" id="2_8ydw7"]
 [ext_resource type="PackedScene" uid="uid://e578n3nensd8" path="res://models/ramp/ramp_base.tscn" id="2_isxxn"]
 [ext_resource type="PackedScene" uid="uid://bgtwgucj06nfu" path="res://models/ramp/ramp_gate.tscn" id="4_mcbyp"]

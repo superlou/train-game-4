@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cbnpi0vnx380x"]
 
-[ext_resource type="Script" path="res://systems/charge/chargable.gd" id="1_g2u6e"]
+[ext_resource type="Script" uid="uid://dvu1lo5yi0oyi" path="res://systems/charge/chargable.gd" id="1_g2u6e"]
 
 [node name="Chargable" type="Node"]
 script = ExtResource("1_g2u6e")

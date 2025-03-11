@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=4 uid="uid://c6tpgo63v8yb8"]
 
 [ext_resource type="Texture2D" uid="uid://neok1ekqpv00" path="res://models/drum/drum_palette.png" id="1_8riyw"]
-[ext_resource type="Script" path="res://systems/relative_world/relative_body.gd" id="1_25w2a"]
+[ext_resource type="Script" uid="uid://gul1rjclrgph" path="res://systems/relative_world/relative_body.gd" id="1_25w2a"]
 [ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="2_c5fab"]
-[ext_resource type="Script" path="res://systems/elements/elements.gd" id="4_f32ml"]
+[ext_resource type="Script" uid="uid://badsegnt811un" path="res://systems/elements/elements.gd" id="4_f32ml"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ycif"]
 resource_name = "Material.001"
