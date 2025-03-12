@@ -1,4 +1,4 @@
-extends ShiftRigidBody
+extends RelativeBody
 
 
 const MIN_NEEDLE_ANGLE := deg_to_rad(-45)
