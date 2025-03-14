@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://danay4nhul4s3"]
+[gd_scene load_steps=20 format=3 uid="uid://danay4nhul4s3"]
 
 [ext_resource type="PackedScene" uid="uid://dfw83edf3xiyx" path="res://systems/fps_display/fps_display.tscn" id="1_2ar2q"]
 [ext_resource type="Script" uid="uid://dxw1a7nkmsb0" path="res://Ground.gd" id="1_ewr1a"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkbhhy4vo7thw" path="res://characters/person/person.tscn" id="11_10vm5"]
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="12_65y17"]
 [ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="14_4b8xi"]
+[ext_resource type="PackedScene" uid="uid://xon6f024gisr" path="res://models/bedroll/bedroll.tscn" id="14_70uel"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
 sky_material = ExtResource("1_x3s3a")
@@ -183,7 +184,7 @@ directional_shadow_max_distance = 20.0
 [node name="EnvironmentAnimation" type="AnimationPlayer" parent="."]
 root_node = NodePath("../SunLight")
 libraries = {
-"": SubResource("AnimationLibrary_f5xn2")
+&"": SubResource("AnimationLibrary_f5xn2")
 }
 speed_scale = 0.0
 script = ExtResource("2_6vdpe")
@@ -239,6 +240,9 @@ transform = Transform3D(0.601257, 0, 0.799055, 0, 1, 0, -0.799055, 0, 0.601257, 
 
 [node name="Bread" parent="." instance=ExtResource("14_4b8xi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05683, 2.49299, -0.231922)
+
+[node name="bedroll" parent="." instance=ExtResource("14_70uel")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.943349, 1.97372, 0)
 
 [connection signal="requested_throttle_change" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_change"]
 [connection signal="requested_throttle_stop" from="Trainset/ControlFlatcar/ControlCrate/DriverPanel" to="Trainset" method="_on_driver_panel_requested_throttle_stop"]
