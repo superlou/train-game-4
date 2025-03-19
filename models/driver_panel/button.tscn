@@ -6,6 +6,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjhn1"]
 resource_local_to_scene = true
+albedo_color = Color(0.255, 0.255, 0.255, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b5j4q"]
 size = Vector3(0.0793457, 0.0410156, 0.0830231)
@@ -70,7 +71,7 @@ shape = SubResource("BoxShape3D_b5j4q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
-"": SubResource("AnimationLibrary_tdkap")
+&"": SubResource("AnimationLibrary_tdkap")
 }
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

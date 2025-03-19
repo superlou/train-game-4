@@ -2,7 +2,7 @@ extends Node
 
 
 var Station = preload("res://models/station/station.tscn")
-@onready var world = get_tree().get_root().get_node("World")
+@onready var world = get_tree().get_root().get_child(-1)
 @onready var environment_animation:EnvironmentAnimation = world.get_node("EnvironmentAnimation")
 
 

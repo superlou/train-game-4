@@ -7,6 +7,7 @@ signal died(player)
 @export var sprint_speed := 4.0 	# m/s
 @export var acceleration := 10.0 	# m/s^2
 @export var jump_height := 1.0 		# m
+@export var rssi_effects_enabled := true
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var look_sensitivity: float = ProjectSettings.get_setting("player/look_sensitivity")
@@ -138,6 +139,9 @@ func _rotate_camera(event: InputEventMouseMotion) -> void:
 
 
 func _on_rssi_receiver_strength_changed(val:float):
+	if not rssi_effects_enabled:
+		return
+
 	$GlitchCanvas.strength = clampf(1.0 - val, 0.0, 1.0)
 
 	if val <= 0.0:

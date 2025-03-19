@@ -1,6 +1,7 @@
 extends Interactable
 class_name Carryable
 
+@export var enabled := true
 
 @onready var body:RigidBody3D = get_parent()
 var is_carried := false
@@ -14,6 +15,9 @@ func _ready():
 
 
 func on_interacted(interactor: Interactor):
+	if not enabled:
+		return
+
 	if is_carried:
 		drop(interactor)
 	else:
@@ -31,12 +35,6 @@ func drop(interactor: Interactor):
 	interactor.set_carried(null)
 	carry_target = null
 	is_carried = false
-
-	# Not sure why this can_sleep hack is necessary
-	# body.can_sleep = false
-	# await get_tree().process_frame
-	# body.sleeping = false
-	# body.can_sleep = true
 	
 
 func _physics_process(_delta):

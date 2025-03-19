@@ -1,38 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://xon6f024gisr"]
+[gd_scene load_steps=8 format=3 uid="uid://xon6f024gisr"]
 
 [ext_resource type="PackedScene" uid="uid://b6gxfwy18i2hr" path="res://models/bedroll/bedroll.glb" id="1_e5nup"]
 [ext_resource type="Script" uid="uid://bl5yffixxwtm2" path="res://models/bedroll/bedroll.gd" id="2_d0mn5"]
 [ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="2_gx3hy"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_d0mn5"]
-size = Vector3(0.917969, 0.422241, 0.457031)
+[ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="4_tjl2b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gx3hy"]
 size = Vector3(0.889221, 0.0429688, 1.82806)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0mn5"]
+size = Vector3(0.917969, 0.100342, 1.82788)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u03fa"]
+size = Vector3(1, 0.391968, 0.451782)
+
 [node name="bedroll" instance=ExtResource("1_e5nup")]
 script = ExtResource("2_d0mn5")
-deployed = false
+unrolled = false
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/position = Vector3(0, -0.0491233, 0.423689)
-bones/0/rotation = Quaternion(-0.200881, 0, 0, 0.979616)
-bones/1/rotation = Quaternion(0.504694, 0, 0, 0.863298)
-bones/2/rotation = Quaternion(0.644095, 0, 0, 0.764946)
-bones/3/rotation = Quaternion(0.671109, 0, 0, 0.741358)
-bones/4/rotation = Quaternion(0.731211, 0, 0, 0.682151)
-bones/5/rotation = Quaternion(0.690365, 0, 0, 0.723461)
-bones/6/rotation = Quaternion(0.863626, 0, 0, 0.504134)
-bones/7/rotation = Quaternion(0.880986, 0, 0, 0.473143)
+bones/0/position = Vector3(0, 0, 0)
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(2.18557e-08, 0, 0, 1)
+bones/2/rotation = Quaternion(-8.88178e-16, 0, 0, 1)
+bones/3/rotation = Quaternion(7.10543e-15, 0, 0, 1)
+bones/4/rotation = Quaternion(-1.33227e-14, 0, 0, 1)
+bones/5/rotation = Quaternion(9.76996e-15, 0, 0, 1)
+bones/6/rotation = Quaternion(-1.77636e-15, 0, 0, 1)
+bones/7/rotation = Quaternion(7.10543e-15, 0, 0, 1)
 
-[node name="Interactable" parent="." index="2" instance=ExtResource("2_gx3hy")]
-
-[node name="CollisionShape3D" parent="Interactable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.206726, 0.692985)
-shape = SubResource("BoxShape3D_d0mn5")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00308228, 0.0429688, -0.00302124)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00308228, 0.0367432, -0.00302124)
 shape = SubResource("BoxShape3D_gx3hy")
 
+[node name="Interactable" parent="." index="3" instance=ExtResource("2_gx3hy")]
+
+[node name="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0457764, 0.0198473)
+shape = SubResource("BoxShape3D_d0mn5")
+
+[node name="Carryable" parent="." index="4" instance=ExtResource("4_tjl2b")]
+enabled = true
+
+[node name="CollisionShape3D" parent="Carryable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0067749, 0.21048, 0.692121)
+shape = SubResource("BoxShape3D_u03fa")
+
 [editable path="Interactable"]
+[editable path="Carryable"]

@@ -15,12 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="14_4b8xi"]
 [ext_resource type="PackedScene" uid="uid://xon6f024gisr" path="res://models/bedroll/bedroll.tscn" id="14_70uel"]
 
-[sub_resource type="Sky" id="Sky_6sy21"]
+[sub_resource type="Sky" id="Sky_70uel"]
 sky_material = ExtResource("1_x3s3a")
 
 [sub_resource type="Environment" id="Environment_j3mav"]
 background_mode = 2
-sky = SubResource("Sky_6sy21")
+sky = SubResource("Sky_70uel")
 ambient_light_energy = 0.0
 ssao_enabled = true
 
@@ -176,6 +176,7 @@ _data = {
 environment = SubResource("Environment_j3mav")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 light_color = Color(0, 0, 0, 1)
 light_energy = 0.0
 shadow_enabled = true

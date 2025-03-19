@@ -91,7 +91,7 @@ shape = SubResource("BoxShape3D_cc428")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_xrvwa")
+&"": SubResource("AnimationLibrary_xrvwa")
 }
 
 [node name="control_crate" parent="." instance=ExtResource("4_geu5s")]
