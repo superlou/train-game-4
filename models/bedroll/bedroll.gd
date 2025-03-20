@@ -7,10 +7,10 @@ extends RelativeBody
 
 
 func _ready() -> void:
-    if unrolled:
-        $AnimationPlayer.play("Unrolled")
-        carryable.enabled = false
-    else:
-        $AnimationPlayer.play("Roll-Up")
-        $AnimationPlayer.seek(2)
-        carryable.enabled = true
+	if unrolled:
+		$AnimationPlayer.play("Unrolled")
+		carryable.enabled = false
+	else:
+		$AnimationPlayer.play("Roll-Up")
+		$AnimationPlayer.seek(2)
+		carryable.enabled = true

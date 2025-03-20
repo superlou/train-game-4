@@ -1,44 +1,37 @@
-extends Interactable
+extends Marker3D
 class_name Carryable
 
 @export var enabled := true
 
 @onready var body:RigidBody3D = get_parent()
-var is_carried := false
 var carry_target:Node3D = null
 
 var pickup_rot_y := 0.0
 
 
-func _ready():
-	interacted.connect(on_interacted)
-
-
-func on_interacted(interactor: Interactor):
-	if not enabled:
+func interact(interactor: Interactor):
+	if not enabled or not interactor.carrier:
 		return
 
-	if is_carried:
-		drop(interactor)
+	if carry_target:
+		_drop(interactor.carrier)
 	else:
-		pick_up(interactor)
+		_pick_up(interactor.carrier)
 
 
-func pick_up(interactor: Interactor):
-	interactor.set_carried(body)
-	carry_target = interactor.carry_point
-	is_carried = true
+func _pick_up(carrier: Carrier):
+	carrier.carryable = self
+	carry_target = carrier
 	pickup_rot_y = global_rotation.y - carry_target.global_rotation.y
 
 
-func drop(interactor: Interactor):
-	interactor.set_carried(null)
+func _drop(carrier: Carrier):
+	carrier.carryable = null
 	carry_target = null
-	is_carried = false
 	
 
 func _physics_process(_delta):
-	if is_carried:
+	if carry_target:
 		body.force_linear_velocity(
 			(carry_target.global_position - global_position) * 20
 		)
@@ -72,3 +65,7 @@ func calc_angular_velocity(from_basis: Basis, to_basis: Basis) -> Vector3:
 	var axis = Vector3(qt.x, qt.y, qt.z) / sqrt(1 - qt.w * qt.w)
 	
 	return axis * angle
+
+
+func _on_interactable_interacted(interactor: Interactor) -> void:
+	pass # Replace with function body.

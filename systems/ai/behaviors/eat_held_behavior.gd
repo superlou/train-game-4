@@ -6,7 +6,7 @@ class_name EatHeldBehavior
 
 
 enum States {
-    IN_PROGRESS,
+	IN_PROGRESS,
 	CONSUMED,
 }
 

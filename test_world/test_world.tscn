@@ -318,7 +318,6 @@ size = Vector3(100, 1, 100)
 size = Vector3(2, 2, 2)
 
 [node name="TestWorld" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uya15")

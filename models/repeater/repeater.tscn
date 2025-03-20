@@ -1,20 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqm1o33qq6xpr"]
+[gd_scene load_steps=10 format=3 uid="uid://cqm1o33qq6xpr"]
 
 [ext_resource type="PackedScene" uid="uid://dor3j8yd4lww0" path="res://models/repeater/repeater.glb" id="1_tyyra"]
 [ext_resource type="Script" uid="uid://8g0iw5wlueow" path="res://models/repeater/repeater.gd" id="2_tibvj"]
-[ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="3_cwtkl"]
 [ext_resource type="PackedScene" uid="uid://lyc32s6jlol4" path="res://systems/rssi/rssi_receiver.tscn" id="4_rkehl"]
 [ext_resource type="PackedScene" uid="uid://ddsoyevg1xdm3" path="res://systems/rssi/rssi_area.tscn" id="5_23b3v"]
+[ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="5_fq8g5"]
+[ext_resource type="Script" uid="uid://bewqoqch8rkk7" path="res://systems/interaction/carryable.gd" id="6_hfggx"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ivg5g"]
 points = PackedVector3Array(1.4469, -11.7952, 2.36845, 1.3076, -11.7952, 2.3449, 1.53039, -11.7952, 2.25506, 0.762388, 2.73378, 0.744458, 0.43074, 3.1372, 1.00824, -0.127848, 3.1372, 1.00824, -3.08961, -11.7952, 0.128015, -0.530068, 3.1372, 0.900611, 1.57467, -11.7952, -2.36659, 0.762388, 2.73378, -0.727703, 0.581112, 3.1372, 0.857849, -3.13758, -11.7952, -0.0262163, -0.824353, 3.1372, 0.606082, 1.54699, -11.7952, -2.51121, 0.581112, 3.1372, -0.841574, -3.04856, -11.7952, -0.150658, -0.931827, 3.1372, 0.203929, -0.931827, 3.1372, -0.187654, -0.824353, 3.1372, -0.589808, 1.40354, -11.7952, -2.54004, 0.43074, 3.1372, -0.991962, -0.530068, 3.1372, -0.883856, -0.127848, 3.1372, -0.991962)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_whrad"]
-size = Vector3(0.198975, 0.945953, 0.193573)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_loqll"]
 radius = 3.38568
 height = 6.77136
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5eq6"]
+size = Vector3(0.322021, 1.35944, 0.386292)
 
 [node name="repeater" instance=ExtResource("1_tyyra")]
 mass = 10.0
@@ -24,26 +25,33 @@ script = ExtResource("2_tibvj")
 transform = Transform3D(0.0931492, 0, 0, 0, 0.0931492, 0, 0, 0, 0.0931492, 0.103464, 1.099, -0.00334618)
 shape = SubResource("ConvexPolygonShape3D_ivg5g")
 
-[node name="Carryable" parent="." index="4" instance=ExtResource("3_cwtkl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09209, 0.974226, 0)
-
-[node name="CollisionShape3D" parent="Carryable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0102783, 0)
-shape = SubResource("BoxShape3D_whrad")
-
-[node name="RssiReceiver" parent="." index="5" node_paths=PackedStringArray("ignore_area") instance=ExtResource("4_rkehl")]
+[node name="RssiReceiver" parent="." index="4" node_paths=PackedStringArray("ignore_area") instance=ExtResource("4_rkehl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28571, 0)
 ignore_area = NodePath("../RssiArea")
 
-[node name="RssiArea" parent="." index="6" instance=ExtResource("5_23b3v")]
+[node name="RssiArea" parent="." index="5" instance=ExtResource("5_23b3v")]
 zero_radius = 1.5
 
 [node name="CollisionShape3D" parent="RssiArea" index="0"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.43523, 0)
 shape = SubResource("CapsuleShape3D_loqll")
 
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." index="7"]
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." index="6"]
 radius = 0.4
 
-[editable path="Carryable"]
+[node name="Interactable" type="Area3D" parent="." index="7"]
+script = ExtResource("5_fq8g5")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0755615, 0.694427, 0.00717163)
+shape = SubResource("BoxShape3D_q5eq6")
+
+[node name="Carryable" type="Marker3D" parent="." index="8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.938207, 0)
+script = ExtResource("6_hfggx")
+metadata/_custom_type_script = "uid://bewqoqch8rkk7"
+
+[connection signal="interacted" from="Interactable" to="Carryable" method="interact"]
+
 [editable path="RssiArea"]

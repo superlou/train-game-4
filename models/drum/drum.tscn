@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://c6tpgo63v8yb8"]
+[gd_scene load_steps=11 format=4 uid="uid://c6tpgo63v8yb8"]
 
 [ext_resource type="Texture2D" uid="uid://neok1ekqpv00" path="res://models/drum/drum_palette.png" id="1_8riyw"]
 [ext_resource type="Script" uid="uid://gul1rjclrgph" path="res://systems/relative_world/relative_body.gd" id="1_25w2a"]
-[ext_resource type="PackedScene" uid="uid://w2cnbdu161j2" path="res://systems/interaction/carryable.tscn" id="2_c5fab"]
+[ext_resource type="Script" uid="uid://bewqoqch8rkk7" path="res://systems/interaction/carryable.gd" id="3_bvx80"]
 [ext_resource type="Script" uid="uid://badsegnt811un" path="res://systems/elements/elements.gd" id="4_f32ml"]
+[ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="5_bvx80"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ycif"]
 resource_name = "Material.001"
@@ -49,8 +50,9 @@ shadow_mesh = SubResource("ArrayMesh_vtf5f")
 height = 0.864559
 radius = 0.299174
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7mefa"]
-size = Vector3(0.62207, 0.875519, 0.61145)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xv6u4"]
+height = 0.833984
+radius = 0.288086
 
 [node name="drum" type="RigidBody3D"]
 mass = 50.0
@@ -65,12 +67,18 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.430852, 0)
 shape = SubResource("CylinderShape3D_qa2v2")
 
-[node name="Carryable" parent="." instance=ExtResource("2_c5fab")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.478854, 0)
+[node name="Carryable" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539239, 0)
+script = ExtResource("3_bvx80")
+metadata/_custom_type_script = "uid://bewqoqch8rkk7"
 
-[node name="CollisionShape3D" parent="Carryable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00341797, -0.0474109, -0.00286865)
-shape = SubResource("BoxShape3D_7mefa")
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("5_bvx80")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.428711, 0)
+shape = SubResource("CylinderShape3D_xv6u4")
 
 [node name="Elements" type="Node" parent="."]
 script = ExtResource("4_f32ml")
@@ -80,4 +88,4 @@ provides_material = 10.0
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 radius = 0.4
 
-[editable path="Carryable"]
+[connection signal="interacted" from="Interactable" to="Carryable" method="interact"]

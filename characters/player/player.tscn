@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=10 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" uid="uid://c6kn7cjk73ysp" path="res://characters/player/player.gd" id="1_dwx2k"]
 [ext_resource type="PackedScene" uid="uid://cbpp4b4pbsd2u" path="res://systems/glitch_canvas/glitch_canvas.tscn" id="2_iqp2d"]
 [ext_resource type="PackedScene" uid="uid://bkeytv8birxvh" path="res://systems/interaction/player_interactor.tscn" id="2_k7kkf"]
 [ext_resource type="Texture2D" uid="uid://cjx4mxedpn42p" path="res://assets/reticule.png" id="3_44bir"]
+[ext_resource type="Script" uid="uid://b0ub78bydn55" path="res://systems/interaction/carrier.gd" id="4_dirf7"]
 [ext_resource type="PackedScene" uid="uid://lyc32s6jlol4" path="res://systems/rssi/rssi_receiver.tscn" id="7_j3oy2"]
 [ext_resource type="PackedScene" uid="uid://deu1iqwugholm" path="res://systems/charge/charge_receiver.tscn" id="8_30nmd"]
 
@@ -34,12 +35,14 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31224, 0)
 size = 4.0
 
-[node name="PlayerInteractor" parent="Camera" node_paths=PackedStringArray("carry_point") instance=ExtResource("2_k7kkf")]
+[node name="PlayerInteractor" parent="Camera" node_paths=PackedStringArray("carrier") instance=ExtResource("2_k7kkf")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-carry_point = NodePath("../CarryPoint")
+carrier = NodePath("../Carrier")
 
-[node name="CarryPoint" type="Marker3D" parent="Camera"]
+[node name="Carrier" type="Marker3D" parent="Camera"]
 transform = Transform3D(-4.32266e-08, 0, -0.988909, 0, 0.988909, 0, 0.988909, 0, -4.32266e-08, 0, -0.197182, -1.28221)
+script = ExtResource("4_dirf7")
+metadata/_custom_type_script = "uid://b0ub78bydn55"
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
