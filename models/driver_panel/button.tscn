@@ -2,14 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://tvskjwwileri" path="res://models/driver_panel/button.glb" id="1_awqyw"]
 [ext_resource type="Script" uid="uid://b5q3icuo7okeh" path="res://models/driver_panel/button.gd" id="2_q81o1"]
-[ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="3_60bvh"]
+[ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="3_p4vqk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjhn1"]
 resource_local_to_scene = true
 albedo_color = Color(0.255, 0.255, 0.255, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_b5j4q"]
-size = Vector3(0.0793457, 0.0410156, 0.0830231)
+[sub_resource type="BoxShape3D" id="BoxShape3D_rb141"]
+size = Vector3(0.0686035, 0.0353394, 0.0771484)
 
 [sub_resource type="Animation" id="Animation_y6dp5"]
 resource_name = "Press"
@@ -63,11 +63,13 @@ outline_modulate = Color(0, 0, 0, 0)
 [node name="Guard" parent="." index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_fjhn1")
 
-[node name="Interactable" parent="." index="2" instance=ExtResource("3_60bvh")]
+[node name="Interactable" type="Area3D" parent="." index="2"]
+script = ExtResource("3_p4vqk")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
 
-[node name="CollisionShape3D" parent="Interactable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000996947, 0.0205078, -0.000389099)
-shape = SubResource("BoxShape3D_b5j4q")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0197449, 0)
+shape = SubResource("BoxShape3D_rb141")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
@@ -75,5 +77,3 @@ libraries = {
 }
 
 [connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
-
-[editable path="Interactable"]

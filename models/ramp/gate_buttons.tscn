@@ -3,19 +3,19 @@
 [ext_resource type="ArrayMesh" uid="uid://cldvjd3krgbhl" path="res://models/ramp/gate_button.res" id="1_2a3at"]
 [ext_resource type="Script" uid="uid://dvbdo8yjp1rsy" path="res://models/ramp/gate_buttons.gd" id="1_l4opr"]
 [ext_resource type="ArrayMesh" uid="uid://c6dxlq5qr06an" path="res://models/ramp/gate_button_frame.res" id="2_b84ah"]
-[ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="2_cif3o"]
+[ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="3_1mw6h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ptk7t"]
 albedo_color = Color(0.39, 0.6645, 1, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_owk08"]
-size = Vector3(0.0899582, 0.0464478, 0.0904312)
+[sub_resource type="BoxShape3D" id="BoxShape3D_yc4vr"]
+size = Vector3(0.09375, 0.0430908, 0.09375)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_03vdv"]
 albedo_color = Color(1, 0.7, 0.7, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_fb5dp"]
-size = Vector3(0.0899582, 0.0464478, 0.0904312)
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vjys"]
+size = Vector3(0.09375, 0.0430908, 0.09375)
 
 [sub_resource type="Animation" id="Animation_g5qet"]
 resource_name = "Press1"
@@ -91,24 +91,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00100889, 0, 0)
 material_override = SubResource("StandardMaterial3D_ptk7t")
 mesh = ExtResource("1_2a3at")
 
-[node name="Interactable1" parent="Button1Mesh" instance=ExtResource("2_cif3o")]
+[node name="Interactable1" type="Area3D" parent="Button1Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0565577, 0, 0)
+script = ExtResource("3_1mw6h")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
 
-[node name="CollisionShape3D" parent="Button1Mesh/Interactable1" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00770107, 0.0367737, -0.000324249)
-shape = SubResource("BoxShape3D_owk08")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button1Mesh/Interactable1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00387001, 0.0365601, 0)
+shape = SubResource("BoxShape3D_yc4vr")
 
 [node name="Button2Mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.103337, 0, 0)
 material_override = SubResource("StandardMaterial3D_03vdv")
 mesh = ExtResource("1_2a3at")
 
-[node name="Interactable2" parent="Button2Mesh" instance=ExtResource("2_cif3o")]
+[node name="Interactable2" type="Area3D" parent="Button2Mesh"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0597976, 0, 0)
+script = ExtResource("3_1mw6h")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
 
-[node name="CollisionShape3D" parent="Button2Mesh/Interactable2" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00770107, 0.0367737, -0.000324249)
-shape = SubResource("BoxShape3D_fb5dp")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Button2Mesh/Interactable2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00891352, 0.0365601, 0)
+shape = SubResource("BoxShape3D_3vjys")
 
 [node name="Frame" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_b84ah")
@@ -116,11 +120,8 @@ skeleton = NodePath("../Button1Mesh")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4ih7p")
+&"": SubResource("AnimationLibrary_4ih7p")
 }
 
 [connection signal="interacted" from="Button1Mesh/Interactable1" to="." method="_on_interactable_1_interacted"]
 [connection signal="interacted" from="Button2Mesh/Interactable2" to="." method="_on_interactable_2_interacted"]
-
-[editable path="Button1Mesh/Interactable1"]
-[editable path="Button2Mesh/Interactable2"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://dddm6e5p7ry4k"]
 
 [ext_resource type="Script" uid="uid://cecdr8w3122h5" path="res://models/control_crate/control_crate.gd" id="1_ln1km"]
+[ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="3_00nan"]
 [ext_resource type="PackedScene" uid="uid://bjyrstk4d3xch" path="res://models/control_crate/control_crate_door.tscn" id="3_46ab0"]
-[ext_resource type="PackedScene" uid="uid://den7rcw6vvfxt" path="res://systems/interaction/interactable.tscn" id="3_jnlb0"]
 [ext_resource type="PackedScene" uid="uid://bs5di6hh8n60f" path="res://models/control_crate/control_crate_import.tscn" id="4_geu5s"]
 [ext_resource type="Script" uid="uid://cxgloauyfh14k" path="res://systems/subviewport_camera/CCCameraSubViewport.gd" id="5_8fbfd"]
 [ext_resource type="PackedScene" uid="uid://olofps5wp01n" path="res://models/cc_camera/cc_camera.tscn" id="5_l4doa"]
@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="8_y3tbf"]
 [ext_resource type="PackedScene" uid="uid://dd6hn764ix4sk" path="res://models/driver_panel/panel_lamp.tscn" id="9_imiil"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cc428"]
-size = Vector3(0.714966, 1.57703, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_888gc"]
+size = Vector3(1, 1.62848, 1)
 
 [sub_resource type="Animation" id="Animation_4w5dt"]
 resource_name = "DoorSwing"
@@ -82,12 +82,14 @@ script = ExtResource("1_ln1km")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.92446, 0.347969, -0.60895)
 sync_to_physics = false
 
-[node name="DoorInteractable" parent="control_crate_door" instance=ExtResource("3_jnlb0")]
+[node name="DoorInteractable" type="Area3D" parent="control_crate_door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00760698, 0.85255, 0.596633)
+script = ExtResource("3_00nan")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
 
-[node name="CollisionShape3D" parent="control_crate_door/DoorInteractable" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.263977, 0.0834351, 0)
-shape = SubResource("BoxShape3D_cc428")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="control_crate_door/DoorInteractable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0901794, 0)
+shape = SubResource("BoxShape3D_888gc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -160,5 +162,3 @@ shape = SubResource("BoxShape3D_hbys0")
 
 [connection signal="interacted" from="control_crate_door/DoorInteractable" to="." method="_on_door_interactable_interacted"]
 [connection signal="pressed" from="LightsButton" to="." method="_on_lights_button_pressed"]
-
-[editable path="control_crate_door/DoorInteractable"]
