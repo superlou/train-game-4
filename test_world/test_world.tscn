@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c44eqxhnupds7"]
+[gd_scene load_steps=19 format=3 uid="uid://c44eqxhnupds7"]
 
 [ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_4y5m6"]
 [ext_resource type="Script" uid="uid://cs6rbr4bbyexx" path="res://systems/time/world_time_controller.gd" id="2_6bak2"]
@@ -314,6 +314,30 @@ shader_parameter/in_dashed_count_y = 6.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bak2"]
 size = Vector3(100, 1, 100)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cb7q"]
+render_priority = 0
+shader = SubResource("Shader_7cb7q")
+shader_parameter/subdivisions = 4.0
+shader_parameter/grid_width = 0.02
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/background_color_two = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/grid_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/dashed_scale_x = 0.02
+shader_parameter/dashed_scale_y = 0.02
+shader_parameter/dashed_count_x = 1.0
+shader_parameter/dashed_count_y = 1.0
+shader_parameter/point_width = 0.021
+shader_parameter/point_color = Color(0, 0, 0, 1)
+shader_parameter/point_scale_x = 0.05
+shader_parameter/point_scale_y = 0.05
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_subdivisions = 6.0
+shader_parameter/inside_color = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/in_dashed_scale_x = 0.3
+shader_parameter/in_dashed_scale_y = 0.3
+shader_parameter/in_dashed_count_x = 6.0
+shader_parameter/in_dashed_count_y = 6.0
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_cen2t"]
 size = Vector3(2, 2, 2)
 
@@ -323,7 +347,6 @@ size = Vector3(2, 2, 2)
 environment = SubResource("Environment_uya15")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 light_color = Color(0.93, 0.93, 0.93, 1)
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
@@ -336,16 +359,16 @@ libraries = {
 speed_scale = 0.0
 script = ExtResource("2_6bak2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 metadata/_edit_lock_ = true
 
-[node name="Ground" type="CSGBox3D" parent="StaticBody3D"]
+[node name="Box" type="CSGBox3D" parent="Ground"]
 material_override = SubResource("ShaderMaterial_l7fxr")
 size = Vector3(100, 1, 100)
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_6bak2")
 metadata/_edit_lock_ = true
 
@@ -380,24 +403,23 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.1010
 
 [node name="Buttons" type="Node3D" parent="."]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Buttons"]
+[node name="BoxWall" type="StaticBody3D" parent="Buttons"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
 metadata/_edit_lock_ = true
 
-[node name="Ground" type="CSGBox3D" parent="Buttons/StaticBody3D"]
-material_override = SubResource("ShaderMaterial_l7fxr")
+[node name="Geometry" type="CSGBox3D" parent="Buttons/BoxWall"]
+material_override = SubResource("ShaderMaterial_7cb7q")
 size = Vector3(2, 2, 2)
-metadata/_edit_lock_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/BoxWall"]
 shape = SubResource("BoxShape3D_cen2t")
 metadata/_edit_lock_ = true
 
-[node name="Button" parent="Buttons/StaticBody3D" instance=ExtResource("9_cen2t")]
+[node name="Button" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00239, 0.271316, 0)
 
-[node name="Button2" parent="Buttons/StaticBody3D" instance=ExtResource("9_cen2t")]
+[node name="Button2" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00239, 0.271316, -0.169526)
 
-[node name="Button3" parent="Buttons/StaticBody3D" instance=ExtResource("9_cen2t")]
+[node name="Button3" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00429, 0.271316, 0.159533)
