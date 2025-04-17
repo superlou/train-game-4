@@ -20,7 +20,7 @@ func door_at_closed():
 	door_is_open = false
 
 
-func _on_door_interactable_interacted(_interactor:Interactor):
+func _on_door_interactable_grabbed(_interactor:Interactor):
 	if door_is_open:
 		$AnimationPlayer.play_backwards("DoorSwing")
 	else:

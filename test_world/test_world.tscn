@@ -347,6 +347,7 @@ size = Vector3(2, 2, 2)
 environment = SubResource("Environment_uya15")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 light_color = Color(0.93, 0.93, 0.93, 1)
 shadow_enabled = true
 directional_shadow_max_distance = 20.0

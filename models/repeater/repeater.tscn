@@ -52,6 +52,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.938207, 0)
 script = ExtResource("6_hfggx")
 metadata/_custom_type_script = "uid://bewqoqch8rkk7"
 
-[connection signal="interacted" from="Interactable" to="Carryable" method="interact"]
+[connection signal="grabbed" from="Interactable" to="Carryable" method="interact"]
 
 [editable path="RssiArea"]

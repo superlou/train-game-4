@@ -18,11 +18,11 @@ func _on_left_button_interactable_interacted(interactor:Interactor):
 	print(interactor)
 
 
-func _on_interactable_1_interacted(interactor:Interactor):
+func _on_interactable_1_used(_interactor:Interactor) -> void:
 	pressed.emit(1)
 	$AnimationPlayer.play("Press1")
 
 
-func _on_interactable_2_interacted(interactor:Interactor):
+func _on_interactable_2_used(_interactor:Interactor) -> void:
 	pressed.emit(2)
 	$AnimationPlayer.play("Press2")

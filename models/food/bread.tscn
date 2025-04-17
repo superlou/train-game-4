@@ -54,4 +54,4 @@ metadata/_custom_type_script = "uid://domhpq7g2uat3"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0169678, 0.0683899, 0.00973511)
 shape = SubResource("BoxShape3D_gu485")
 
-[connection signal="interacted" from="Interactable" to="Carryable" method="interact"]
+[connection signal="grabbed" from="Interactable" to="Carryable" method="interact"]

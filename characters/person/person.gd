@@ -148,7 +148,7 @@ func pick_up(target:Node3D) -> void:
 
 func _interact_to_pick_up() -> void:
 	var interactable = pick_up_target.get_node("Interactable")
-	interactor.try_interact_with(interactable)
+	interactor.try_interact_by(Interactable.InteractionType.GRAB, interactable)
 
 
 func _pick_up_animation_done() -> void:

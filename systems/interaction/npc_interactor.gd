@@ -1,16 +1,12 @@
 extends Interactor
 class_name NPCInteractor
 
+const InteractionType = Interactable.InteractionType
 
-func try_interact_with(interactable:Interactable):
-	# if carried_obj:
-	# 	interact(carried_obj.get_node("Carryable"))
-	# else:
-	# 	if interactable:
-	# 		interact(interactable)
 
-	if carrier and carrier.carryable:
+func try_interact_by(interaction_type:InteractionType, interactable:Interactable):
+	if carrier and carrier.carryable and interaction_type == InteractionType.GRAB:
 		carrier.carryable.interact(self)
 	else:
 		if interactable:
-			interactable.interact(self)
+			interactable.interact(interaction_type, self)

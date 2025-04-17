@@ -76,4 +76,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_tdkap")
 }
 
-[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]
+[connection signal="used" from="Interactable" to="." method="_on_interactable_used"]

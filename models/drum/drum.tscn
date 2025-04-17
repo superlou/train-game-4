@@ -88,4 +88,4 @@ provides_material = 10.0
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 radius = 0.4
 
-[connection signal="interacted" from="Interactable" to="Carryable" method="interact"]
+[connection signal="grabbed" from="Interactable" to="Carryable" method="interact"]

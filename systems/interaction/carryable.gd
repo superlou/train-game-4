@@ -69,3 +69,7 @@ func calc_angular_velocity(from_basis: Basis, to_basis: Basis) -> Vector3:
 
 func _on_interactable_interacted(interactor: Interactor) -> void:
 	pass # Replace with function body.
+
+
+func _on_interactable_grabbed(interactor:Interactor) -> void:
+	pass # Replace with function body.

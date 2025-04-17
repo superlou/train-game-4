@@ -123,5 +123,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_4ih7p")
 }
 
-[connection signal="interacted" from="Button1Mesh/Interactable1" to="." method="_on_interactable_1_interacted"]
-[connection signal="interacted" from="Button2Mesh/Interactable2" to="." method="_on_interactable_2_interacted"]
+[connection signal="used" from="Button1Mesh/Interactable1" to="." method="_on_interactable_1_used"]
+[connection signal="used" from="Button2Mesh/Interactable2" to="." method="_on_interactable_2_used"]

@@ -30,6 +30,6 @@ func _process(delta):
 	pass
 
 
-func _on_interactable_interacted(interactor:Interactor):
+func _on_interactable_used(interactor:Interactor) -> void:
 	pressed.emit()
 	$AnimationPlayer.play("Press")
