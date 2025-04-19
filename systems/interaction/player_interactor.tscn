@@ -5,3 +5,6 @@
 
 [node name="PlayerInteractor" instance=ExtResource("1_8uvcn")]
 script = ExtResource("2_rb5rw")
+
+[node name="RayCast3D" parent="." index="0"]
+target_position = Vector3(1.2, 0, 0)

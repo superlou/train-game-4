@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://xon6f024gisr"]
+[gd_scene load_steps=8 format=3 uid="uid://xon6f024gisr"]
 
 [ext_resource type="PackedScene" uid="uid://b6gxfwy18i2hr" path="res://models/bedroll/bedroll.glb" id="1_e5nup"]
 [ext_resource type="Script" uid="uid://bl5yffixxwtm2" path="res://models/bedroll/bedroll.gd" id="2_d0mn5"]
 [ext_resource type="Script" uid="uid://bewqoqch8rkk7" path="res://systems/interaction/carryable.gd" id="4_tjl2b"]
 [ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="4_u03fa"]
+[ext_resource type="Script" uid="uid://b0oxhamyhorru" path="res://systems/interaction/unpackable.gd" id="5_u03fa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gx3hy"]
 size = Vector3(0.889221, 0.0429688, 1.82806)
@@ -13,7 +14,6 @@ size = Vector3(0.874634, 0.0678101, 1.8197)
 
 [node name="bedroll" instance=ExtResource("1_e5nup")]
 script = ExtResource("2_d0mn5")
-unrolled = false
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/0/position = Vector3(0, 0, 0)
@@ -44,5 +44,14 @@ metadata/_custom_type_script = "uid://domhpq7g2uat3"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00897217, 0.0401917, 0.00311279)
 shape = SubResource("BoxShape3D_n32h8")
 
+[node name="Unpackable" type="Node" parent="." index="5" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("5_u03fa")
+animation_player = NodePath("../AnimationPlayer")
+unpack_animation = "Roll-Up"
+invert_unpack_animation = true
+metadata/_custom_type_script = "uid://b0oxhamyhorru"
+
 [connection signal="grabbed" from="Interactable" to="Carryable" method="interact"]
-[connection signal="used" from="Interactable" to="." method="_on_interactable_used"]
+[connection signal="using" from="Interactable" to="." method="_on_interactable_using"]
+[connection signal="finished_packing" from="Unpackable" to="." method="_on_unpackable_finished_packing"]
+[connection signal="finished_unpacking" from="Unpackable" to="." method="_on_unpackable_finished_unpacking"]
