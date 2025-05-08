@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var animation:AnimationTree = $AnimationTree
 @onready var interactor:NPCInteractor = $NPCInteractor
 @onready var ai:UtilityAI = $UtilityAI
+@onready var backstory:Backstory = $Backstory
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var grav_vel := Vector3.ZERO
@@ -130,6 +131,12 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 		wants_leap = true
 
 
+func look_to(target:Vector3) -> void:
+	var direction := (global_position - target).normalized()
+	var angle = atan2(direction.x, direction.z) + PI
+	rotation.y = lerp_angle(rotation.y, angle, 0.1)
+
+
 # === Pick up related ===
 enum PickUpState {
 	ANIMATING,
@@ -176,3 +183,8 @@ signal consumed_held
 
 func consume() -> void:
 	consumed_held.emit()
+
+
+# === Appeal related ===
+func needs_to_appeal() -> bool:
+	return true

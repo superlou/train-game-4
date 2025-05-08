@@ -56,7 +56,7 @@ func _calc_score(offer) -> float:
 func _process(_delta: float) -> void:
 	if not current_behavior:
 		current_behavior = _pick_behavior()
-		current_behavior.choose(self)
+		current_behavior.chosen_by(self)
 		print("Picked behavior: ", current_behavior)
 
 

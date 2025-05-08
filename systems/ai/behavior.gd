@@ -12,6 +12,15 @@ func _ready() -> void:
 	add_to_group("behavior")
 
 
+func _process(_delta:float):
+	for ai in ai_states.keys():
+		_process_ai(ai)
+
+
+func _process_ai(_ai:UtilityAI):
+	pass
+
+
 func _precondition(_ai:UtilityAI) -> bool:
 	""" Override to specify a precondition to consider a behavior"""
 	return true
@@ -44,9 +53,10 @@ func make_offer_to(ai:UtilityAI) -> UtilityOffer:
 	return offer
 
 
-func choose(agent):
+func chosen_by(ai:UtilityAI):
 	""" Override with behavior actions """
-	print("%s picked unimplemented behavior %s." % [agent, self])
+	# Register the AI with no state information
+	ai_states[ai] = null
 
 
 func _complete_behavior(ai:UtilityAI):

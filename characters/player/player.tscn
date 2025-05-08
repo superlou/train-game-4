@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://c22n2h2b626by"]
+[gd_scene load_steps=12 format=3 uid="uid://c22n2h2b626by"]
 
 [ext_resource type="Script" uid="uid://c6kn7cjk73ysp" path="res://characters/player/player.gd" id="1_dwx2k"]
 [ext_resource type="PackedScene" uid="uid://cbpp4b4pbsd2u" path="res://systems/glitch_canvas/glitch_canvas.tscn" id="2_iqp2d"]
 [ext_resource type="PackedScene" uid="uid://bkeytv8birxvh" path="res://systems/interaction/player_interactor.tscn" id="2_k7kkf"]
 [ext_resource type="Script" uid="uid://b0ub78bydn55" path="res://systems/interaction/carrier.gd" id="4_dirf7"]
+[ext_resource type="Script" uid="uid://cgbud7rxv05sd" path="res://systems/ai/behaviors/appeal_behavior.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://lyc32s6jlol4" path="res://systems/rssi/rssi_receiver.tscn" id="7_j3oy2"]
 [ext_resource type="PackedScene" uid="uid://deu1iqwugholm" path="res://systems/charge/charge_receiver.tscn" id="8_30nmd"]
+[ext_resource type="Script" uid="uid://dgdc8dfe5fjtl" path="res://systems/ai/utility_motives.gd" id="8_idpv6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u67lg"]
 radius = 0.3
@@ -14,6 +16,16 @@ height = 1.5
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_58sj6"]
 radius = 0.3
 height = 1.5
+
+[sub_resource type="Resource" id="Resource_rpf03"]
+script = ExtResource("8_idpv6")
+fullness = 0.0
+energy = 0.0
+security = 1.0
+fun = 0.0
+health = 0.0
+space = 0.0
+metadata/_custom_type_script = "uid://dgdc8dfe5fjtl"
 
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 65
@@ -65,5 +77,11 @@ target_position = Vector3(0, 0, -0.4)
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 radius = 0.35
+
+[node name="AppealBehavior" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29176, 0)
+script = ExtResource("7_dirf7")
+offer_motives = SubResource("Resource_rpf03")
+metadata/_custom_type_script = "uid://cgbud7rxv05sd"
 
 [connection signal="strength_changed" from="RssiReceiver" to="." method="_on_rssi_receiver_strength_changed"]

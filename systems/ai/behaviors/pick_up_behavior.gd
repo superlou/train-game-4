@@ -5,11 +5,6 @@ class_name PickUpBehavior
 @onready var target:Node3D = get_parent()
 
 
-enum States {
-    IN_PROGRESS
-}
-
-
 func _precondition(ai:UtilityAI):
 	return (
 		ai.agent_can_reach(global_position)
@@ -18,14 +13,9 @@ func _precondition(ai:UtilityAI):
 	)
 
 
-func choose(ai:UtilityAI):
-	ai_states[ai] = States.IN_PROGRESS
+func choosen_by(ai:UtilityAI):
+	ai_states[ai] = null
 	ai.agent.pick_up(target)
-
-
-func _process(_delta:float):
-	for ai in ai_states.keys():
-		_process_ai(ai)
 
 
 func _process_ai(ai:UtilityAI):

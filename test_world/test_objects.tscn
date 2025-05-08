@@ -1,0 +1,426 @@
+[gd_scene load_steps=19 format=3 uid="uid://c44eqxhnupds7"]
+
+[ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_4y5m6"]
+[ext_resource type="Script" uid="uid://cs6rbr4bbyexx" path="res://systems/time/world_time_controller.gd" id="2_6bak2"]
+[ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="2_uya15"]
+[ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="4_r3lko"]
+[ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="6_l7fxr"]
+[ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="7_kaadm"]
+[ext_resource type="PackedScene" uid="uid://xon6f024gisr" path="res://models/bedroll/bedroll.tscn" id="8_7cb7q"]
+[ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="9_cen2t"]
+
+[sub_resource type="Sky" id="Sky_6sy21"]
+sky_material = ExtResource("1_4y5m6")
+
+[sub_resource type="Environment" id="Environment_uya15"]
+background_mode = 2
+sky = SubResource("Sky_6sy21")
+ambient_light_energy = 0.0
+ssao_enabled = true
+
+[sub_resource type="Animation" id="Animation_ltokk"]
+resource_name = "Environment"
+length = 24.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 6.63333, 17.543, 18.1764),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:light_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 6, 6.33333, 6.6, 7.03333, 17.1719, 17.5053, 17.8719, 18.2053),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 0.2845, 0.19, 1), Color(0.907688, 0.631217, 0.318593, 1), Color(0.93, 0.93, 0.93, 1), Color(0.93, 0.93, 0.93, 1), Color(0.907688, 0.631217, 0.318593, 1), Color(1, 0.2845, 0.19, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/clouds_light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6, 7.03333, 17, 18.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0555, 0.228475, 0.37, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0.0555, 0.228475, 0.37, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/top_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(6, 7.03333, 17, 18.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0275, 0.101667, 0.25, 1), Color(0.35, 0.566667, 1, 1), Color(0.35, 0.566667, 1, 1), Color(0.0275, 0.101667, 0.25, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/bottom_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(6, 7.03333, 17, 18.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0275, 0.101667, 0.25, 1), Color(0, 0.323334, 0.97, 1), Color(0, 0.323334, 0.97, 1), Color(0.0275, 0.101667, 0.25, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/sun_scatter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(6, 7.03333, 17, 18.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.0555, 0.228475, 0.37, 1), Color(0.298039, 0.298039, 0.298039, 1), Color(0.298039, 0.298039, 0.298039, 1), Color(0.0555, 0.228475, 0.37, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/stars_intensity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 6, 6.46667, 17.5333, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [5.0, 5.0, 0.0, 0.0, 5.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath(".:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5708, 1.74533, 0), Vector3(-4.71239, 1.74533, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/astro_tint")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 6, 6.5, 7, 17.1, 17.5, 17.9, 24),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.2845, 0.19, 1), Color(1, 0.2845, 0.19, 1), Color(0.907688, 0.631217, 0.318593, 1), Color(0.905882, 0.788235, 0.627451, 1), Color(0.905882, 0.788235, 0.627451, 1), Color(0.907688, 0.631217, 0.318593, 1), Color(1, 0.2845, 0.19, 1), Color(1, 0.2845, 0.19, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k0uop"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../WorldEnvironment:environment:sky:sky_material:shader_parameter/astro_tint")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.905882, 0.788235, 0.627451, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5xn2"]
+_data = {
+&"Environment": SubResource("Animation_ltokk"),
+&"RESET": SubResource("Animation_k0uop")
+}
+
+[sub_resource type="Shader" id="Shader_7cb7q"]
+code = "shader_type spatial;
+
+uniform float subdivisions : hint_range(1, 1024, 1.0) = 32;
+uniform float grid_width : hint_range(0.0, 1.0, 0.01) = 0.02;
+uniform vec3 background_color : source_color = vec3(0.2, 0.2, 0.2);
+uniform vec3 background_color_two : source_color = vec3(0.1, 0.1, 0.1);
+uniform vec3 grid_color : source_color = vec3(0.5, 0.5, 0.5);
+uniform float dashed_scale_x : hint_range(0.0, 0.99, 0.01) = 0.02;
+uniform float dashed_scale_y : hint_range(0.0, 0.99, 0.01) = 0.02;
+uniform float dashed_count_x : hint_range(0.0, 16.0, 1.0) = 1.0;
+uniform float dashed_count_y : hint_range(0.0, 16.0, 1.0) = 1.0;
+
+group_uniforms Point;
+uniform float point_width : hint_range(0.0, 1.0, 0.01) = 0.021;
+uniform vec3 point_color : source_color = vec3(0.0, 0.0, 0.0);
+uniform float point_scale_x : hint_range(0.0, 1.0, 0.01) = 0.05;
+uniform float point_scale_y : hint_range(0.0, 1.0, 0.01) = 0.05;
+
+group_uniforms InsideGrid;
+uniform float inside_width : hint_range(0.0, 1.0, 0.01) = 0.01;
+uniform float inside_subdivisions : hint_range(1, 9, 1) = 6;
+uniform vec3  inside_color : source_color = vec3(0.4, 0.4, 0.4);
+uniform float in_dashed_scale_x : hint_range(0.0, 0.99, 0.01) = 0.3;
+uniform float in_dashed_scale_y : hint_range(0.0, 0.99, 0.01) = 0.3;
+uniform float in_dashed_count_x : hint_range(0.0, 18.0, 1.0) = 6.0;
+uniform float in_dashed_count_y : hint_range(0.0, 18.0, 1.0) = 6.0;
+
+
+float grid(vec2 uv, vec2 lineWidth,bool check) {
+	vec4 uvDDXY = vec4(dFdx(uv), dFdy(uv));
+	vec2 uvDeriv = vec2(length(uvDDXY.xz), length(uvDDXY.yw));
+
+	bvec2 invertLine = bvec2(lineWidth.x > 0.5, lineWidth.y > 0.5); //RV
+	vec2 targetWidth = vec2(
+		invertLine.x ? 1.0 - lineWidth.x : lineWidth.x,
+		invertLine.y ? 1.0 - lineWidth.y : lineWidth.y
+		);
+
+
+	vec2 lineAA = uvDeriv * 1.5;
+	vec2 gridUV = abs((fract(uv)) * 2.0 - 1.0);
+
+
+	if (check == true){
+		targetWidth = vec2(1.0);
+		lineAA *= 1.5;
+
+		float index = 0.0;
+		index += step(1.0, mod(uv.x, 2.0));
+		index += step(1.0, mod(uv.y, 2.0)) * 2.0;
+
+		if (index == 1.0 || index == 2.0) {
+			lineAA = -lineAA;
+		}
+	} else  {
+		gridUV = vec2(
+			invertLine.x ? gridUV.x : 1.0 - gridUV.x,
+			invertLine.y ? gridUV.y : 1.0 - gridUV.y
+		);
+	}
+
+	vec2 drawWidth = clamp(targetWidth, uvDeriv, vec2(1.0));
+	vec2 gridBase = smoothstep(drawWidth + lineAA, drawWidth - lineAA, gridUV);
+
+
+	gridBase *= clamp(targetWidth / drawWidth, 0.0, 1.0);
+	gridBase = mix(gridBase , targetWidth , clamp((uvDeriv * 2.0 - 1.0) , 0.0, 1.0));
+	gridBase.x = invertLine.x ? 1.0 - gridBase.x : gridBase.x;
+	gridBase.y = invertLine.y ? 1.0 - gridBase.y : gridBase.y;
+
+
+	return mix(gridBase.x, 1.0, gridBase.y);
+}
+
+
+float dashed_grid(vec2 uv, vec2 lineWidth, vec2 dot_width, vec2 count, float add){
+	//Inverts the width values
+	lineWidth = 1.0 - lineWidth;
+	//Create two \"masks\", one for X and one for Y
+	float gridX = 1.0 - grid(vec2(uv.x * count.x, uv.y + add), vec2(dot_width.x, lineWidth.x), false);
+	float gridY = 1.0 - grid(vec2(uv.y * count.y, uv.x + add), vec2(dot_width.y, lineWidth.y), false);
+
+	float grid = mix(gridX, 1.0, gridY);
+	return grid;
+}
+
+
+void fragment() {
+	//Subdividing uv
+	vec2 uv = UV * subdivisions;
+
+	//CheckerBoard
+	float checkeredGrid = grid(uv , vec2(0.5), true);
+
+	//Grid
+	float mainGrid = dashed_grid(
+			uv , vec2(grid_width), vec2(dashed_scale_x, dashed_scale_y),
+			vec2(dashed_count_x, dashed_count_y), 0.5);
+
+	//Inside Grid
+	float insideGrid = dashed_grid(
+			uv * inside_subdivisions, vec2(inside_width),
+			vec2(in_dashed_scale_x, in_dashed_scale_y),
+			vec2(in_dashed_count_x, in_dashed_count_y), 0.5);
+
+	//Points
+	float pointGrid = dashed_grid(
+			uv + 0.5, vec2(point_width),
+			1.0 - vec2(point_scale_x , point_scale_y),
+			vec2(1.0), 0.0);
+
+	//Add final color
+	vec3 grid = mix(background_color, background_color_two, checkeredGrid);
+	if (insideGrid != 0.0) grid = mix(grid, inside_color, insideGrid);
+	if (mainGrid != 0.0) grid = mix(grid, grid_color, mainGrid);
+	if (pointGrid != 0.0) grid = mix(grid, point_color, pointGrid);
+
+	ALBEDO = grid;
+
+
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7fxr"]
+render_priority = 0
+shader = SubResource("Shader_7cb7q")
+shader_parameter/subdivisions = 32.0
+shader_parameter/grid_width = 0.02
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/background_color_two = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/grid_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/dashed_scale_x = 0.02
+shader_parameter/dashed_scale_y = 0.02
+shader_parameter/dashed_count_x = 1.0
+shader_parameter/dashed_count_y = 1.0
+shader_parameter/point_width = 0.021
+shader_parameter/point_color = Color(0, 0, 0, 1)
+shader_parameter/point_scale_x = 0.05
+shader_parameter/point_scale_y = 0.05
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_subdivisions = 6.0
+shader_parameter/inside_color = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/in_dashed_scale_x = 0.3
+shader_parameter/in_dashed_scale_y = 0.3
+shader_parameter/in_dashed_count_x = 6.0
+shader_parameter/in_dashed_count_y = 6.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bak2"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cb7q"]
+render_priority = 0
+shader = SubResource("Shader_7cb7q")
+shader_parameter/subdivisions = 4.0
+shader_parameter/grid_width = 0.02
+shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/background_color_two = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/grid_color = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/dashed_scale_x = 0.02
+shader_parameter/dashed_scale_y = 0.02
+shader_parameter/dashed_count_x = 1.0
+shader_parameter/dashed_count_y = 1.0
+shader_parameter/point_width = 0.021
+shader_parameter/point_color = Color(0, 0, 0, 1)
+shader_parameter/point_scale_x = 0.05
+shader_parameter/point_scale_y = 0.05
+shader_parameter/inside_width = 0.01
+shader_parameter/inside_subdivisions = 6.0
+shader_parameter/inside_color = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/in_dashed_scale_x = 0.3
+shader_parameter/in_dashed_scale_y = 0.3
+shader_parameter/in_dashed_count_x = 6.0
+shader_parameter/in_dashed_count_y = 6.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cen2t"]
+size = Vector3(2, 2, 2)
+
+[node name="TestWorld" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uya15")
+
+[node name="SunLight" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+light_color = Color(0.93, 0.93, 0.93, 1)
+shadow_enabled = true
+directional_shadow_max_distance = 20.0
+
+[node name="EnvironmentAnimation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SunLight")
+libraries = {
+&"": SubResource("AnimationLibrary_f5xn2")
+}
+speed_scale = 0.0
+script = ExtResource("2_6bak2")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+metadata/_edit_lock_ = true
+
+[node name="Box" type="CSGBox3D" parent="Ground"]
+material_override = SubResource("ShaderMaterial_l7fxr")
+size = Vector3(100, 1, 100)
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_6bak2")
+metadata/_edit_lock_ = true
+
+[node name="Player" parent="." instance=ExtResource("2_uya15")]
+rssi_effects_enabled = false
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="drum" parent="Props" instance=ExtResource("4_r3lko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0250401, -3.14197)
+
+[node name="drum2" parent="Props" instance=ExtResource("4_r3lko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.790858, 0.0250401, -3.86461)
+
+[node name="drum3" parent="Props" instance=ExtResource("4_r3lko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30538, 0.0250401, -2.93651)
+
+[node name="drum4" parent="Props" instance=ExtResource("4_r3lko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00942, 0.0250401, -3.57242)
+
+[node name="drum5" parent="Props" instance=ExtResource("4_r3lko")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40687, 0.0250401, -2.52771)
+
+[node name="repeater" parent="Props" instance=ExtResource("6_l7fxr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.61091, 0, -3.75415)
+
+[node name="Bread" parent="Props" instance=ExtResource("7_kaadm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78505, 0, -3.39882)
+
+[node name="bedroll" parent="." instance=ExtResource("8_7cb7q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.10109, 0, -1.66851)
+
+[node name="Buttons" type="Node3D" parent="."]
+
+[node name="BoxWall" type="StaticBody3D" parent="Buttons"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="Geometry" type="CSGBox3D" parent="Buttons/BoxWall"]
+material_override = SubResource("ShaderMaterial_7cb7q")
+size = Vector3(2, 2, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/BoxWall"]
+shape = SubResource("BoxShape3D_cen2t")
+metadata/_edit_lock_ = true
+
+[node name="Button" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00239, 0.271316, 0)
+
+[node name="Button2" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00239, 0.271316, -0.169526)
+
+[node name="Button3" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00429, 0.271316, 0.159533)

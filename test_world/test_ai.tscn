@@ -1,16 +1,14 @@
-[gd_scene load_steps=19 format=3 uid="uid://c44eqxhnupds7"]
+[gd_scene load_steps=16 format=3 uid="uid://qjg7l364m1hi"]
 
-[ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_4y5m6"]
-[ext_resource type="Script" uid="uid://cs6rbr4bbyexx" path="res://systems/time/world_time_controller.gd" id="2_6bak2"]
-[ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="2_uya15"]
-[ext_resource type="PackedScene" uid="uid://c6tpgo63v8yb8" path="res://models/drum/drum.tscn" id="4_r3lko"]
-[ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="6_l7fxr"]
-[ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="7_kaadm"]
-[ext_resource type="PackedScene" uid="uid://xon6f024gisr" path="res://models/bedroll/bedroll.tscn" id="8_7cb7q"]
-[ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="9_cen2t"]
+[ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_wyvbm"]
+[ext_resource type="Script" uid="uid://cs6rbr4bbyexx" path="res://systems/time/world_time_controller.gd" id="2_ig3q2"]
+[ext_resource type="PackedScene" uid="uid://c22n2h2b626by" path="res://characters/player/player.tscn" id="3_tpyh2"]
+[ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="6_2io6r"]
+[ext_resource type="PackedScene" uid="uid://bkbhhy4vo7thw" path="res://characters/person/person.tscn" id="9_n60q7"]
+[ext_resource type="Script" uid="uid://x63vileiayh5" path="res://systems/story/backstory.gd" id="10_gwlg0"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
-sky_material = ExtResource("1_4y5m6")
+sky_material = ExtResource("1_wyvbm")
 
 [sub_resource type="Environment" id="Environment_uya15"]
 background_mode = 2
@@ -164,6 +162,12 @@ _data = {
 &"RESET": SubResource("Animation_k0uop")
 }
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_atlxv"]
+vertices = PackedVector3Array(-52.0332, 0.209757, -49.5, -52.0332, 0.209757, 49.5, 46.9668, 0.209757, 49.5, 46.9668, 0.209757, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_source_geometry_mode = 2
+geometry_source_group_name = &"Navigable"
+
 [sub_resource type="Shader" id="Shader_7cb7q"]
 code = "shader_type spatial;
 
@@ -314,41 +318,14 @@ shader_parameter/in_dashed_count_y = 6.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bak2"]
 size = Vector3(100, 1, 100)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cb7q"]
-render_priority = 0
-shader = SubResource("Shader_7cb7q")
-shader_parameter/subdivisions = 4.0
-shader_parameter/grid_width = 0.02
-shader_parameter/background_color = Color(0.2, 0.2, 0.2, 1)
-shader_parameter/background_color_two = Color(0.1, 0.1, 0.1, 1)
-shader_parameter/grid_color = Color(0.5, 0.5, 0.5, 1)
-shader_parameter/dashed_scale_x = 0.02
-shader_parameter/dashed_scale_y = 0.02
-shader_parameter/dashed_count_x = 1.0
-shader_parameter/dashed_count_y = 1.0
-shader_parameter/point_width = 0.021
-shader_parameter/point_color = Color(0, 0, 0, 1)
-shader_parameter/point_scale_x = 0.05
-shader_parameter/point_scale_y = 0.05
-shader_parameter/inside_width = 0.01
-shader_parameter/inside_subdivisions = 6.0
-shader_parameter/inside_color = Color(0.4, 0.4, 0.4, 1)
-shader_parameter/in_dashed_scale_x = 0.3
-shader_parameter/in_dashed_scale_y = 0.3
-shader_parameter/in_dashed_count_x = 6.0
-shader_parameter/in_dashed_count_y = 6.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_cen2t"]
-size = Vector3(2, 2, 2)
-
 [node name="TestWorld" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uya15")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
-light_color = Color(0, 0, 0, 1)
-light_energy = 0.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+light_color = Color(0.93, 0.93, 0.93, 1)
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
 
@@ -358,9 +335,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_f5xn2")
 }
 speed_scale = 0.0
-script = ExtResource("2_6bak2")
+script = ExtResource("2_ig3q2")
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.53325, 0.0402432, 0)
+visible = false
+navigation_mesh = SubResource("NavigationMesh_atlxv")
+metadata/_edit_lock_ = true
+
+[node name="Ground" type="StaticBody3D" parent="." groups=["Navigable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 metadata/_edit_lock_ = true
 
@@ -373,54 +356,15 @@ metadata/_edit_lock_ = true
 shape = SubResource("BoxShape3D_6bak2")
 metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("2_uya15")]
+[node name="Player" parent="." instance=ExtResource("3_tpyh2")]
 rssi_effects_enabled = false
 
-[node name="Props" type="Node3D" parent="."]
+[node name="Person" parent="." instance=ExtResource("9_n60q7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.66975, 0, -5.42144)
 
-[node name="drum" parent="Props" instance=ExtResource("4_r3lko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0250401, -3.14197)
+[node name="Backstory" type="Node" parent="Person"]
+script = ExtResource("10_gwlg0")
+metadata/_custom_type_script = "uid://x63vileiayh5"
 
-[node name="drum2" parent="Props" instance=ExtResource("4_r3lko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.790858, 0.0250401, -3.86461)
-
-[node name="drum3" parent="Props" instance=ExtResource("4_r3lko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30538, 0.0250401, -2.93651)
-
-[node name="drum4" parent="Props" instance=ExtResource("4_r3lko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00942, 0.0250401, -3.57242)
-
-[node name="drum5" parent="Props" instance=ExtResource("4_r3lko")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.40687, 0.0250401, -2.52771)
-
-[node name="repeater" parent="Props" instance=ExtResource("6_l7fxr")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.61091, 0, -3.75415)
-
-[node name="Bread" parent="Props" instance=ExtResource("7_kaadm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78505, 0, -3.39882)
-
-[node name="bedroll" parent="." instance=ExtResource("8_7cb7q")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.10109, 0, -1.66851)
-
-[node name="Buttons" type="Node3D" parent="."]
-
-[node name="BoxWall" type="StaticBody3D" parent="Buttons"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, 0)
-metadata/_edit_lock_ = true
-
-[node name="Geometry" type="CSGBox3D" parent="Buttons/BoxWall"]
-material_override = SubResource("ShaderMaterial_7cb7q")
-size = Vector3(2, 2, 2)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Buttons/BoxWall"]
-shape = SubResource("BoxShape3D_cen2t")
-metadata/_edit_lock_ = true
-
-[node name="Button" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00239, 0.271316, 0)
-
-[node name="Button2" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00239, 0.271316, -0.169526)
-
-[node name="Button3" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00429, 0.271316, 0.159533)
+[node name="Bread" parent="." instance=ExtResource("6_2io6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.04923, 0, -3.39882)
