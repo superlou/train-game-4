@@ -133,7 +133,7 @@ func _on_navigation_agent_link_reached(details:Dictionary) -> void:
 
 func look_to(target:Vector3) -> void:
 	var direction := (global_position - target).normalized()
-	var angle = atan2(direction.x, direction.z) + PI
+	var angle := atan2(direction.x, direction.z) + PI
 	rotation.y = lerp_angle(rotation.y, angle, 0.1)
 
 

@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://4g8trx6vya32"]
+
+[ext_resource type="FontFile" uid="uid://djryivs0tue8d" path="res://assets/fonts/ShadowsIntoLight-Regular.ttf" id="1_fbeno"]
+[ext_resource type="Script" uid="uid://we1ds1lptuxo" path="res://models/talk_board/talk_board.gd" id="1_wxdht"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxdht"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ak27v"]
+size = Vector3(0.5, 0.7, 0.01)
+
+[node name="TalkBoard" type="Node3D"]
+script = ExtResource("1_wxdht")
+
+[node name="Backing" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.005)
+material_override = SubResource("StandardMaterial3D_wxdht")
+mesh = SubResource("BoxMesh_ak27v")
+
+[node name="MessageLabel" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0736175, 0.00193676)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "This is text that needs to fill the sign"
+font = ExtResource("1_fbeno")
+font_size = 85
+outline_size = 0
+autowrap_mode = 3
+width = 450.0
+
+[node name="Label3D2" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175305, -0.274509, 0.00193676)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "Yes"
+font = ExtResource("1_fbeno")
+font_size = 80
+outline_size = 0
+autowrap_mode = 3
+width = 800.0
+
+[node name="Label3D3" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00433983, -0.274509, 0.00193676)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "No"
+font = ExtResource("1_fbeno")
+font_size = 80
+outline_size = 0
+autowrap_mode = 3
+width = 800.0
+
+[node name="Label3D4" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182235, -0.274509, 0.00193676)
+pixel_size = 0.001
+double_sided = false
+modulate = Color(0, 0, 0, 1)
+text = "?"
+font = ExtResource("1_fbeno")
+font_size = 80
+outline_size = 0
+autowrap_mode = 3
+width = 800.0

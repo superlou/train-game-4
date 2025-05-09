@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c44eqxhnupds7"]
+[gd_scene load_steps=20 format=3 uid="uid://c44eqxhnupds7"]
 
 [ext_resource type="Material" uid="uid://bapitfkw13lbd" path="res://systems/time/day_night_sky.tres" id="1_4y5m6"]
 [ext_resource type="Script" uid="uid://cs6rbr4bbyexx" path="res://systems/time/world_time_controller.gd" id="2_6bak2"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="6_l7fxr"]
 [ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="7_kaadm"]
 [ext_resource type="PackedScene" uid="uid://xon6f024gisr" path="res://models/bedroll/bedroll.tscn" id="8_7cb7q"]
+[ext_resource type="PackedScene" uid="uid://4g8trx6vya32" path="res://models/talk_board/talk_board.tscn" id="9_2d63q"]
 [ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="9_cen2t"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
@@ -424,3 +425,7 @@ transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 
 
 [node name="Button3" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00429, 0.271316, 0.159533)
+
+[node name="TalkBoard" parent="." instance=ExtResource("9_2d63q")]
+transform = Transform3D(1, 0, 0, 0, 0.987797, 0.155745, 0, -0.155745, 0.987797, 0, 1.14805, -1.75726)
+message = "Returns the size of a bounding box of a string broken into the lines, taking kerning and advance into account."
