@@ -428,4 +428,4 @@ transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 
 
 [node name="TalkBoard" parent="." instance=ExtResource("9_2d63q")]
 transform = Transform3D(1, 0, 0, 0, 0.987797, 0.155745, 0, -0.155745, 0.987797, 0, 1.14805, -1.75726)
-message = "Returns the size of a bounding box of a string broken into the lines, taking kerning and advance into account."
+message = "Message Board"

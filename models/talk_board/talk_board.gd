@@ -1,7 +1,13 @@
+@tool
 extends Node3D
+class_name TalkBoard
 
-
-@export var message := ""
+@export var message := "" :
+	set(value):
+		message = value
+		if message_label:
+			message_label.text = value
+			fit_message()
 
 @onready var message_label:Label3D = $MessageLabel
 

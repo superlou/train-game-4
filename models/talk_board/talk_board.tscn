@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://4g8trx6vya32"]
+[gd_scene load_steps=6 format=3 uid="uid://4g8trx6vya32"]
 
 [ext_resource type="FontFile" uid="uid://djryivs0tue8d" path="res://assets/fonts/ShadowsIntoLight-Regular.ttf" id="1_fbeno"]
 [ext_resource type="Script" uid="uid://we1ds1lptuxo" path="res://models/talk_board/talk_board.gd" id="1_wxdht"]
+[ext_resource type="PackedScene" uid="uid://bfj0tp3kos1u" path="res://models/talk_board/talk_board_choice.tscn" id="3_7g0sa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxdht"]
 
@@ -21,45 +22,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0736175, 0.00193676)
 pixel_size = 0.001
 double_sided = false
 modulate = Color(0, 0, 0, 1)
-text = "This is text that needs to fill the sign"
 font = ExtResource("1_fbeno")
-font_size = 85
+font_size = 128
 outline_size = 0
 autowrap_mode = 3
 width = 450.0
 
-[node name="Label3D2" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175305, -0.274509, 0.00193676)
-pixel_size = 0.001
-double_sided = false
-modulate = Color(0, 0, 0, 1)
-text = "Yes"
-font = ExtResource("1_fbeno")
-font_size = 80
-outline_size = 0
-autowrap_mode = 3
-width = 800.0
+[node name="TalkBoardChoice" parent="." instance=ExtResource("3_7g0sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177309, -0.272579, 0.001)
+choice = "Yes"
 
-[node name="Label3D3" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00433983, -0.274509, 0.00193676)
-pixel_size = 0.001
-double_sided = false
-modulate = Color(0, 0, 0, 1)
-text = "No"
-font = ExtResource("1_fbeno")
-font_size = 80
-outline_size = 0
-autowrap_mode = 3
-width = 800.0
+[node name="TalkBoardChoice2" parent="." instance=ExtResource("3_7g0sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, -0.272579, 0.001)
+choice = "No"
 
-[node name="Label3D4" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.182235, -0.274509, 0.00193676)
-pixel_size = 0.001
-double_sided = false
-modulate = Color(0, 0, 0, 1)
-text = "?"
-font = ExtResource("1_fbeno")
-font_size = 80
-outline_size = 0
-autowrap_mode = 3
-width = 800.0
+[node name="TalkBoardChoice3" parent="." instance=ExtResource("3_7g0sa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166723, -0.272579, 0.001)
+choice = "?"
