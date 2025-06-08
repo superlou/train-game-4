@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://blidqm6w7dse6"]
+
+[ext_resource type="Script" uid="uid://oycapm7uxcmi" path="res://test_world/talk_stack_demo.gd" id="1_85o1v"]
+[ext_resource type="PackedScene" uid="uid://bedwd3p5nstag" path="res://models/talk_board/talk_stack.tscn" id="1_ljuhd"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ljuhd"]
+radius = 0.2
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljuhd"]
+albedo_color = Color(0.205364, 0.583101, 0.574682, 1)
+
+[node name="TalkStackDemo" type="Node3D"]
+script = ExtResource("1_85o1v")
+
+[node name="TalkStack" parent="." instance=ExtResource("1_ljuhd")]
+transform = Transform3D(1, 0, 0, 0, 0.983347, 0.181738, 0, -0.181738, 0.983347, 0, 1.159, 0.129)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75268, -0.129269)
+mesh = SubResource("CapsuleMesh_ljuhd")
+surface_material_override/0 = SubResource("StandardMaterial3D_ljuhd")
+
+[connection signal="selected" from="TalkStack" to="." method="_on_talk_stack_selected"]

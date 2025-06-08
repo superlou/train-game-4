@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://sbn2qvoapyga"]
+
+[ext_resource type="FontFile" uid="uid://djryivs0tue8d" path="res://assets/fonts/ShadowsIntoLight-Regular.ttf" id="1_gn4cp"]
+[ext_resource type="Script" uid="uid://ck422u2caqg4y" path="res://models/talk_board/talk_board_drawing.gd" id="1_x3oix"]
+[ext_resource type="Script" uid="uid://bttgnk3bb2a8i" path="res://addons/label_font_auto_sizer/label_auto_sizer.gd" id="3_l0f5u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_82bhv"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="TalkBoardDrawing" type="Node2D"]
+script = ExtResource("1_x3oix")
+message = "Message"
+options = Array[String](["Yes", "No"])
+
+[node name="TalkBoardDrawing" type="PanelContainer" parent="."]
+offset_right = 732.0
+offset_bottom = 1024.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_82bhv")
+metadata/_edit_lock_ = true
+
+[node name="MessageLabel" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 18.0
+offset_right = 717.0
+offset_bottom = 823.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_gn4cp")
+theme_override_font_sizes/font_size = 128
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+script = ExtResource("3_l0f5u")
+_max_size = 128
+_current_font_size = 128
+_editor_defaults_set = true
+metadata/_custom_type_script = "uid://bttgnk3bb2a8i"
+
+[node name="OptionsContainer" type="HBoxContainer" parent="."]
+offset_left = 7.0
+offset_top = 836.0
+offset_right = 720.0
+offset_bottom = 1013.0
+theme_override_constants/separation = 40
+alignment = 1

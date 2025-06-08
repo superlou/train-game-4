@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cqm1o33qq6xpr" path="res://models/repeater/repeater.tscn" id="6_l7fxr"]
 [ext_resource type="PackedScene" uid="uid://doytauxargffh" path="res://models/food/bread.tscn" id="7_kaadm"]
 [ext_resource type="PackedScene" uid="uid://xon6f024gisr" path="res://models/bedroll/bedroll.tscn" id="8_7cb7q"]
-[ext_resource type="PackedScene" uid="uid://4g8trx6vya32" path="res://models/talk_board/talk_board.tscn" id="9_2d63q"]
+[ext_resource type="PackedScene" uid="uid://blidqm6w7dse6" path="res://test_world/talk_stack_demo.tscn" id="9_2d63q"]
 [ext_resource type="PackedScene" uid="uid://dlo812m3e6gas" path="res://models/driver_panel/button.tscn" id="9_cen2t"]
 
 [sub_resource type="Sky" id="Sky_6sy21"]
@@ -348,7 +348,6 @@ size = Vector3(2, 2, 2)
 environment = SubResource("Environment_uya15")
 
 [node name="SunLight" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 light_color = Color(0.93, 0.93, 0.93, 1)
 shadow_enabled = true
 directional_shadow_max_distance = 20.0
@@ -426,6 +425,5 @@ transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, 
 [node name="Button3" parent="Buttons/BoxWall" instance=ExtResource("9_cen2t")]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 1.00429, 0.271316, 0.159533)
 
-[node name="TalkBoard" parent="." instance=ExtResource("9_2d63q")]
-transform = Transform3D(1, 0, 0, 0, 0.987797, 0.155745, 0, -0.155745, 0.987797, 0, 1.14805, -1.75726)
-message = "Message Board"
+[node name="TalkStackDemo" parent="." instance=ExtResource("9_2d63q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.100164, -1.27252)

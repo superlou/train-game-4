@@ -15,6 +15,7 @@ func _ready() -> void:
 func _process(_delta):
 	var interactable = get_closest_interactable()
 	_update_reticule(interactable)
+	_update_hover(interactable)
 	_prev_interactable = interactable
 
 	# Handle action key press
@@ -39,6 +40,14 @@ func try_interact(interaction_type:InteractionType, interactable:Interactable):
 	else:
 		if interactable:
 			interactable.interact(interaction_type, self)
+
+
+func _update_hover(interactable:Interactable) -> void:
+	if interactable:
+		interactable.is_hovered = true
+
+	if _prev_interactable and _prev_interactable != interactable:
+		_prev_interactable.is_hovered = false
 
 
 func _update_reticule(interactable:Interactable) -> void:

@@ -11,7 +11,6 @@ choice = ""
 pixel_size = 0.001
 double_sided = false
 modulate = Color(0, 0, 0, 1)
-text = "Choice"
 font = ExtResource("1_njpjl")
 font_size = 80
 outline_size = 0

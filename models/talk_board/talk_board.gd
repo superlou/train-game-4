@@ -1,43 +1,64 @@
 @tool
-extends Node3D
+extends RigidBody3D
 class_name TalkBoard
 
-@export var message := "" :
+
+@export var message := "":
 	set(value):
 		message = value
-		if message_label:
-			message_label.text = value
-			fit_message()
+		update_message()
 
-@onready var message_label:Label3D = $MessageLabel
+@export var options: Array[String] = []:
+	set(value):
+		options = value
+		update_options()
 
-var max_message_height = 550
+signal selected(value: String)
+
+@onready var interactables = $Interactables
+@onready var talk_board_drawing: TalkBoardDrawing = %TalkBoardDrawing
+
 
 func _ready() -> void:
-	message_label.text = message
-	fit_message()
+	update_message()
+	update_options()
 
 
-func fit_message():
-	var font := message_label.font
-	var font_size := 128
+func update_message():
+	if not talk_board_drawing:
+		return
+	
+	talk_board_drawing.message = message
 
-	var size := font.get_multiline_string_size(
-		message,
-		message_label.horizontal_alignment,
-		message_label.width,
-		font_size
-	)
 
-	# todo Make a binary search
-	while size.y > max_message_height:
-		font_size -= 1
-		size = font.get_multiline_string_size(
-			message,
-			message_label.horizontal_alignment,
-			message_label.width,
-			font_size
-		)
-		print(size)
+func update_options():
+	if not talk_board_drawing:
+		return
+	
+	talk_board_drawing.options = options
 
-	message_label.font_size = font_size
+
+func _on_talk_board_drawing_changed_options(_option_infos: Array) -> void:
+	pass
+	# for interactable in interactables.get_children():
+	# 	interactables.remove_child(interactable)
+	# 	interactable.free()
+
+	# for option in option_infos:
+	# 	var interactable := Interactable.new()
+	# 	var label_position = (option.position / 1024) - Vector2(0.5, 0.5)
+
+	# 	print(label_position)
+
+
+func _on_interactable_12_used(_interactor: Interactor) -> void:
+	_select_idx(0)
+
+
+func _on_interactable_22_used(_interactor: Interactor) -> void:
+	_select_idx(1)
+
+
+func _select_idx(idx: int) -> void:
+	talk_board_drawing.select(idx)
+	selected.emit(options[idx])

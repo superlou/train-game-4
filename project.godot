@@ -21,6 +21,10 @@ WorldManager="*res://world_manager.gd"
 RelativeWorld="*res://systems/relative_world/relative_world.gd"
 Namer="*res://systems/namer/namer.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/label_font_auto_sizer/plugin.cfg")
+
 [filesystem]
 
 import/blender/enabled=false

@@ -6,6 +6,14 @@ class_name Interactable
 var hold_interaction_threshold := 0.1
 var interaction_duration := 0.0
 var was_interacted_with := false
+var is_hovered := false :
+    set(value):
+        if value and not is_hovered:
+            hovered.emit()
+        elif not value and is_hovered:
+            unhovered.emit()
+
+        is_hovered = value
 
 enum InteractionType {
     GRAB,
@@ -14,8 +22,8 @@ enum InteractionType {
     USING,
 }
 
-# signal focused()
-# signal unfocused()
+signal hovered()
+signal unhovered()
 signal used(interactor: Interactor)
 signal using(interactor: Interactor)
 signal grabbed(interactor: Interactor)

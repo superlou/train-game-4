@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bedwd3p5nstag"]
+
+[ext_resource type="Script" uid="uid://bc8sjbnptk8yk" path="res://models/talk_board/talk_stack.gd" id="1_txknv"]
+[ext_resource type="PackedScene" uid="uid://4g8trx6vya32" path="res://models/talk_board/talk_board.tscn" id="2_pha8o"]
+
+[node name="TalkStack" type="Node3D"]
+script = ExtResource("1_txknv")
+
+[node name="Placeholder" parent="." instance=ExtResource("2_pha8o")]

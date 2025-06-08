@@ -1,41 +1,58 @@
-[gd_scene load_steps=6 format=3 uid="uid://4g8trx6vya32"]
+[gd_scene load_steps=8 format=3 uid="uid://4g8trx6vya32"]
 
-[ext_resource type="FontFile" uid="uid://djryivs0tue8d" path="res://assets/fonts/ShadowsIntoLight-Regular.ttf" id="1_fbeno"]
 [ext_resource type="Script" uid="uid://we1ds1lptuxo" path="res://models/talk_board/talk_board.gd" id="1_wxdht"]
-[ext_resource type="PackedScene" uid="uid://bfj0tp3kos1u" path="res://models/talk_board/talk_board_choice.tscn" id="3_7g0sa"]
+[ext_resource type="ArrayMesh" uid="uid://cg0v6pq50mpn3" path="res://models/talk_board/talk_board.res" id="2_0x5yu"]
+[ext_resource type="Script" uid="uid://domhpq7g2uat3" path="res://systems/interaction/interactable.gd" id="4_0x5yu"]
+[ext_resource type="PackedScene" uid="uid://sbn2qvoapyga" path="res://models/talk_board/talk_board_drawing.tscn" id="4_yoym8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7g0sa"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wxdht"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_7g0sa")
 
-[sub_resource type="BoxMesh" id="BoxMesh_ak27v"]
-size = Vector3(0.5, 0.7, 0.01)
+[sub_resource type="BoxShape3D" id="BoxShape3D_yoym8"]
+size = Vector3(0.228271, 0.140625, 0.0427246)
 
-[node name="TalkBoard" type="Node3D"]
+[node name="TalkBoard" type="RigidBody3D"]
+freeze = true
 script = ExtResource("1_wxdht")
 
 [node name="Backing" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.005)
 material_override = SubResource("StandardMaterial3D_wxdht")
-mesh = SubResource("BoxMesh_ak27v")
+mesh = ExtResource("2_0x5yu")
 
-[node name="MessageLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0736175, 0.00193676)
-pixel_size = 0.001
-double_sided = false
-modulate = Color(0, 0, 0, 1)
-font = ExtResource("1_fbeno")
-font_size = 128
-outline_size = 0
-autowrap_mode = 3
-width = 450.0
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
 
-[node name="TalkBoardChoice" parent="." instance=ExtResource("3_7g0sa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.177309, -0.272579, 0.001)
-choice = "Yes"
+[node name="TalkBoardDrawing" parent="SubViewport" instance=ExtResource("4_yoym8")]
+unique_name_in_owner = true
+message = ""
+options = Array[String]([])
 
-[node name="TalkBoardChoice2" parent="." instance=ExtResource("3_7g0sa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19209e-07, -0.272579, 0.001)
-choice = "No"
+[node name="Interactables" type="Node3D" parent="."]
 
-[node name="TalkBoardChoice3" parent="." instance=ExtResource("3_7g0sa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.166723, -0.272579, 0.001)
-choice = "?"
+[node name="Interactable12" type="Area3D" parent="Interactables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.145986, -0.28301, 0)
+script = ExtResource("4_0x5yu")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Interactable12"]
+shape = SubResource("BoxShape3D_yoym8")
+
+[node name="Interactable22" type="Area3D" parent="Interactables"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1348, -0.28301, 0)
+script = ExtResource("4_0x5yu")
+metadata/_custom_type_script = "uid://domhpq7g2uat3"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Interactable22"]
+shape = SubResource("BoxShape3D_yoym8")
+
+[connection signal="changed_options" from="SubViewport/TalkBoardDrawing" to="." method="_on_talk_board_drawing_changed_options"]
+[connection signal="used" from="Interactables/Interactable12" to="." method="_on_interactable_12_used"]
+[connection signal="used" from="Interactables/Interactable22" to="." method="_on_interactable_22_used"]
